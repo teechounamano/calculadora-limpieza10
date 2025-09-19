@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
     <title>Plan-Limpieza10 | App de Limpieza para Estudiantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -205,7 +205,7 @@
             border-radius: 1.5rem;
             padding: 1.5rem;
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transform: scale(0.9);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -275,8 +275,11 @@
                     <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
                         <i class="fas fa-home"></i>
                     </a>
-                    <a href="https://sites.google.com/view/a-tum/inicio" target="_blank" title="Soporte A-TUM" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
                         <i class="fas fa-headset"></i>
+                    </a>
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-robot"></i>
                     </a>
                 </div>
                 <!-- Contenido principal de la cabecera -->
@@ -471,6 +474,13 @@
         <footer class="text-center mt-16 mb-20">
             <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Todo claro?</h3>
             <p class="text-gray-600 mb-8 max-w-xl mx-auto">Contacta con nosotros para reservar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
+            
+            <!-- Campo de Cupón/Código en la vista principal -->
+            <div class="max-w-sm mx-auto mb-6">
+                <label for="main-coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
+                <input type="text" id="main-coupon-code" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Escribe tu código aquí">
+            </div>
+
             <button id="book-now-btn" class="bg-pink-500 text-white font-bold py-4 px-10 rounded-full hover:bg-pink-600 transition-transform hover:scale-105 text-lg shadow-lg pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
         </footer>
 
@@ -523,6 +533,12 @@
                 </div>
             </div>
             
+            <!-- Sección de Cupón/Código -->
+            <div class="mt-4">
+                <label for="coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
+                <input type="text" id="coupon-code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Escribe tu código aquí">
+            </div>
+
             <div class="mt-4 flex justify-between items-center font-bold text-lg">
                 <span class="text-gray-800">Total:</span>
                 <span id="summary-total" class="text-blue-600 text-2xl">0.00€</span>
@@ -897,6 +913,10 @@
                     return;
                 }
 
+                const modalCoupon = document.getElementById('coupon-code').value.trim();
+                const mainCoupon = document.getElementById('main-coupon-code').value.trim();
+                const couponCode = mainCoupon || modalCoupon; // Usa el cupón de la vista principal o el del modal
+                
                 let message = "¡Hola! 👋 Me gustaría reservar una limpieza con Plan-Limpieza10 con la siguiente configuración:\n\n";
                 
                 message += `*CUOTA DE ACTIVACIÓN:* ${formatCurrency(ACTIVATION_FEE)}\n`;
@@ -919,6 +939,9 @@
                 }
                 
                 message += "\n----------------------------------\n";
+                if (couponCode) {
+                    message += `*CUPÓN/CÓDIGO:* ${couponCode}\n`;
+                }
                 message += `*COSTE TOTAL:* ${formatCurrency(state.totalCost)}\n`;
                 message += `*Nº de Compañeros:* ${state.roommatesCount}\n`;
                 message += `*COSTE POR PERSONA:* ${formatCurrency(state.costPerPerson, true)}\n\n`;
@@ -1049,5 +1072,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 

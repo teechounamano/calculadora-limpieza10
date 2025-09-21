@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Activacion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .form-container {
+            max-width: 28rem;
+            width: 100%;
+        }
+        .message-box {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            z-index: 1000;
+        }
+        .message-box.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+        .message-box.success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .message-box.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .button-gradient {
+            background-image: linear-gradient(to right, #6b46c1, #805ad5, #9f7aea);
+            box-shadow: 0 4px 14px 0 rgba(105, 59, 219, 0.39);
+            transition: all 0.2s ease-in-out;
+        }
+        .button-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(105, 59, 219, 0.5);
+        }
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(105, 59, 219, 0.25);
+            border-color: #805ad5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="form-container bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 transform transition-all duration-300 hover:shadow-2xl">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-2">¡Activa tu Codigo!</h1>
+        <p class="text-center text-gray-600 mb-8">Completa el formulario para obtener tu código de estudiante.</p>
+
+        <form id="contactForm" class="space-y-6">
+            <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido" class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-inner focus:outline-none focus:ring-2 transition duration-150 ease-in-out" required>
+            </div>
+            <div>
+                <label for="bizumCelular" class="block text-sm font-medium text-gray-700">Celular para Bizum</label>
+                <input type="tel" id="bizumCelular" name="bizumCelular" placeholder="612 345 678" class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-inner focus:outline-none focus:ring-2 transition duration-150 ease-in-out" required>
+            </div>
+
+            <div class="flex items-start">
+                <input id="acceptTerms" type="checkbox" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-md cursor-pointer" required>
+                <label for="acceptTerms" class="ml-3 block text-sm text-gray-800">
+                    Acepto los <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors duration-200">términos y condiciones</a> del servicio <span class="font-semibold text-indigo-700">Plan Limpieza10</span>.
+                </label>
+            </div>
+
+            <div>
+                <button type="submit" class="w-full flex justify-center py-3 px-4 rounded-lg text-sm font-semibold text-white button-gradient">
+                    Enviar a WhatsApp
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Mensajes de feedback -->
+    <div id="messageBox" class="message-box"></div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previene el envío del formulario tradicional
+
+            const nombre = document.getElementById('nombre').value;
+            const bizumCelular = document.getElementById('bizumCelular').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+
+            const showMessage = (text, type) => {
+                const messageBox = document.getElementById('messageBox');
+                messageBox.textContent = text;
+                messageBox.className = `message-box show ${type}`;
+                setTimeout(() => {
+                    messageBox.className = `message-box ${type}`;
+                }, 4000); // Ocultar después de 4 segundos
+            };
+
+            if (!acceptTerms) {
+                showMessage('Debes aceptar los términos y condiciones para continuar.', 'error');
+                return;
+            }
+
+            const mensaje = `
+*Solicitud de Código - Plan Limpieza10*
+
+*Datos del cliente:*
+- Nombre: ${nombre}
+- Celular para Bizum: ${bizumCelular}
+
+*Condiciones:*
+- El cliente ha aceptado los términos y condiciones del Plan Limpieza10.
+`;
+
+            const encodedMessage = encodeURIComponent(mensaje.trim());
+            const whatsappUrl = `https://wa.me/34602846694?text=${encodedMessage}`;
+
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(whatsappUrl, '_blank');
+
+            showMessage('Redirigiendo a WhatsApp...', 'success');
+        });
+    </script>
+
+</body>
+</html>

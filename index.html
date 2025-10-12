@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
-    <title>Plan-Limpieza10 | App de Limpieza para Estudiantes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora-Limpieza10 | App de Limpieza para Estudiantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -260,6 +260,44 @@
         .modal-remove-btn:hover {
             color: #b91c1c; /* red-700 */
         }
+
+        /* Estilos para el botón de código */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0; /* Espaciado opcional arriba y abajo */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #FFC107; /* Color amarillo basado en la imagen */
+            border: none;
+            border-radius: 9999px; /* Bordes extremadamente redondeados */
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background-color: #FFA000; /* Tono más oscuro para el hover */
+            transform: translateY(-2px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.5); /* Color de enfoque basado en el amarillo */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -283,7 +321,7 @@
                     </a>
                 </div>
                 <!-- Contenido principal de la cabecera -->
-                <h1 class="text-4xl md:text-6xl font-black mb-4"><span class="gradient-text">Calculadora-Limpieza10</span></h1>
+                <h1 class="text-4xl md:text-6xl font-black mb-4"><span class="gradient-text"> Calculadora-Limpieza10 </span></h1>
                 <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">La limpieza de tu<b> piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
         </header>
@@ -296,14 +334,14 @@
                     <!-- Paso 1 -->
                     <div class="flex-1 p-4 flex flex-col items-center">
                         <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">1</div>
-                        <p class="text-gray-600">Una única cuota de 10€ te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
+                        <p class="text-gray-600">Una única cuota de 10 te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
                     </div>
                     <!-- Separador vertical/horizontal -->
                     <div class="flex justify-center items-center"><div class="h-0.5 w-12 bg-gray-300 md:h-12 md:w-0.5"></div></div>
                     <!-- Paso 2 -->
                     <div class="flex-1 p-4 flex flex-col items-center">
                         <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">2</div>
-                        <p class="text-gray-600">Elige las áreas de tu piso que necesitan un repaso por solo 10€ cada una y añade los complementos que quieras.</p>
+                        <p class="text-gray-600">Elige las áreas de tu piso que necesitan un repaso por solo 10 cada una y añade los complementos que quieras.</p>
                     </div>
                     <!-- Separador vertical/horizontal -->
                     <div class="flex justify-center items-center"><div class="h-0.5 w-12 bg-gray-300 md:h-12 md:w-0.5"></div></div>
@@ -326,13 +364,13 @@
                 <!-- Columna de selección de áreas y complementos -->
                 <div>
                     <!-- Áreas a limpiar -->
-                    <h3 id="areas-section" class="text-xl font-bold mb-4">1. Elige las áreas a limpiar (10€ c/u)</h3>
+                    <h3 id="areas-section" class="text-xl font-bold mb-4">1. Elige las áreas a limpiar (10 c/u)</h3>
                     <div class="space-y-3">
                         <input type="checkbox" id="salon" class="hidden peer" data-price="10" data-label="Salón / Comedor" data-type="area">
-                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🛋️</span> <span class="font-semibold">Salón / Comedor</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🛋️</span> <span class="font-semibold">Salón / Comedor</span></div><span class="text-gray-500 font-bold">10</span></label>
                         
                         <input type="checkbox" id="cocina" class="hidden peer" data-price="10" data-label="Cocina" data-type="area">
-                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🍳</span> <span class="font-semibold">Cocina</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🍳</span> <span class="font-semibold">Cocina</span></div><span class="text-gray-500 font-bold">10</span></label>
                         
                         <!-- Contador de baños -->
                         <div id="bano-container" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg transition-colors">
@@ -355,10 +393,10 @@
                         </div>
 
                         <input type="checkbox" id="lavanderia" class="hidden peer" data-price="10" data-label="Lavandería" data-type="area">
-                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🧺</span> <span class="font-semibold">Lavandería</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🧺</span> <span class="font-semibold">Lavandería</span></div><span class="text-gray-500 font-bold">10</span></label>
 
                         <input type="checkbox" id="terrazas" class="hidden peer" data-price="10" data-label="Limpieza de Terrazas" data-type="area">
-                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">☀️</span> <span class="font-semibold">Limpieza de Terrazas</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">☀️</span> <span class="font-semibold">Limpieza de Terrazas</span></div><span class="text-gray-500 font-bold">10</span></label>
                     </div>
 
                     <!-- Complementos -->
@@ -371,12 +409,12 @@
                                 <input type="checkbox" id="pasillo-5" class="hidden peer" data-price="5" data-label="Pasillo: menos de 5m²" data-type="addon">
                                 <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">Menos de 5m²</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                    <span class="text-gray-500 font-bold">5</span>
                                 </label>
                                 <input type="checkbox" id="pasillo-10" class="hidden peer" data-price="10" data-label="Pasillo: 5m² o más" data-type="addon">
                                 <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">5m² o más</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                    <span class="text-gray-500 font-bold">10</span>
                                 </label>
                             </div>
                         </div>
@@ -389,12 +427,12 @@
                                 <input type="checkbox" id="platos-5" class="hidden peer" data-price="5" data-label="Fregar Platos: 1 carga" data-type="addon">
                                 <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">1 Carga</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                    <span class="text-gray-500 font-bold">5</span>
                                 </label>
                                 <input type="checkbox" id="platos-10" class="hidden peer" data-price="10" data-label="Fregar Platos: Más de 1 carga" data-type="addon">
                                 <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">Más de 1 Carga</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                    <span class="text-gray-500 font-bold">10</span>
                                 </label>
                             </div>
                         </div>
@@ -405,12 +443,12 @@
                                 <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1-2m" data-type="addon">
                                 <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">1-2m</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                    <span class="text-gray-500 font-bold">5</span>
                                 </label>
                                 <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: Más de 2m" data-type="addon">
                                 <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">Más de 2m</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                    <span class="text-gray-500 font-bold">10</span>
                                 </label>
                             </div>
                         </div>
@@ -421,15 +459,21 @@
                                 <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Recogida de Basura: 1-2 bolsas" data-type="addon">
                                 <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">1-2 bolsas <span class="font-normal">(Obligatorio con áreas)</span></span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                    <span class="text-gray-500 font-bold">5</span>
                                 </label>
                                 <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Recogida de Basura: Más de 2 bolsas" data-type="addon">
                                 <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
                                     <span class="font-semibold text-center mb-1">Más de 2 bolsas</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                    <span class="text-gray-500 font-bold">10</span>
                                 </label>
                             </div>
                         </div>
+                        <!-- New Escalera Add-on -->
+                        <input type="checkbox" id="escalera" class="hidden peer" data-price="10" data-label="Limpieza de Escalera" data-type="addon">
+                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
+                            <div><span class="text-2xl mr-3">🪜</span> <span class="font-semibold">Limpieza de Escalera</span></div>
+                            <span class="text-gray-500 font-bold">10</span>
+                        </label>
                     </div>
                 </div>
 
@@ -452,11 +496,11 @@
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             <div class="p-4 bg-gray-100 rounded-lg text-center">
                                 <p class="text-gray-600 text-sm">COSTE TOTAL</p>
-                                <p id="total-cost" class="text-3xl font-extrabold text-blue-600">0€</p>
+                                <p id="total-cost" class="text-3xl font-extrabold text-blue-600">0</p>
                             </div>
                             <div class="p-4 bg-gray-100 rounded-lg text-center">
                                 <p class="text-gray-600 text-sm">COSTE POR PERSONA</p>
-                                <p id="cost-per-person" class="text-3xl font-extrabold text-green-600">0.00€</p>
+                                <p id="cost-per-person" class="text-3xl font-extrabold text-green-600">0.00</p>
                             </div>
                         </div>
 
@@ -478,55 +522,9 @@
             <!-- Campo de Cupón/Código en la vista principal -->
             <div class="max-w-sm mx-auto mb-6">
                 <label for="main-coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
-				
-				 <!--CODIGO BOTON-->
-<a class="button" href="https://teechounamano.github.io/activar-referido/" title="Buy Now">Quiero mi código</a>
-
-
-<!-- CSS -->
-<style>
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0; /* Espaciado opcional arriba y abajo */
-  }
-
-  .button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #FFC107; /* Color amarillo basado en la imagen */
-    border: none;
-    border-radius: 9999px; /* Bordes extremadamente redondeados */
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	margin-bottom: 20px; /* Línea añadida para espacio debajo */
-  }
-
-  .button:hover {
-    background-color: #FFA000; /* Tono más oscuro para el hover */
-    transform: translateY(-2px);
-  }
-
-  .button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.5); /* Color de enfoque basado en el amarillo */
-  }
-</style>
-<!-- END CODIGO BOTON-->
-				
-				
-				
+                <div class="button-container">
+                    <a class="button" href="https://te-echounamano.blogspot.com/p/quiero-mi-codigo.html" title="Buy Now">Quiero mi código</a>
+                </div>
                 <input type="text" id="main-coupon-code" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Escribe tu código aquí">
             </div>
 
@@ -542,7 +540,7 @@
             <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.023.832l.638 3.092m3.228-3.092h8.252a1.875 1.875 0 011.875 1.875V15.75m-4.125-9H15.82a1.125 1.125 0 011.125 1.125v1.25m-14.25-3.625L7.926 17.53A2.875 2.875 0 0010.597 19h9.378a2.875 2.875 0 002.875-2.875V11.25m-15.375-3.625H11.25m5.25 7.125a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
             </svg>
-            <span id="floating-total-cost-display">0€</span>
+            <span id="floating-total-cost-display">0</span>
         </button>
     </div>
 
@@ -578,10 +576,10 @@
                 </div>
                 <!-- Coste por persona en el modal -->
                 <div class="text-center font-bold text-lg text-green-600">
-                    <span id="modal-cost-per-person">0.00€</span> por persona
+                    <span id="modal-cost-per-person">0.00</span> por persona
                 </div>
             </div>
-            
+
             <!-- Sección de Cupón/Código -->
             <div class="mt-4">
                 <label for="coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
@@ -590,12 +588,11 @@
 
             <div class="mt-4 flex justify-between items-center font-bold text-lg">
                 <span class="text-gray-800">Total:</span>
-                <span id="summary-total" class="text-blue-600 text-2xl">0.00€</span>
+                <span id="summary-total" class="text-blue-600 text-2xl">0.00</span>
             </div>
             <button id="modal-book-now-btn" class="mt-6 w-full bg-pink-500 text-white font-bold py-3 px-6 rounded-full hover:bg-pink-600 transition-transform hover:scale-105 text-lg shadow-lg text-center">¡Reservar Mi Limpieza Ahora!</button>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -632,9 +629,8 @@
              */
             const formatCurrency = (value, useDecimals = false) => {
                 const options = useDecimals ? { minimumFractionDigits: 2, maximumFractionDigits: 2 } : { minimumFractionDigits: 0, maximumFractionDigits: 0 };
-                return value.toLocaleString('es-ES', options) + '€';
+                return value.toLocaleString('es-ES', options) + '';
             };
-
 
             /**
              * Actualiza la interfaz de usuario con los valores del estado actual.
@@ -799,7 +795,6 @@
                 costChart.update();
             };
 
-
             /**
              * Calcula el coste total y por persona basándose en el estado.
              */
@@ -956,7 +951,6 @@
                         setTimeout(() => { alertBox.remove(); }, 300);
                     }, 3000);
 
-
                     // Opcional: desplazar la vista a la sección de áreas
                     document.getElementById('areas-section').scrollIntoView({ behavior: 'smooth' });
                     return;
@@ -966,7 +960,7 @@
                 const mainCoupon = document.getElementById('main-coupon-code').value.trim();
                 const couponCode = mainCoupon || modalCoupon; // Usa el cupón de la vista principal o el del modal
                 
-                let message = "¡Hola! 👋 Me gustaría reservar una limpieza con Plan-Limpieza10 con la siguiente configuración:\n\n";
+                let message = "Hola! 👋 Me gustaría reservar una limpieza con Plan-Limpieza10 con la siguiente configuración:\n\n";
                 
                 message += `*CUOTA DE ACTIVACIÓN:* ${formatCurrency(ACTIVATION_FEE)}\n`;
                 
@@ -994,7 +988,7 @@
                 message += `*COSTE TOTAL:* ${formatCurrency(state.totalCost)}\n`;
                 message += `*Nº de Compañeros:* ${state.roommatesCount}\n`;
                 message += `*COSTE POR PERSONA:* ${formatCurrency(state.costPerPerson, true)}\n\n`;
-                message += "Por favor, confirmadme la disponibilidad. ¡Gracias!";
+                message += "Por favor, confirmadme la disponibilidad. Gracias!";
 
                 const encodedMessage = encodeURIComponent(message);
                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
@@ -1121,10 +1115,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-

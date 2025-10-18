@@ -125,8 +125,8 @@
         
         #floating-elements-container {
             position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
+            bottom: 1rem;
+            right: 1rem;
             z-index: 50;
         }
         
@@ -134,8 +134,8 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 50%;
-            width: 4rem;
-            height: 4rem;
+            width: 3.5rem;
+            height: 3.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -152,13 +152,13 @@
         
         #floating-total-cost-display {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -6px;
+            right: -6px;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border-radius: 50%;
-            padding: 0.4rem 0.6rem;
-            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
             font-weight: 800;
             display: none;
             border: 2px solid white;
@@ -193,14 +193,16 @@
         
         .modal-content {
             background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            width: 90%;
+            border-radius: 20px;
+            padding: 1.5rem;
+            width: 95%;
             max-width: 500px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.9);
             transition: transform 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .modal-overlay.open .modal-content {
@@ -210,14 +212,14 @@
         .modal-item-controls {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
         
         .modal-item-btn {
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             color: #475569;
-            width: 2.25rem;
-            height: 2.25rem;
+            width: 1.75rem;
+            height: 1.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -226,6 +228,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            font-size: 0.875rem;
         }
         
         .modal-item-btn:hover {
@@ -239,10 +242,10 @@
             color: #ef4444;
             border: none;
             cursor: pointer;
-            font-size: 1.25rem;
+            font-size: 1rem;
             padding: 0;
-            width: 2.25rem;
-            height: 2.25rem;
+            width: 1.75rem;
+            height: 1.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -258,9 +261,9 @@
         
         .button {
             display: inline-block;
-            padding: 14px 28px;
+            padding: 12px 24px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 14px;
             color: #ffffff;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border: none;
@@ -289,45 +292,36 @@
         }
         
         .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
             flex-shrink: 0;
         }
         
         .main-title {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -0.02em;
         }
         
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.01em;
         }
         
         .card-spacing {
-            margin-bottom: 1.5rem;
-        }
-        
-        .button-spacing {
             margin-bottom: 1rem;
         }
         
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.75rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
+        .button-spacing {
+            margin-bottom: 0.75rem;
         }
         
         .addon-container {
-            margin-bottom: 1.5rem;
-            border-radius: 16px;
+            margin-bottom: 1rem;
+            border-radius: 12px;
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             border: 2px solid #e2e8f0;
         }
@@ -335,105 +329,227 @@
         .addon-container h4 {
             color: #1e293b;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
         
         .addon-group {
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
         .addon-group .checkbox-label {
             margin-bottom: 0;
         }
+        
+        /* Estilos específicos para móvil */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .count-btn {
+                width: 2.25rem;
+                height: 2.25rem;
+                font-size: 0.875rem;
+            }
+            
+            .count-display {
+                width: 2.5rem;
+                font-size: 1rem;
+            }
+            
+            .count-controls {
+                gap: 0.5rem;
+            }
+            
+            .checkbox-label {
+                padding: 0.75rem;
+            }
+            
+            .checkbox-label .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .checkbox-label .text-lg {
+                font-size: 0.875rem;
+            }
+            
+            .addon-container {
+                padding: 0.75rem;
+            }
+            
+            .addon-container h4 .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .addon-container h4 .text-lg {
+                font-size: 0.875rem;
+            }
+            
+            .modal-content {
+                padding: 1rem;
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+            
+            .modal-item-btn {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 0.75rem;
+            }
+            
+            .modal-remove-btn {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .chart-container {
+                height: 200px;
+            }
+            
+            #floating-cart-button {
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            #floating-cart-button span {
+                font-size: 1.25rem;
+            }
+            
+            #floating-total-cost-display {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+                top: -4px;
+                right: -4px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
+            }
+            
+            .checkbox-label {
+                padding: 0.5rem;
+            }
+            
+            .count-btn {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.75rem;
+            }
+            
+            .count-display {
+                width: 2rem;
+                font-size: 0.875rem;
+            }
+            
+            .addon-container {
+                padding: 0.5rem;
+            }
+            
+            .modal-content {
+                padding: 0.75rem;
+                margin: 0.5rem;
+                width: calc(100% - 1rem);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Contenedor principal de la página -->
-    <main class="container mx-auto px-4 py-8 md:py-12">
+    <main class="container mx-auto px-4 py-6 md:py-12">
         <!-- Cabecera de la página -->
-        <header class="text-center mb-16 pt-10">
+        <header class="text-center mb-12 md:mb-16 pt-6 md:pt-10">
             <div class="relative max-w-7xl mx-auto flex flex-col items-center">
                 <!-- Contenedor de iconos de acceso directo -->
-                <div class="flex space-x-6 mb-8 md:absolute md:top-0 md:right-0">
-                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                <div class="flex space-x-4 md:space-x-6 mb-6 md:mb-8 md:absolute md:top-0 md:right-0">
+                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
                         🏠
                     </a>
-                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
                         🎧
                     </a>
-                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
                         🤖
                     </a>
                 </div>
                 <!-- Contenido principal de la cabecera -->
-                <h1 class="main-title text-white mb-6">🧹 Calculadora-Limpieza10</h1>
-                <p class="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
+                <h1 class="main-title text-white mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
+                <p class="text-lg md:text-2xl text-white max-w-4xl mx-auto leading-relaxed px-4">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
         </header>
 
         <!-- Sección "Cómo Funciona" -->
-        <section id="how-it-works" class="mb-20">
+        <section id="how-it-works" class="mb-16 md:mb-20">
             <div class="max-w-5xl mx-auto">
-                <h2 class="section-title text-center mb-16 text-white">¿Cómo Funciona? Sencillo y Transparente</h2>
-                <div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-8">
+                <h2 class="section-title text-center mb-12 md:mb-16 text-white">¿Cómo Funciona? Sencillo y Transparente</h2>
+                <div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-6 md:gap-8">
                     <!-- Paso 1 -->
-                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">1</div>
-                        <p class="text-gray-700 text-lg leading-relaxed">Una única cuota de <b>10€</b> te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
+                    <div class="flex-1 p-4 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">1</div>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed">Una única cuota de <b>10€</b> te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
                     </div>
                     <!-- Separador -->
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-16 bg-white md:h-16 md:w-0.5"></div></div>
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <!-- Paso 2 -->
-                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">2</div>
-                        <p class="text-gray-700 text-lg leading-relaxed">Elige las áreas de tu piso que necesitan un repaso por solo <b>10€</b> cada una y añade los complementos que quieras.</p>
+                    <div class="flex-1 p-4 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">2</div>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed">Elige las áreas de tu piso que necesitan un repaso por solo <b>10€</b> cada una y añade los complementos que quieras.</p>
                     </div>
                     <!-- Separador -->
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-16 bg-white md:h-16 md:w-0.5"></div></div>
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <!-- Paso 3 -->
-                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">✓</div>
-                        <p class="text-gray-700 text-lg leading-relaxed">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
+                    <div class="flex-1 p-4 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">✓</div>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Sección del Simulador -->
-        <section id="simulator" class="glass-effect rounded-3xl shadow-2xl p-8 md:p-12 mb-20">
-            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Diseña tu Limpieza a Medida</h2>
-            <p class="text-center text-gray-600 text-lg mb-4">Construye tu paquete de limpieza y mira el coste en tiempo real.</p>
-            <p class="text-center text-gray-600 italic max-w-3xl mx-auto mb-12 text-base">Este servicio está diseñado para una <b>limpieza rápida y eficiente</b>. Si necesitas un servicio más profundo, limpieza de ventanas u otras tareas, ofrecemos planes por hora y presupuestos personalizados. ¡Solo tienes que consultarnos!</p>
+        <section id="simulator" class="glass-effect rounded-3xl shadow-2xl p-4 md:p-12 mb-16 md:mb-20">
+            <h2 class="text-2xl md:text-4xl font-bold text-center mb-3 md:mb-4 text-gray-800">Diseña tu Limpieza a Medida</h2>
+            <p class="text-center text-gray-600 text-sm md:text-lg mb-3 md:mb-4">Construye tu paquete de limpieza y mira el coste en tiempo real.</p>
+            <p class="text-center text-gray-600 italic max-w-3xl mx-auto mb-8 md:mb-12 text-xs md:text-base">Este servicio está diseñado para una <b>limpieza rápida y eficiente</b>. Si necesitas un servicio más profundo, limpieza de ventanas u otras tareas, ofrecemos planes por hora y presupuestos personalizados. ¡Solo tienes que consultarnos!</p>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
                 <!-- Columna de selección de áreas y complementos -->
                 <div>
                     <!-- Áreas a limpiar -->
-                    <h3 id="areas-section" class="text-2xl font-bold mb-6 text-gray-800">1. Elige las áreas a limpiar (10€ c/u)</h3>
-                    <div class="space-y-4 card-spacing">
+                    <h3 id="areas-section" class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">1. Elige las áreas a limpiar (10€ c/u)</h3>
+                    <div class="space-y-3 md:space-y-4 card-spacing">
                         <input type="checkbox" id="salon" class="hidden peer" data-price="10" data-label="Salón / Comedor" data-type="area">
-                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🛋️</span>
-                                <span class="font-semibold text-lg">Salón / Comedor</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🛋️</span>
+                                <span class="font-semibold text-sm md:text-lg">Salón / Comedor</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                         
                         <input type="checkbox" id="cocina" class="hidden peer" data-price="10" data-label="Cocina" data-type="area">
-                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🍳</span>
-                                <span class="font-semibold text-lg">Cocina</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🍳</span>
+                                <span class="font-semibold text-sm md:text-lg">Cocina</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                         
                         <!-- Contador de baños -->
-                        <div id="bano-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                        <div id="bano-container" class="flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🚿</span>
-                                <span class="font-semibold text-lg">Baños</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🚿</span>
+                                <span class="font-semibold text-sm md:text-lg">Baños</span>
                             </div>
                             <div class="count-controls">
                                 <button id="bano-decrement" class="count-btn">-</button>
@@ -443,10 +559,10 @@
                         </div>
                         
                         <!-- Contador de habitaciones -->
-                        <div id="habitacion-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                        <div id="habitacion-container" class="flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🛏️</span>
-                                <span class="font-semibold text-lg">Habitaciones</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🛏️</span>
+                                <span class="font-semibold text-sm md:text-lg">Habitaciones</span>
                             </div>
                             <div class="count-controls">
                                 <button id="habitacion-decrement" class="count-btn">-</button>
@@ -456,112 +572,112 @@
                         </div>
 
                         <input type="checkbox" id="lavanderia" class="hidden peer" data-price="10" data-label="Lavandería" data-type="area">
-                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🧺</span>
-                                <span class="font-semibold text-lg">Lavandería</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🧺</span>
+                                <span class="font-semibold text-sm md:text-lg">Lavandería</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
 
                         <input type="checkbox" id="terrazas" class="hidden peer" data-price="10" data-label="Limpieza de Terrazas" data-type="area">
-                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">☀️</span>
-                                <span class="font-semibold text-lg">Limpieza de Terrazas</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">☀️</span>
+                                <span class="font-semibold text-sm md:text-lg">Limpieza de Terrazas</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                     </div>
 
                     <!-- Complementos -->
-                    <h3 class="text-2xl font-bold mb-6 mt-10 text-gray-800">2. Añade complementos</h3>
-                    <div class="space-y-6">
+                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 mt-8 md:mt-10 text-gray-800">2. Añade complementos</h3>
+                    <div class="space-y-4 md:space-y-6">
                         <!-- Add-on: Pasillo -->
-                        <div class="addon-container p-6">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
-                                <span class="text-2xl mr-3">🚪</span>
-                                <span class="text-lg">Pasillo (área común)</span>
+                        <div class="addon-container p-4 md:p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
+                                <span class="text-xl md:text-2xl mr-2 md:mr-3">🚪</span>
+                                <span class="text-sm md:text-lg">Pasillo (área común)</span>
                             </h4>
-                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="pasillo">
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="pasillo">
                                 <input type="checkbox" id="pasillo-5" class="hidden peer" data-price="5" data-label="Pasillo: menos de 5m²" data-type="addon">
-                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">Menos de 5m²</span>
-                                    <span class="text-gray-600 font-bold text-lg">5€</span>
+                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">Menos de 5m²</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="pasillo-10" class="hidden peer" data-price="10" data-label="Pasillo: 5m² o más" data-type="addon">
-                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">5m² o más</span>
-                                    <span class="text-gray-600 font-bold text-lg">10€</span>
+                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">5m² o más</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Fregar Platos -->
-                        <div class="addon-container p-6">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
-                                <span class="text-2xl mr-3">🍽️</span>
-                                <span class="text-lg">Fregar Platos</span>
+                        <div class="addon-container p-4 md:p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
+                                <span class="text-xl md:text-2xl mr-2 md:mr-3">🍽️</span>
+                                <span class="text-sm md:text-lg">Fregar Platos</span>
                             </h4>
-                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="platos">
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="platos">
                                 <input type="checkbox" id="platos-5" class="hidden peer" data-price="5" data-label="Fregar Platos: 1 carga" data-type="addon">
-                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">1 Carga</span>
-                                    <span class="text-gray-600 font-bold text-lg">5€</span>
+                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="platos-10" class="hidden peer" data-price="10" data-label="Fregar Platos: Más de 1 carga" data-type="addon">
-                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">Más de 1 Carga</span>
-                                    <span class="text-gray-600 font-bold text-lg">10€</span>
+                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">Más de 1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Limpieza de Mamparas -->
-                        <div class="addon-container p-6">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
-                                <span class="text-2xl mr-3">🪟</span>
-                                <span class="text-lg">Limpieza de Mamparas</span>
+                        <div class="addon-container p-4 md:p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
+                                <span class="text-xl md:text-2xl mr-2 md:mr-3">🪟</span>
+                                <span class="text-sm md:text-lg">Limpieza de Mamparas</span>
                             </h4>
-                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="mamparas">
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="mamparas">
                                 <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1-2m" data-type="addon">
-                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">1-2m</span>
-                                    <span class="text-gray-600 font-bold text-lg">5€</span>
+                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">1-2m</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: Más de 2m" data-type="addon">
-                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">Más de 2m</span>
-                                    <span class="text-gray-600 font-bold text-lg">10€</span>
+                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">Más de 2m</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Recogida de Basura -->
-                        <div class="addon-container p-6">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
-                                <span class="text-2xl mr-3">🗑️</span>
-                                <span class="text-lg">Recogida de Basura</span>
+                        <div class="addon-container p-4 md:p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
+                                <span class="text-xl md:text-2xl mr-2 md:mr-3">🗑️</span>
+                                <span class="text-sm md:text-lg">Recogida de Basura</span>
                             </h4>
-                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="basura">
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="basura">
                                 <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Recogida de Basura: 1-2 bolsas" data-type="addon">
-                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">1-2 bolsas</span>
-                                    <span class="text-sm text-gray-500 mb-1">(Obligatorio con áreas)</span>
-                                    <span class="text-gray-600 font-bold text-lg">5€</span>
+                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">1-2 bolsas</span>
+                                    <span class="text-xs md:text-sm text-gray-500 mb-1">(Obligatorio con áreas)</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Recogida de Basura: Más de 2 bolsas" data-type="addon">
-                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-lg">Más de 2 bolsas</span>
-                                    <span class="text-gray-600 font-bold text-lg">10€</span>
+                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-3 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-1 md:mb-2 text-sm md:text-lg">Más de 2 bolsas</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Escalera Add-on -->
                         <input type="checkbox" id="escalera" class="hidden peer" data-price="10" data-label="Limpieza de Escalera" data-type="addon">
-                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl">
                             <div class="flex items-center">
-                                <span class="text-2xl mr-4">🪜</span>
-                                <span class="font-semibold text-lg">Limpieza de Escalera</span>
+                                <span class="text-xl md:text-2xl mr-3 md:mr-4">🪜</span>
+                                <span class="font-semibold text-sm md:text-lg">Limpieza de Escalera</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                     </div>
                 </div>
@@ -569,12 +685,12 @@
                 <!-- Columna de resumen de costes -->
                 <div>
                     <!-- Contador de compañeros de piso -->
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">3. ¿Cuántos sois en el piso?</h3>
-                    <p class="text-gray-600 text-base mb-6">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
-                    <div id="roommates-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300 mb-8">
+                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">3. ¿Cuántos sois en el piso?</h3>
+                    <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
+                    <div id="roommates-container" class="flex items-center justify-between p-3 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300 mb-6 md:mb-8">
                         <div class="flex items-center">
-                            <span class="text-2xl mr-4">👥</span>
-                            <span class="font-semibold text-lg">Compañeros</span>
+                            <span class="text-xl md:text-2xl mr-3 md:mr-4">👥</span>
+                            <span class="font-semibold text-sm md:text-lg">Compañeros</span>
                         </div>
                         <div class="count-controls">
                             <button id="roommates-decrement" class="count-btn">-</button>
@@ -585,19 +701,19 @@
 
                     <!-- Visualización de costes -->
                     <div class="sticky top-6">
-                        <div class="grid grid-cols-2 gap-6 mb-8">
-                            <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl text-center border-2 border-blue-200">
-                                <p class="text-gray-600 text-sm font-medium mb-2">COSTE TOTAL</p>
-                                <p id="total-cost" class="text-4xl font-extrabold text-blue-600">0 €</p>
+                        <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                            <div class="p-4 md:p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl text-center border-2 border-blue-200">
+                                <p class="text-gray-600 text-xs md:text-sm font-medium mb-1 md:mb-2">COSTE TOTAL</p>
+                                <p id="total-cost" class="text-2xl md:text-4xl font-extrabold text-blue-600">0 €</p>
                             </div>
-                            <div class="p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl text-center border-2 border-green-200">
-                                <p class="text-gray-600 text-sm font-medium mb-2">COSTE POR PERSONA</p>
-                                <p id="cost-per-person" class="text-4xl font-extrabold text-green-600">0,00 €</p>
+                            <div class="p-4 md:p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl text-center border-2 border-green-200">
+                                <p class="text-gray-600 text-xs md:text-sm font-medium mb-1 md:mb-2">COSTE POR PERSONA</p>
+                                <p id="cost-per-person" class="text-2xl md:text-4xl font-extrabold text-green-600">0,00 €</p>
                             </div>
                         </div>
 
                         <!-- Gráfico de desglose de costes -->
-                        <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">Desglose del Coste</h3>
+                        <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-800">Desglose del Coste</h3>
                         <div class="chart-container">
                             <canvas id="costBreakdownChart"></canvas>
                         </div>
@@ -607,27 +723,27 @@
         </section>
 
         <!-- Pie de página con el botón de reserva -->
-        <footer class="text-center mt-16 mb-20">
-            <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">¿Todo claro?</h3>
-            <p class="text-white mb-10 max-w-2xl mx-auto text-lg leading-relaxed">Contacta con nosotros para reservar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
+        <footer class="text-center mt-12 md:mt-16 mb-16 md:mb-20">
+            <h3 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-white">¿Todo claro?</h3>
+            <p class="text-white mb-8 md:mb-10 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed px-4">Contacta con nosotros para reservar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
             
             <!-- Campo de Cupón/Código -->
-            <div class="max-w-md mx-auto mb-8">
-                <label for="main-coupon-code" class="block mb-4 text-lg font-medium text-white">¿Tienes un cupón o código de referido?</label>
+            <div class="max-w-md mx-auto mb-6 md:mb-8 px-4">
+                <label for="main-coupon-code" class="block mb-3 md:mb-4 text-sm md:text-lg font-medium text-white">¿Tienes un cupón o código de referido?</label>
                 <div class="button-spacing">
-                    <a class="button" href="https://teechounamano.github.io/activar-referido/" title="Buy Now">Quiero mi código</a>
+                    <a class="button" href="https://te-echounamano.blogspot.com/p/quiero-mi-codigo.html" title="Buy Now">Quiero mi código</a>
                 </div>
-                <input type="text" id="main-coupon-code" class="bg-white border-2 border-gray-300 text-gray-900 text-lg rounded-2xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-4 shadow-lg" placeholder="Escribe tu código aquí">
+                <input type="text" id="main-coupon-code" class="bg-white border-2 border-gray-300 text-gray-900 text-sm md:text-lg rounded-2xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-3 md:p-4 shadow-lg" placeholder="Escribe tu código aquí">
             </div>
 
-            <button id="book-now-btn" class="button-gradient text-white font-bold py-5 px-12 rounded-full hover:bg-pink-600 transition-all duration-300 text-xl shadow-2xl pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="book-now-btn" class="button-gradient text-white font-bold py-4 md:py-5 px-8 md:px-12 rounded-full hover:bg-pink-600 transition-all duration-300 text-lg md:text-xl shadow-2xl pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
         </footer>
     </main>
 
     <!-- Botón flotante -->
     <div id="floating-elements-container">
         <button id="floating-cart-button" aria-label="Mostrar resumen de costes">
-            <span style="font-size: 1.75rem;">🛒</span>
+            <span style="font-size: 1.25rem;">🛒</span>
             <span id="floating-total-cost-display">0 €</span>
         </button>
     </div>
@@ -635,24 +751,24 @@
     <!-- Modal para el resumen del pedido -->
     <div id="summary-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="flex justify-between items-center pb-6 border-b-2 border-gray-200 mb-6">
-                <h3 class="text-3xl font-bold text-gray-800">Resumen de mi pedido</h3>
-                <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors text-3xl">
+            <div class="flex justify-between items-center pb-4 md:pb-6 border-b-2 border-gray-200 mb-4 md:mb-6">
+                <h3 class="text-xl md:text-3xl font-bold text-gray-800">Resumen de mi pedido</h3>
+                <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors text-2xl md:text-3xl">
                     ✕
                 </button>
             </div>
             
             <div>
-                <div id="summary-list" class="space-y-4 max-h-80 overflow-y-auto pr-2">
-                    <p class="text-gray-500 text-center py-8 text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
+                <div id="summary-list" class="space-y-3 md:space-y-4 max-h-60 md:max-h-80 overflow-y-auto pr-2">
+                    <p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
                 </div>
             </div>
 
-            <div id="modal-roommates-container" class="mt-6 p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-3">
+            <div id="modal-roommates-container" class="mt-4 md:mt-6 p-3 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-2 md:mb-3">
                     <div class="flex items-center">
-                        <span class="text-2xl mr-3">👥</span>
-                        <span class="font-semibold text-lg">Compañeros</span>
+                        <span class="text-xl md:text-2xl mr-2 md:mr-3">👥</span>
+                        <span class="font-semibold text-sm md:text-lg">Compañeros</span>
                     </div>
                     <div class="count-controls">
                         <button id="modal-roommates-decrement" class="count-btn">-</button>
@@ -660,21 +776,21 @@
                         <button id="modal-roommates-increment" class="count-btn">+</button>
                     </div>
                 </div>
-                <div class="text-center font-bold text-xl text-green-600">
+                <div class="text-center font-bold text-lg md:text-xl text-green-600">
                     <span id="modal-cost-per-person">0,00 €</span> por persona
                 </div>
             </div>
 
-            <div class="mt-6">
-                <label for="coupon-code" class="block mb-3 text-base font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
-                <input type="text" id="coupon-code" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-base rounded-xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-4" placeholder="Escribe tu código aquí">
+            <div class="mt-4 md:mt-6">
+                <label for="coupon-code" class="block mb-2 md:mb-3 text-sm md:text-base font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
+                <input type="text" id="coupon-code" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm md:text-base rounded-xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-3 md:p-4" placeholder="Escribe tu código aquí">
             </div>
 
-            <div class="mt-6 flex justify-between items-center font-bold text-xl">
+            <div class="mt-4 md:mt-6 flex justify-between items-center font-bold text-lg md:text-xl">
                 <span class="text-gray-800">Total:</span>
-                <span id="summary-total" class="text-blue-600 text-3xl">0,00 €</span>
+                <span id="summary-total" class="text-blue-600 text-2xl md:text-3xl">0,00 €</span>
             </div>
-            <button id="modal-book-now-btn" class="mt-8 w-full button-gradient text-white font-bold py-4 px-8 rounded-full hover:bg-pink-600 transition-all duration-300 text-xl shadow-2xl text-center">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="modal-book-now-btn" class="mt-6 md:mt-8 w-full button-gradient text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-pink-600 transition-all duration-300 text-lg md:text-xl shadow-2xl text-center">¡Reservar Mi Limpieza Ahora!</button>
         </div>
     </div>
 
@@ -741,7 +857,7 @@
                 summaryList.innerHTML = '';
 
                 if (state.totalCost === 0) {
-                    summaryList.innerHTML = '<p class="text-gray-500 text-center py-8 text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
+                    summaryList.innerHTML = '<p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
                     return;
                 }
 
@@ -750,14 +866,14 @@
 
                 const createItemNode = (item) => {
                     const itemElement = document.createElement('div');
-                    itemElement.className = 'flex justify-between items-center py-3 px-4 bg-gray-50 rounded-lg';
+                    itemElement.className = 'flex justify-between items-center py-2 md:py-3 px-3 md:px-4 bg-gray-50 rounded-lg';
                     
                     let controls = '';
                     if (item.id === 'bano' || item.id === 'habitacion') {
                         controls = `
                             <div class="modal-item-controls">
                                 <button class="modal-item-btn" data-action="decrement" data-id="${item.id}">-</button>
-                                <span class="font-bold w-8 text-center">${item.quantity}</span>
+                                <span class="font-bold w-6 md:w-8 text-center text-sm md:text-base">${item.quantity}</span>
                                 <button class="modal-item-btn" data-action="increment" data-id="${item.id}">+</button>
                             </div>
                         `;
@@ -768,12 +884,12 @@
                     const totalItemPrice = item.price * (item.quantity || 1);
 
                     itemElement.innerHTML = `
-                        <div class="flex-grow pr-4">
-                            <p class="font-semibold text-lg">${item.label}</p>
-                            ${item.quantity > 1 ? `<p class="text-sm text-gray-500">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
+                        <div class="flex-grow pr-2 md:pr-4">
+                            <p class="font-semibold text-sm md:text-lg">${item.label}</p>
+                            ${item.quantity > 1 ? `<p class="text-xs md:text-sm text-gray-500">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
                         </div>
-                        <div class="flex items-center gap-4">
-                            <span class="font-bold text-gray-700 w-20 text-right text-lg">${formatCurrency(totalItemPrice)}</span>
+                        <div class="flex items-center gap-2 md:gap-4">
+                            <span class="font-bold text-gray-700 w-16 md:w-20 text-right text-sm md:text-lg">${formatCurrency(totalItemPrice)}</span>
                             ${controls}
                         </div>
                     `;
@@ -782,9 +898,9 @@
 
                 if (areas.length > 0) {
                     const container = document.createElement('div');
-                    container.className = 'p-4 border-2 border-gray-200 rounded-xl mb-4';
+                    container.className = 'p-3 md:p-4 border-2 border-gray-200 rounded-xl mb-3 md:mb-4';
                     const title = document.createElement('h4');
-                    title.className = 'font-bold text-lg text-gray-700 mb-3 pb-2 border-b-2';
+                    title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-2 md:mb-3 pb-1 md:pb-2 border-b-2';
                     title.textContent = 'Áreas';
                     container.appendChild(title);
                     areas.forEach(item => container.appendChild(createItemNode(item)));
@@ -793,9 +909,9 @@
 
                 if (addons.length > 0) {
                     const container = document.createElement('div');
-                    container.className = 'p-4 border-2 border-gray-200 rounded-xl mb-4';
+                    container.className = 'p-3 md:p-4 border-2 border-gray-200 rounded-xl mb-3 md:mb-4';
                     const title = document.createElement('h4');
-                    title.className = 'font-bold text-lg text-gray-700 mb-3 pb-2 border-b-2';
+                    title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-2 md:mb-3 pb-1 md:pb-2 border-b-2';
                     title.textContent = 'Complementos';
                     container.appendChild(title);
                     addons.forEach(item => container.appendChild(createItemNode(item)));
@@ -803,11 +919,11 @@
                 }
 
                 const feeContainer = document.createElement('div');
-                feeContainer.className = 'p-4 border-2 border-gray-200 rounded-xl';
+                feeContainer.className = 'p-3 md:p-4 border-2 border-gray-200 rounded-xl';
                 feeContainer.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <p class="font-semibold text-lg">Cuota de activación</p>
-                        <span class="font-bold text-gray-700 text-lg">${formatCurrency(ACTIVATION_FEE)}</span>
+                        <p class="font-semibold text-sm md:text-lg">Cuota de activación</p>
+                        <span class="font-bold text-gray-700 text-sm md:text-lg">${formatCurrency(ACTIVATION_FEE)}</span>
                     </div>
                 `;
                 summaryList.appendChild(feeContainer);
@@ -1041,11 +1157,11 @@
                                 labels: {
                                     font: {
                                         family: "'Inter', sans-serif",
-                                        size: 16,
+                                        size: window.innerWidth < 768 ? 12 : 16,
                                         weight: '600'
                                     },
-                                    padding: 25,
-                                    boxWidth: 20,
+                                    padding: window.innerWidth < 768 ? 15 : 25,
+                                    boxWidth: window.innerWidth < 768 ? 15 : 20,
                                     usePointStyle: true,
                                 }
                             },

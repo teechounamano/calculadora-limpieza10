@@ -8,373 +8,433 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Estilos base para la fuente y el cuerpo del documento */
         body {
             font-family: 'Inter', sans-serif;
-            @apply bg-gray-50 text-gray-800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
         }
         
-        /* Estilo para el texto con gradiente, usado en el título principal */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
         .gradient-text {
-            background: linear-gradient(to right, #3357FF, #FF33A1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        /* Contenedor del gráfico para asegurar la correcta visualización */
+        
+        .button-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .button-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        }
+        
+        .button-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        
+        .button-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.6);
+            background: linear-gradient(135deg, #ed64a6 0%, #f56565 100%);
+        }
+        
         .chart-container {
             position: relative;
             width: 100%;
             max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
             height: 280px;
-            max-height: 320px;
-        }
-
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 320px;
-                max-height: 350px;
-            }
         }
         
-        /* Estilos para las etiquetas de las opciones de limpieza */
         .checkbox-label {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            border-radius: 12px;
         }
         
-        /* Efecto de hover */
         .checkbox-label:hover {
-            background-color: #f0f3ff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        /* Estilo cuando una opción está seleccionada (basado en el estado del checkbox) */
         input:checked + .checkbox-label {
-            background-color: #e0e7ff;
-            border-color: #4f46e5;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-color: #667eea;
             transform: scale(1.02);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Clase para los contenedores de los campos numéricos cuando están seleccionados */
-        .is-selected {
-            background-color: #e0e7ff;
-            border-color: #4f46e5;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         
-        /* Estilos para los nuevos botones de incremento/decremento */
+        .is-selected {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
         .count-controls {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
         
         .count-btn {
-            background-color: #e5e7eb;
-            color: #4b5563;
-            width: 2.5rem;
-            height: 2.5rem;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: #475569;
+            width: 2.75rem;
+            height: 2.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 9999px;
+            border-radius: 50%;
             font-weight: 700;
             cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .count-btn:hover {
-            background-color: #d1d5db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
         
         .count-display {
-            width: 2.5rem;
+            width: 3rem;
             text-align: center;
-            font-weight: 600;
-            user-select: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e293b;
         }
-
-        /* Contenedor principal para los elementos flotantes */
+        
         #floating-elements-container {
             position: fixed;
-            bottom: 1rem;
-            right: 1rem;
+            bottom: 1.5rem;
+            right: 1.5rem;
             z-index: 50;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: flex-end; /* Alinea los elementos a la derecha */
         }
-
-        /* Estilos para el botón flotante del carrito */
+        
         #floating-cart-button {
-            background-color: #3b82f6; /* Tailwind blue-500 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-radius: 9999px; /* rounded-full */
-            width: 3.5rem;
-            height: 3.5rem;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.2s, transform 0.2s, opacity 0.3s;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
             cursor: pointer;
-            visibility: visible;
-            opacity: 1;
-            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.2);
         }
         
         #floating-cart-button:hover {
-            background-color: #2563eb; /* Tailwind blue-600 */
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
         }
         
-        /* Estilos para el contador del botón flotante */
         #floating-total-cost-display {
             position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ef4444;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
-            border-radius: 9999px;
-            padding: 0.25rem 0.6rem;
+            border-radius: 50%;
+            padding: 0.4rem 0.6rem;
             font-size: 0.75rem;
-            font-weight: 700;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            font-weight: 800;
             display: none;
-            transition: opacity 0.2s, transform 0.2s;
-            transform: scale(0.8);
-            opacity: 0;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
         }
         
         #floating-total-cost-display.visible {
             display: block;
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        /* Estilo específico para el icono de persona para que sea del color exacto de la cuota fija */
-        .icon-pink {
-            color: #FF33A1;
-        }
-
-        /* Animación para el botón de reserva */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .pulsing-button {
-            animation: pulse 2s infinite ease-in-out;
         }
         
-        /* Estilos del modal */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 100;
             visibility: hidden;
             opacity: 0;
-            transition: visibility 0s, opacity 0.3s linear;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
-
+        
         .modal-overlay.open {
             visibility: visible;
             opacity: 1;
         }
-
+        
         .modal-content {
-            background-color: white;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        
         .modal-overlay.open .modal-content {
             transform: scale(1);
         }
         
-        /* Controles de cantidad en el modal */
         .modal-item-controls {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
-
+        
         .modal-item-btn {
-            background-color: #e5e7eb;
-            color: #4b5563;
-            width: 2rem;
-            height: 2rem;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: #475569;
+            width: 2.25rem;
+            height: 2.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 9999px;
+            border-radius: 50%;
             font-weight: 700;
             cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-
+        
         .modal-item-btn:hover {
-            background-color: #d1d5db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.1);
         }
         
         .modal-remove-btn {
-            background-color: transparent;
-            color: #ef4444; /* red-500 */
+            background: transparent;
+            color: #ef4444;
             border: none;
             cursor: pointer;
-            font-size: 1.2rem; /* Reduced size a bit */
+            font-size: 1.25rem;
             padding: 0;
-            transition: color 0.2s;
-            width: 2rem;
-            height: 2rem;
+            width: 2.25rem;
+            height: 2.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
-
+        
         .modal-remove-btn:hover {
-            color: #b91c1c; /* red-700 */
+            color: #b91c1c;
+            background: #fef2f2;
+            transform: scale(1.1);
         }
-
-        /* Estilos para el botón de código */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0; /* Espaciado opcional arriba y abajo */
-        }
-
+        
         .button {
             display: inline-block;
-            padding: 12px 24px;
-            font-family: 'Inter', sans-serif;
+            padding: 14px 28px;
             font-weight: 600;
             font-size: 16px;
             color: #ffffff;
-            background-color: #FFC107; /* Color amarillo basado en la imagen */
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border: none;
-            border-radius: 9999px; /* Bordes extremadamente redondeados */
+            border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
-
+        
         .button:hover {
-            background-color: #FFA000; /* Tono más oscuro para el hover */
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.6);
+            background: linear-gradient(135deg, #ed64a6 0%, #f56565 100%);
         }
-
-        .button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        .pulsing-button {
+            animation: pulse 2s infinite ease-in-out;
         }
-
-        .button:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.5); /* Color de enfoque basado en el amarillo */
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .main-title {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        
+        .card-spacing {
+            margin-bottom: 1.5rem;
+        }
+        
+        .button-spacing {
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.75rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        .addon-container {
+            margin-bottom: 1.5rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .addon-container h4 {
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .addon-group {
+            gap: 1rem;
+        }
+        
+        .addon-group .checkbox-label {
+            margin-bottom: 0;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    
+<body>
     <!-- Contenedor principal de la página -->
     <main class="container mx-auto px-4 py-8 md:py-12">
-
         <!-- Cabecera de la página -->
         <header class="text-center mb-16 pt-10">
             <div class="relative max-w-7xl mx-auto flex flex-col items-center">
                 <!-- Contenedor de iconos de acceso directo -->
-                <div class="flex space-x-4 mb-6 md:absolute md:top-0 md:right-0">
-                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-home"></i>
+                <div class="flex space-x-6 mb-8 md:absolute md:top-0 md:right-0">
+                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                        🏠
                     </a>
-                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-headset"></i>
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                        🎧
                     </a>
-                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-2xl text-gray-500 hover:text-blue-600 transition-colors">
-                        <i class="fas fa-robot"></i>
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-2xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                        🤖
                     </a>
                 </div>
                 <!-- Contenido principal de la cabecera -->
-                <h1 class="text-4xl md:text-6xl font-black mb-4"><span class="gradient-text"> Calculadora-Limpieza10 </span></h1>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">La limpieza de tu<b> piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
+                <h1 class="main-title text-white mb-6">🧹 Calculadora-Limpieza10</h1>
+                <p class="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
         </header>
 
         <!-- Sección "Cómo Funciona" -->
         <section id="how-it-works" class="mb-20">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-12">¿Cómo Funciona? Sencillo y Transparente</h2>
-                <div class="flex flex-col md:flex-row items-stretch justify-center text-center">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title text-center mb-16 text-white">¿Cómo Funciona? Sencillo y Transparente</h2>
+                <div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-8">
                     <!-- Paso 1 -->
-                    <div class="flex-1 p-4 flex flex-col items-center">
-                        <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">1</div>
-                        <p class="text-gray-600">Una única cuota de **10€** te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
+                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">1</div>
+                        <p class="text-gray-700 text-lg leading-relaxed">Una única cuota de <b>10€</b> te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
                     </div>
-                    <!-- Separador vertical/horizontal -->
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 bg-gray-300 md:h-12 md:w-0.5"></div></div>
+                    <!-- Separador -->
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <!-- Paso 2 -->
-                    <div class="flex-1 p-4 flex flex-col items-center">
-                        <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">2</div>
-                        <p class="text-gray-600">Elige las áreas de tu piso que necesitan un repaso por solo **10€** cada una y añade los complementos que quieras.</p>
+                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">2</div>
+                        <p class="text-gray-700 text-lg leading-relaxed">Elige las áreas de tu piso que necesitan un repaso por solo <b>10€</b> cada una y añade los complementos que quieras.</p>
                     </div>
-                    <!-- Separador vertical/horizontal -->
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 bg-gray-300 md:h-12 md:w-0.5"></div></div>
+                    <!-- Separador -->
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <!-- Paso 3 -->
-                    <div class="flex-1 p-4 flex flex-col items-center">
-                        <div class="bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">✓</div>
-                        <p class="text-gray-600">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
+                    <div class="flex-1 p-6 flex flex-col items-center glass-effect rounded-2xl">
+                        <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">✓</div>
+                        <p class="text-gray-700 text-lg leading-relaxed">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Sección del Simulador -->
-        <section id="simulator" class="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-20">
-            <h2 class="text-3xl font-bold text-center mb-2">Diseña tu Limpieza a Medida</h2>
-            <p class="text-center text-gray-600 mb-2">Construye tu paquete de limpieza y mira el coste en tiempo real.</p>
-            <p class="text-center text-gray-600 italic max-w-2xl mx-auto mb-10">Este servicio está diseñado para una <b>limpieza rápida y eficiente</b>. Si necesitas un servicio más profundo, limpieza de ventanas u otras tareas, ofrecemos planes por hora y presupuestos personalizados. ¡Solo tienes que consultarnos!</p>
+        <section id="simulator" class="glass-effect rounded-3xl shadow-2xl p-8 md:p-12 mb-20">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">Diseña tu Limpieza a Medida</h2>
+            <p class="text-center text-gray-600 text-lg mb-4">Construye tu paquete de limpieza y mira el coste en tiempo real.</p>
+            <p class="text-center text-gray-600 italic max-w-3xl mx-auto mb-12 text-base">Este servicio está diseñado para una <b>limpieza rápida y eficiente</b>. Si necesitas un servicio más profundo, limpieza de ventanas u otras tareas, ofrecemos planes por hora y presupuestos personalizados. ¡Solo tienes que consultarnos!</p>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                 <!-- Columna de selección de áreas y complementos -->
                 <div>
                     <!-- Áreas a limpiar -->
-                    <h3 id="areas-section" class="text-xl font-bold mb-4">1. Elige las áreas a limpiar (10€ c/u)</h3>
-                    <div class="space-y-3">
+                    <h3 id="areas-section" class="text-2xl font-bold mb-6 text-gray-800">1. Elige las áreas a limpiar (10€ c/u)</h3>
+                    <div class="space-y-4 card-spacing">
                         <input type="checkbox" id="salon" class="hidden peer" data-price="10" data-label="Salón / Comedor" data-type="area">
-                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🛋️</span> <span class="font-semibold">Salón / Comedor</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🛋️</span>
+                                <span class="font-semibold text-lg">Salón / Comedor</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                        </label>
                         
                         <input type="checkbox" id="cocina" class="hidden peer" data-price="10" data-label="Cocina" data-type="area">
-                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🍳</span> <span class="font-semibold">Cocina</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🍳</span>
+                                <span class="font-semibold text-lg">Cocina</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                        </label>
                         
                         <!-- Contador de baños -->
-                        <div id="bano-container" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg transition-colors">
-                            <div><span class="text-2xl mr-3">🚽</span> <span class="font-semibold">Baños</span></div>
+                        <div id="bano-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🚿</span>
+                                <span class="font-semibold text-lg">Baños</span>
+                            </div>
                             <div class="count-controls">
                                 <button id="bano-decrement" class="count-btn">-</button>
                                 <span id="bano-display" class="count-display">0</span>
@@ -383,8 +443,11 @@
                         </div>
                         
                         <!-- Contador de habitaciones -->
-                        <div id="habitacion-container" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg transition-colors">
-                            <div><span class="text-2xl mr-3">🛏️</span> <span class="font-semibold">Habitaciones</span></div>
+                        <div id="habitacion-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🛏️</span>
+                                <span class="font-semibold text-lg">Habitaciones</span>
+                            </div>
                             <div class="count-controls">
                                 <button id="habitacion-decrement" class="count-btn">-</button>
                                 <span id="habitacion-display" class="count-display">0</span>
@@ -393,86 +456,112 @@
                         </div>
 
                         <input type="checkbox" id="lavanderia" class="hidden peer" data-price="10" data-label="Lavandería" data-type="area">
-                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">🧺</span> <span class="font-semibold">Lavandería</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🧺</span>
+                                <span class="font-semibold text-lg">Lavandería</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                        </label>
 
                         <input type="checkbox" id="terrazas" class="hidden peer" data-price="10" data-label="Limpieza de Terrazas" data-type="area">
-                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg"><div><span class="text-2xl mr-3">☀️</span> <span class="font-semibold">Limpieza de Terrazas</span></div><span class="text-gray-500 font-bold">10€</span></label>
+                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">☀️</span>
+                                <span class="font-semibold text-lg">Limpieza de Terrazas</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-lg">10€</span>
+                        </label>
                     </div>
 
                     <!-- Complementos -->
-                    <h3 class="text-xl font-bold mb-4 mt-8">2. Añade complementos</h3>
-                    <div class="space-y-3">
+                    <h3 class="text-2xl font-bold mb-6 mt-10 text-gray-800">2. Añade complementos</h3>
+                    <div class="space-y-6">
                         <!-- Add-on: Pasillo -->
-                        <div class="addon-container p-4 border-2 border-gray-200 rounded-lg">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-3"><span class="text-2xl mr-3">🚪</span> Pasillo (área común)</h4>
+                        <div class="addon-container p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
+                                <span class="text-2xl mr-3">🚪</span>
+                                <span class="text-lg">Pasillo (área común)</span>
+                            </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="pasillo">
                                 <input type="checkbox" id="pasillo-5" class="hidden peer" data-price="5" data-label="Pasillo: menos de 5m²" data-type="addon">
-                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">Menos de 5m²</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">Menos de 5m²</span>
+                                    <span class="text-gray-600 font-bold text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="pasillo-10" class="hidden peer" data-price="10" data-label="Pasillo: 5m² o más" data-type="addon">
-                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">5m² o más</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">5m² o más</span>
+                                    <span class="text-gray-600 font-bold text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Fregar Platos -->
-                        <div class="addon-container p-4 border-2 border-gray-200 rounded-lg">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-3">
-                                <span class="text-2xl mr-3">🍽️</span> Fregar Platos
+                        <div class="addon-container p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
+                                <span class="text-2xl mr-3">🍽️</span>
+                                <span class="text-lg">Fregar Platos</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="platos">
                                 <input type="checkbox" id="platos-5" class="hidden peer" data-price="5" data-label="Fregar Platos: 1 carga" data-type="addon">
-                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">1 Carga</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="platos-10" class="hidden peer" data-price="10" data-label="Fregar Platos: Más de 1 carga" data-type="addon">
-                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">Más de 1 Carga</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">Más de 1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Limpieza de Mamparas -->
-                        <div class="addon-container p-4 border-2 border-gray-200 rounded-lg">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-3"><span class="text-2xl mr-3">🚿</span> Limpieza de Mamparas</h4>
+                        <div class="addon-container p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
+                                <span class="text-2xl mr-3">🪟</span>
+                                <span class="text-lg">Limpieza de Mamparas</span>
+                            </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="mamparas">
                                 <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1-2m" data-type="addon">
-                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">1-2m</span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">1-2m</span>
+                                    <span class="text-gray-600 font-bold text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: Más de 2m" data-type="addon">
-                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">Más de 2m</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">Más de 2m</span>
+                                    <span class="text-gray-600 font-bold text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
                         <!-- Add-on: Recogida de Basura -->
-                        <div class="addon-container p-4 border-2 border-gray-200 rounded-lg">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-3"><span class="text-2xl mr-3">🗑️</span> Recogida de Basura</h4>
+                        <div class="addon-container p-6">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-4">
+                                <span class="text-2xl mr-3">🗑️</span>
+                                <span class="text-lg">Recogida de Basura</span>
+                            </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 addon-group" data-group-name="basura">
                                 <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Recogida de Basura: 1-2 bolsas" data-type="addon">
-                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">1-2 bolsas <span class="font-normal">(Obligatorio con áreas)</span></span>
-                                    <span class="text-gray-500 font-bold">5€</span>
+                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">1-2 bolsas</span>
+                                    <span class="text-sm text-gray-500 mb-1">(Obligatorio con áreas)</span>
+                                    <span class="text-gray-600 font-bold text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Recogida de Basura: Más de 2 bolsas" data-type="addon">
-                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 border-2 border-gray-200 rounded-lg">
-                                    <span class="font-semibold text-center mb-1">Más de 2 bolsas</span>
-                                    <span class="text-gray-500 font-bold">10€</span>
+                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-lg">Más de 2 bolsas</span>
+                                    <span class="text-gray-600 font-bold text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <!-- New Escalera Add-on -->
+                        <!-- Escalera Add-on -->
                         <input type="checkbox" id="escalera" class="hidden peer" data-price="10" data-label="Limpieza de Escalera" data-type="addon">
-                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
-                            <div><span class="text-2xl mr-3">🪜</span> <span class="font-semibold">Limpieza de Escalera</span></div>
-                            <span class="text-gray-500 font-bold">10€</span>
+                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-4">🪜</span>
+                                <span class="font-semibold text-lg">Limpieza de Escalera</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-lg">10€</span>
                         </label>
                     </div>
                 </div>
@@ -480,10 +569,13 @@
                 <!-- Columna de resumen de costes -->
                 <div>
                     <!-- Contador de compañeros de piso -->
-                    <h3 class="text-xl font-bold mb-4">3. ¿Cuántos sois en el piso?</h3>
-                    <p class="text-gray-600 text-sm mb-4">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
-                    <div id="roommates-container" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg transition-colors mb-6">
-                        <div><span class="text-2xl icon-pink mr-3">👤</span> <span class="font-semibold">Compañeros</span></div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">3. ¿Cuántos sois en el piso?</h3>
+                    <p class="text-gray-600 text-base mb-6">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
+                    <div id="roommates-container" class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl transition-all duration-300 mb-8">
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-4">👥</span>
+                            <span class="font-semibold text-lg">Compañeros</span>
+                        </div>
                         <div class="count-controls">
                             <button id="roommates-decrement" class="count-btn">-</button>
                             <span id="roommates-count" class="count-display">1</span>
@@ -493,19 +585,19 @@
 
                     <!-- Visualización de costes -->
                     <div class="sticky top-6">
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="p-4 bg-gray-100 rounded-lg text-center">
-                                <p class="text-gray-600 text-sm">COSTE TOTAL</p>
-                                <p id="total-cost" class="text-3xl font-extrabold text-blue-600">0 €</p>
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl text-center border-2 border-blue-200">
+                                <p class="text-gray-600 text-sm font-medium mb-2">COSTE TOTAL</p>
+                                <p id="total-cost" class="text-4xl font-extrabold text-blue-600">0 €</p>
                             </div>
-                            <div class="p-4 bg-gray-100 rounded-lg text-center">
-                                <p class="text-gray-600 text-sm">COSTE POR PERSONA</p>
-                                <p id="cost-per-person" class="text-3xl font-extrabold text-green-600">0,00 €</p>
+                            <div class="p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl text-center border-2 border-green-200">
+                                <p class="text-gray-600 text-sm font-medium mb-2">COSTE POR PERSONA</p>
+                                <p id="cost-per-person" class="text-4xl font-extrabold text-green-600">0,00 €</p>
                             </div>
                         </div>
 
                         <!-- Gráfico de desglose de costes -->
-                        <h3 class="text-xl font-bold mb-4 text-center">Desglose del Coste</h3>
+                        <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">Desglose del Coste</h3>
                         <div class="chart-container">
                             <canvas id="costBreakdownChart"></canvas>
                         </div>
@@ -516,30 +608,26 @@
 
         <!-- Pie de página con el botón de reserva -->
         <footer class="text-center mt-16 mb-20">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Todo claro?</h3>
-            <p class="text-gray-600 mb-8 max-w-xl mx-auto">Contacta con nosotros para reservar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
+            <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">¿Todo claro?</h3>
+            <p class="text-white mb-10 max-w-2xl mx-auto text-lg leading-relaxed">Contacta con nosotros para reservar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
             
-            <!-- Campo de Cupón/Código en la vista principal -->
-            <div class="max-w-sm mx-auto mb-6">
-                <label for="main-coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
-                <div class="button-container">
-                    <a class="button" href="https://te-echounamano.blogspot.com/p/quiero-mi-codigo.html" title="Buy Now">Quiero mi código</a>
+            <!-- Campo de Cupón/Código -->
+            <div class="max-w-md mx-auto mb-8">
+                <label for="main-coupon-code" class="block mb-4 text-lg font-medium text-white">¿Tienes un cupón o código de referido?</label>
+                <div class="button-spacing">
+                    <a class="button" href="https://teechounamano.github.io/activar-referido/" title="Buy Now">Quiero mi código</a>
                 </div>
-                <input type="text" id="main-coupon-code" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Escribe tu código aquí">
+                <input type="text" id="main-coupon-code" class="bg-white border-2 border-gray-300 text-gray-900 text-lg rounded-2xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-4 shadow-lg" placeholder="Escribe tu código aquí">
             </div>
 
-            <button id="book-now-btn" class="bg-pink-500 text-white font-bold py-4 px-10 rounded-full hover:bg-pink-600 transition-transform hover:scale-105 text-lg shadow-lg pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="book-now-btn" class="button-gradient text-white font-bold py-5 px-12 rounded-full hover:bg-pink-600 transition-all duration-300 text-xl shadow-2xl pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
         </footer>
-
     </main>
 
-    <!-- Contenedor principal para los elementos flotantes -->
+    <!-- Botón flotante -->
     <div id="floating-elements-container">
-        <!-- Botón flotante para el resumen de costes -->
         <button id="floating-cart-button" aria-label="Mostrar resumen de costes">
-            <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.023.832l.638 3.092m3.228-3.092h8.252a1.875 1.875 0 011.875 1.875V15.75m-4.125-9H15.82a1.125 1.125 0 011.125 1.125v1.25m-14.25-3.625L7.926 17.53A2.875 2.875 0 0010.597 19h9.378a2.875 2.875 0 002.875-2.875V11.25m-15.375-3.625H11.25m5.25 7.125a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-            </svg>
+            <span style="font-size: 1.75rem;">🛒</span>
             <span id="floating-total-cost-display">0 €</span>
         </button>
     </div>
@@ -547,50 +635,46 @@
     <!-- Modal para el resumen del pedido -->
     <div id="summary-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="flex justify-between items-center pb-4 border-b border-gray-200 mb-4">
-                <h3 class="text-2xl font-bold text-gray-800">Resumen de mi pedido</h3>
-                <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+            <div class="flex justify-between items-center pb-6 border-b-2 border-gray-200 mb-6">
+                <h3 class="text-3xl font-bold text-gray-800">Resumen de mi pedido</h3>
+                <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors text-3xl">
+                    ✕
                 </button>
             </div>
             
-            <!-- Lista de elementos del pedido -->
             <div>
-                <div id="summary-list" class="space-y-3 max-h-60 overflow-y-auto pr-2">
-                    <!-- Los ítems seleccionados se insertarán aquí dinámicamente -->
-                    <p class="text-gray-500 text-center py-4">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
+                <div id="summary-list" class="space-y-4 max-h-80 overflow-y-auto pr-2">
+                    <p class="text-gray-500 text-center py-8 text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
                 </div>
             </div>
 
-            <!-- Sección de compañeros de piso en el modal -->
-            <div id="modal-roommates-container" class="mt-4 p-4 border-2 border-gray-200 rounded-lg transition-colors">
-                <div class="flex items-center justify-between mb-2">
-                    <div><span class="text-2xl icon-pink mr-3">👤</span> <span class="font-semibold">Compañeros</span></div>
+            <div id="modal-roommates-container" class="mt-6 p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center">
+                        <span class="text-2xl mr-3">👥</span>
+                        <span class="font-semibold text-lg">Compañeros</span>
+                    </div>
                     <div class="count-controls">
                         <button id="modal-roommates-decrement" class="count-btn">-</button>
                         <span id="modal-roommates-count" class="count-display">1</span>
                         <button id="modal-roommates-increment" class="count-btn">+</button>
                     </div>
                 </div>
-                <!-- Coste por persona en el modal -->
-                <div class="text-center font-bold text-lg text-green-600">
+                <div class="text-center font-bold text-xl text-green-600">
                     <span id="modal-cost-per-person">0,00 €</span> por persona
                 </div>
             </div>
 
-            <!-- Sección de Cupón/Código -->
-            <div class="mt-4">
-                <label for="coupon-code" class="block mb-2 text-sm font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
-                <input type="text" id="coupon-code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Escribe tu código aquí">
+            <div class="mt-6">
+                <label for="coupon-code" class="block mb-3 text-base font-medium text-gray-700">¿Tienes un cupón o código de referido?</label>
+                <input type="text" id="coupon-code" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-base rounded-xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-4" placeholder="Escribe tu código aquí">
             </div>
 
-            <div class="mt-4 flex justify-between items-center font-bold text-lg">
+            <div class="mt-6 flex justify-between items-center font-bold text-xl">
                 <span class="text-gray-800">Total:</span>
-                <span id="summary-total" class="text-blue-600 text-2xl">0,00 €</span>
+                <span id="summary-total" class="text-blue-600 text-3xl">0,00 €</span>
             </div>
-            <button id="modal-book-now-btn" class="mt-6 w-full bg-pink-500 text-white font-bold py-3 px-6 rounded-full hover:bg-pink-600 transition-transform hover:scale-105 text-lg shadow-lg text-center">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="modal-book-now-btn" class="mt-8 w-full button-gradient text-white font-bold py-4 px-8 rounded-full hover:bg-pink-600 transition-all duration-300 text-xl shadow-2xl text-center">¡Reservar Mi Limpieza Ahora!</button>
         </div>
     </div>
 
@@ -598,19 +682,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             // --- CONSTANTES Y CONFIGURACIÓN ---
             const ACTIVATION_FEE = 10;
-            const WHATSAPP_NUMBER = '34602846694'; // Reemplazar con tu número real
+            const WHATSAPP_NUMBER = '34602846694';
 
-            // --- ESTADO DE LA APLICACIÓN (nuestra "memoria" central) ---
+            // --- ESTADO DE LA APLICACIÓN ---
             const state = {
                 banoCount: 0,
                 habitacionCount: 0,
                 roommatesCount: 1,
-                selectedItems: {}, // Un objeto para guardar todo lo seleccionado
+                selectedItems: {},
                 totalCost: 0,
                 costPerPerson: 0
             };
 
-            // --- ELEMENTOS DEL DOM (accesos directos a los elementos HTML) ---
+            // --- ELEMENTOS DEL DOM ---
             const totalCostDisplay = document.getElementById('total-cost');
             const costPerPersonDisplay = document.getElementById('cost-per-person');
             const floatingCostDisplay = document.getElementById('floating-total-cost-display');
@@ -623,28 +707,17 @@
             let costChart;
 
             // --- FUNCIONES ---
-
-            /**
-             * Formatea un número a una cadena de texto con el símbolo del euro.
-             * @param {number} value - El valor numérico a formatear.
-             * @param {boolean} useDecimals - Indica si debe usar 2 decimales (para coste por persona).
-             */
             const formatCurrency = (value, useDecimals = false) => {
                 const options = useDecimals ? { minimumFractionDigits: 2, maximumFractionDigits: 2 } : { minimumFractionDigits: 0, maximumFractionDigits: 0 };
-                // Añadimos el símbolo del euro (€) al final de la cadena.
                 return value.toLocaleString('es-ES', options) + ' €';
             };
 
-            /**
-             * Actualiza la interfaz de usuario con los valores del estado actual.
-             */
             const updateUI = () => {
                 totalCostDisplay.textContent = formatCurrency(state.totalCost);
                 costPerPersonDisplay.textContent = formatCurrency(state.costPerPerson, true);
                 summaryTotal.textContent = formatCurrency(state.totalCost, true);
                 modalCostPerPerson.textContent = formatCurrency(state.costPerPerson, true);
 
-                // Update floating cart button
                 if (state.totalCost > 0) {
                     floatingCostDisplay.textContent = formatCurrency(state.totalCost);
                     floatingCostDisplay.classList.add('visible');
@@ -652,13 +725,11 @@
                     floatingCostDisplay.classList.remove('visible');
                 }
 
-                // Update display values for counters
                 document.getElementById('bano-display').textContent = state.banoCount;
                 document.getElementById('habitacion-display').textContent = state.habitacionCount;
                 document.getElementById('roommates-count').textContent = state.roommatesCount;
                 document.getElementById('modal-roommates-count').textContent = state.roommatesCount;
 
-                // Update visual state for counters
                 document.getElementById('bano-container').classList.toggle('is-selected', state.banoCount > 0);
                 document.getElementById('habitacion-container').classList.toggle('is-selected', state.habitacionCount > 0);
                 
@@ -666,14 +737,11 @@
                 updateChart();
             };
             
-            /**
-             * Re-renderiza la lista de ítems en el modal de resumen.
-             */
             const updateSummaryList = () => {
-                summaryList.innerHTML = ''; // Limpiar la lista actual
+                summaryList.innerHTML = '';
 
                 if (state.totalCost === 0) {
-                    summaryList.innerHTML = '<p class="text-gray-500 text-center py-4">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
+                    summaryList.innerHTML = '<p class="text-gray-500 text-center py-8 text-lg">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
                     return;
                 }
 
@@ -682,75 +750,69 @@
 
                 const createItemNode = (item) => {
                     const itemElement = document.createElement('div');
-                    itemElement.className = 'flex justify-between items-center py-1';
+                    itemElement.className = 'flex justify-between items-center py-3 px-4 bg-gray-50 rounded-lg';
                     
                     let controls = '';
                     if (item.id === 'bano' || item.id === 'habitacion') {
                         controls = `
                             <div class="modal-item-controls">
                                 <button class="modal-item-btn" data-action="decrement" data-id="${item.id}">-</button>
-                                <span class="font-bold w-6 text-center">${item.quantity}</span>
+                                <span class="font-bold w-8 text-center">${item.quantity}</span>
                                 <button class="modal-item-btn" data-action="increment" data-id="${item.id}">+</button>
                             </div>
                         `;
                     } else {
-                        controls = `<button class="modal-remove-btn" data-action="remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>`;
+                        controls = `<button class="modal-remove-btn" data-action="remove" data-id="${item.id}">🗑️</button>`;
                     }
                     
                     const totalItemPrice = item.price * (item.quantity || 1);
 
                     itemElement.innerHTML = `
-                        <div class="flex-grow pr-2">
-                            <p class="font-semibold">${item.label}</p>
+                        <div class="flex-grow pr-4">
+                            <p class="font-semibold text-lg">${item.label}</p>
                             ${item.quantity > 1 ? `<p class="text-sm text-gray-500">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
                         </div>
                         <div class="flex items-center gap-4">
-                            <span class="font-bold text-gray-700 w-16 text-right">${formatCurrency(totalItemPrice)}</span>
+                            <span class="font-bold text-gray-700 w-20 text-right text-lg">${formatCurrency(totalItemPrice)}</span>
                             ${controls}
                         </div>
                     `;
                     return itemElement;
                 };
 
-                // Render Areas
                 if (areas.length > 0) {
                     const container = document.createElement('div');
-                    container.className = 'p-3 border-2 border-gray-200 rounded-lg';
+                    container.className = 'p-4 border-2 border-gray-200 rounded-xl mb-4';
                     const title = document.createElement('h4');
-                    title.className = 'font-bold text-md text-gray-700 mb-2 pb-2 border-b';
+                    title.className = 'font-bold text-lg text-gray-700 mb-3 pb-2 border-b-2';
                     title.textContent = 'Áreas';
                     container.appendChild(title);
                     areas.forEach(item => container.appendChild(createItemNode(item)));
                     summaryList.appendChild(container);
                 }
 
-                // Render Addons
                 if (addons.length > 0) {
                     const container = document.createElement('div');
-                    container.className = 'p-3 border-2 border-gray-200 rounded-lg';
+                    container.className = 'p-4 border-2 border-gray-200 rounded-xl mb-4';
                     const title = document.createElement('h4');
-                    title.className = 'font-bold text-md text-gray-700 mb-2 pb-2 border-b';
+                    title.className = 'font-bold text-lg text-gray-700 mb-3 pb-2 border-b-2';
                     title.textContent = 'Complementos';
                     container.appendChild(title);
                     addons.forEach(item => container.appendChild(createItemNode(item)));
                     summaryList.appendChild(container);
                 }
 
-                // Render Activation Fee
                 const feeContainer = document.createElement('div');
-                feeContainer.className = 'p-3 border-2 border-gray-200 rounded-lg';
+                feeContainer.className = 'p-4 border-2 border-gray-200 rounded-xl';
                 feeContainer.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <p class="font-semibold">Cuota de activación</p>
-                        <span class="font-bold text-gray-700">${formatCurrency(ACTIVATION_FEE)}</span>
+                        <p class="font-semibold text-lg">Cuota de activación</p>
+                        <span class="font-bold text-gray-700 text-lg">${formatCurrency(ACTIVATION_FEE)}</span>
                     </div>
                 `;
                 summaryList.appendChild(feeContainer);
             };
 
-            /**
-             * Actualiza el gráfico de desglose de costes.
-             */
             const updateChart = () => {
                 if (!costChart) return;
                 
@@ -762,7 +824,7 @@
                 if (hasItems) {
                     labels.push('Cuota Fija');
                     data.push(ACTIVATION_FEE);
-                    colors.push('#FF33A1'); // Rosa para cuota fija
+                    colors.push('#f093fb');
                 }
 
                 const areasCost = Object.values(state.selectedItems)
@@ -772,7 +834,7 @@
                 if (areasCost > 0) {
                     labels.push('Áreas');
                     data.push(areasCost);
-                    colors.push('#3357FF'); // Azul para áreas
+                    colors.push('#667eea');
                 }
 
                 const addonsCost = Object.values(state.selectedItems)
@@ -782,13 +844,13 @@
                 if (addonsCost > 0) {
                     labels.push('Complementos');
                     data.push(addonsCost);
-                    colors.push('#4ade80'); // Verde para complementos
+                    colors.push('#4ade80');
                 }
 
-                if (data.length === 0) { // Si no hay nada, mostrar un estado por defecto
+                if (data.length === 0) {
                     costChart.data.labels = ['Vacío'];
                     costChart.data.datasets[0].data = [1];
-                    costChart.data.datasets[0].backgroundColor = ['#e5e7eb']; // Gris
+                    costChart.data.datasets[0].backgroundColor = ['#e5e7eb'];
                 } else {
                     costChart.data.labels = labels;
                     costChart.data.datasets[0].data = data;
@@ -798,17 +860,13 @@
                 costChart.update();
             };
 
-            /**
-             * Calcula el coste total y por persona basándose en el estado.
-             */
             const calculateTotal = () => {
-                // --- Lógica para "Recogida de Basura" obligatoria ---
                 const hasArea = Object.values(state.selectedItems).some(item => item.type === 'area');
                 const hasGarbage = state.selectedItems['basura-5'] || state.selectedItems['basura-10'];
 
                 if (hasArea && !hasGarbage) {
                     const garbageCheckbox = document.getElementById('basura-5');
-                    if (garbageCheckbox) { // No es necesario comprobar si está marcado, si no está en el state, lo añadimos
+                    if (garbageCheckbox) {
                         state.selectedItems['basura-5'] = {
                             id: 'basura-5',
                             price: parseFloat(garbageCheckbox.dataset.price),
@@ -818,7 +876,6 @@
                         garbageCheckbox.checked = true;
                     }
                 }
-                // --- Fin de la lógica ---
 
                 let subtotal = 0;
                 const items = Object.values(state.selectedItems);
@@ -838,9 +895,6 @@
                 updateUI();
             };
             
-            /**
-             * Maneja el cambio de estado de un checkbox.
-             */
             const handleCheckboxChange = (e) => {
                 const checkbox = e.target;
                 const id = checkbox.id;
@@ -849,13 +903,11 @@
                 const type = checkbox.dataset.type;
                 const groupContainer = checkbox.closest('.addon-group');
 
-                // Lógica para grupos de addons exclusivos
                 if (groupContainer) {
                     const groupName = groupContainer.dataset.groupName;
                     const otherCheckboxes = groupContainer.querySelectorAll(`input[type="checkbox"]:not(#${id})`);
                     
                     if (checkbox.checked) {
-                        // Desmarcar otros en el mismo grupo
                         otherCheckboxes.forEach(other => {
                             if (other.checked) {
                                 other.checked = false;
@@ -874,9 +926,6 @@
                 calculateTotal();
             };
 
-            /**
-             * Configura los controles de un contador (incremento/decremento).
-             */
             const setupCounter = (id, stateKey, min, max, label, price, type) => {
                 const decrementBtn = document.getElementById(`${id}-decrement`);
                 const incrementBtn = document.getElementById(`${id}-increment`);
@@ -886,7 +935,7 @@
                     newValue = Math.max(min, Math.min(newValue, max));
                     state[stateKey] = newValue;
                     
-                    if (label && price) { // Solo para contadores que son servicios (baño, habitación)
+                    if (label && price) {
                         const itemId = id;
                         if (newValue > 0) {
                             state.selectedItems[itemId] = {
@@ -907,15 +956,12 @@
                 incrementBtn.addEventListener('click', () => update(state[stateKey] + 1));
             };
             
-            /**
-             * Configura los contadores de compañeros de piso y los sincroniza.
-             */
             const setupRoommatesCounter = () => {
                 const decrementBtns = [document.getElementById('roommates-decrement'), document.getElementById('modal-roommates-decrement')];
                 const incrementBtns = [document.getElementById('roommates-increment'), document.getElementById('modal-roommates-increment')];
                 
                 const update = (newValue) => {
-                    newValue = Math.max(1, Math.min(newValue, 10)); // Min 1, Max 10 compañeros
+                    newValue = Math.max(1, Math.min(newValue, 10));
                     state.roommatesCount = newValue;
                     calculateTotal();
                 };
@@ -924,44 +970,16 @@
                 incrementBtns.forEach(btn => btn.addEventListener('click', () => update(state.roommatesCount + 1)));
             };
 
-            /**
-             * Genera y abre el enlace de WhatsApp con el resumen del pedido.
-             */
             const generateWhatsAppMessage = () => {
                 if (state.totalCost === 0) {
-                    // Create a custom alert message
-                    const alertBox = document.createElement('div');
-                    alertBox.style.position = 'fixed';
-                    alertBox.style.top = '20px';
-                    alertBox.style.left = '50%';
-                    alertBox.style.transform = 'translateX(-50%)';
-                    alertBox.style.backgroundColor = '#fef2f2'; // red-50
-                    alertBox.style.color = '#991b1b'; // red-800
-                    alertBox.style.padding = '1rem 1.5rem';
-                    alertBox.style.borderRadius = '0.5rem';
-                    alertBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                    alertBox.style.zIndex = '200';
-                    alertBox.style.opacity = '0';
-                    alertBox.style.transition = 'opacity 0.3s ease-in-out';
-                    alertBox.textContent = 'Por favor, selecciona al menos un servicio para continuar.';
-                    document.body.appendChild(alertBox);
-
-                    // Fade in
-                    setTimeout(() => { alertBox.style.opacity = '1'; }, 10);
-                    // Fade out and remove
-                    setTimeout(() => {
-                        alertBox.style.opacity = '0';
-                        setTimeout(() => { alertBox.remove(); }, 300);
-                    }, 3000);
-
-                    // Opcional: desplazar la vista a la sección de áreas
+                    alert('Por favor, selecciona al menos un servicio para continuar.');
                     document.getElementById('areas-section').scrollIntoView({ behavior: 'smooth' });
                     return;
                 }
 
                 const modalCoupon = document.getElementById('coupon-code').value.trim();
                 const mainCoupon = document.getElementById('main-coupon-code').value.trim();
-                const couponCode = mainCoupon || modalCoupon; // Usa el cupón de la vista principal o el del modal
+                const couponCode = mainCoupon || modalCoupon;
                 
                 let message = "Hola! 👋 Me gustaría reservar una limpieza con Plan-Limpieza10 con la siguiente configuración:\n\n";
                 
@@ -998,9 +1016,6 @@
                 window.open(whatsappUrl, '_blank');
             };
 
-            /**
-             * Inicializa el gráfico de Chart.js.
-             */
             const initChart = () => {
                 const ctx = document.getElementById('costBreakdownChart').getContext('2d');
                 costChart = new Chart(ctx, {
@@ -1012,8 +1027,8 @@
                             data: [1],
                             backgroundColor: ['#e5e7eb'],
                             borderColor: '#ffffff',
-                            borderWidth: 3,
-                            hoverOffset: 4
+                            borderWidth: 4,
+                            hoverOffset: 8
                         }]
                     },
                     options: {
@@ -1026,10 +1041,11 @@
                                 labels: {
                                     font: {
                                         family: "'Inter', sans-serif",
-                                        size: 14
+                                        size: 16,
+                                        weight: '600'
                                     },
-                                    padding: 20,
-                                    boxWidth: 15,
+                                    padding: 25,
+                                    boxWidth: 20,
                                     usePointStyle: true,
                                 }
                             },
@@ -1041,7 +1057,6 @@
                                             label += ': ';
                                         }
                                         if (context.parsed !== null) {
-                                            // Usamos formatCurrency para el tooltip también
                                             label += formatCurrency(context.parsed, true); 
                                         }
                                         return label;
@@ -1054,30 +1069,25 @@
             };
 
             // --- INICIALIZACIÓN Y EVENT LISTENERS ---
-
-            // Configurar contadores
             setupCounter('bano', 'banoCount', 0, 10, 'Baños', 10, 'area');
             setupCounter('habitacion', 'habitacionCount', 0, 10, 'Habitaciones', 10, 'area');
             setupRoommatesCounter();
 
-            // Listeners para checkboxes
             allCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', handleCheckboxChange);
             });
             
-            // Listeners para el modal
             const openModalBtn = document.getElementById('floating-cart-button');
             const closeModalBtn = document.getElementById('close-modal-button');
             
             openModalBtn.addEventListener('click', () => modal.classList.add('open'));
             closeModalBtn.addEventListener('click', () => modal.classList.remove('open'));
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) { // Cierra si se hace clic en el fondo oscuro
+                if (e.target === modal) {
                     modal.classList.remove('open');
                 }
             });
             
-            // Listener para los controles dentro del modal
             summaryList.addEventListener('click', (e) => {
                 const button = e.target.closest('button');
                 if (!button) return;
@@ -1094,7 +1104,7 @@
                     const key = id === 'bano' ? 'banoCount' : 'habitacionCount';
                     
                     let newValue = state[key] + (isIncrement ? 1 : -1);
-                    newValue = Math.max(0, Math.min(newValue, 10)); // Clamp between 0 and 10
+                    newValue = Math.max(0, Math.min(newValue, 10));
 
                     state[key] = newValue;
 
@@ -1108,13 +1118,11 @@
                 }
             });
 
-            // Listeners para los botones de reserva
             document.getElementById('book-now-btn').addEventListener('click', generateWhatsAppMessage);
             document.getElementById('modal-book-now-btn').addEventListener('click', generateWhatsAppMessage);
 
-            // Inicializar la aplicación
             initChart();
-            calculateTotal(); // Calcular y mostrar estado inicial (todo a 0)
+            calculateTotal();
         });
     </script>
 </body>

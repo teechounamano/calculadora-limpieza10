@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Calcular presupuesto online, en menos de 1 minuto.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png">
-
-    <title>Calculadora-Limpieza10 | App de Limpieza para Estudiantes</title>
+    <title>Calculadora-Limpieza10 | TeEchoUnaMano TUM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Montserrat', sans-serif;
+            /* Manteniendo el fondo cyan-azul del tema */
+            background: linear-gradient(135deg, #3ec2f2 0%, #0067b0 100%);
             min-height: 100vh;
         }
         
@@ -28,6 +27,7 @@
         }
         
         .gradient-text {
+            /* Restaurando gradiente original púrpura/rosa para mejor visualización */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -35,6 +35,7 @@
         }
         
         .button-gradient {
+            /* Restaurando botones originales púrpura para mejor visualización */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
@@ -47,6 +48,7 @@
         }
         
         .button-secondary {
+            /* Restaurando botones secundarios rosa para mejor visualización */
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
@@ -78,6 +80,7 @@
         }
         
         input:checked + .checkbox-label {
+            /* Restaurando estilo de selección original púrpura */
             background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
             border-color: #667eea;
             transform: scale(1.02);
@@ -85,6 +88,7 @@
         }
         
         .is-selected {
+            /* Restaurando estilo de selección original púrpura */
             background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
             border-color: #667eea;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
@@ -113,6 +117,7 @@
         }
         
         .count-btn:hover {
+            /* Restaurando hover de botones contador original púrpura */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             transform: scale(1.1);
@@ -135,6 +140,7 @@
         }
         
         #floating-cart-button {
+            /* Restaurando botón flotante original púrpura */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 50%;
@@ -158,6 +164,7 @@
             position: absolute;
             top: -6px;
             right: -6px;
+            /* Restaurando badge rosa original */
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border-radius: 50%;
@@ -236,6 +243,7 @@
         }
         
         .modal-item-btn:hover {
+            /* Restaurando hover de botones modal original púrpura */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             transform: scale(1.1);
@@ -269,6 +277,7 @@
             font-weight: 600;
             font-size: 14px;
             color: #ffffff;
+            /* Restaurando botón rosa original */
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border: none;
             border-radius: 50px;
@@ -343,9 +352,107 @@
         .addon-group .checkbox-label {
             margin-bottom: 0;
         }
+
+        /* Header styles */
+        header {
+            /* Cambiando header a fondo blanco para mejor legibilidad del logo */
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            /* Cambiando color del texto a gradiente cyan-azul para mantener tema */
+            background: linear-gradient(to right, #3ec2f2, #0067b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            /* Cambiando color del subtítulo a gris oscuro para mejor legibilidad */
+            color: #64748b;
+            margin: 0;
+        }
+
+        .header-link {
+            /* Restaurando botón header con gradiente púrpura original */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .header-link:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
         
         /* Estilos específicos para móvil */
         @media (max-width: 768px) {
+            .logo-img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.125rem;
+            }
+
+            .logo-text p {
+                font-size: 0.75rem;
+            }
+
+            .header-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+
             .main-title {
                 font-size: 2rem;
             }
@@ -468,20 +575,38 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png" alt="TeEchoUnaMano Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>TeEchoUnaMano TUM</h1>
+                        <p>Servicios de Limpieza Profesional</p>
+                    </div>
+                </div>
+                <a href="https://te-echounamano.blogspot.com" target="_blank" rel="noopener noreferrer" class="header-link">
+                    Más información
+                </a>
+            </div>
+        </div>
+    </header>
+
     <!-- Contenedor principal de la página -->
     <main class="container mx-auto px-4 py-6 md:py-12">
         <!-- Cabecera de la página -->
-        <header class="text-center mb-12 md:mb-16 pt-6 md:pt-10">
+        <div class="text-center mb-12 md:mb-16">
             <div class="relative max-w-7xl mx-auto flex flex-col items-center">
                 <!-- Contenedor de iconos de acceso directo -->
                 <div class="flex space-x-4 md:space-x-6 mb-6 md:mb-8 md:absolute md:top-0 md:right-0">
-                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
                         🏠
                     </a>
-                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
                         🎧
                     </a>
-                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-white hover:text-pink-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
                         🤖
                     </a>
                 </div>
@@ -489,7 +614,7 @@
                 <h1 class="main-title text-white mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
                 <p class="text-lg md:text-2xl text-white max-w-4xl mx-auto leading-relaxed px-4">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
-        </header>
+        </div>
 
         <!-- Sección "Cómo Funciona" -->
         <section id="how-it-works" class="mb-16 md:mb-20">
@@ -735,12 +860,12 @@
             <div class="max-w-md mx-auto mb-6 md:mb-8 px-4">
                 <label for="main-coupon-code" class="block mb-3 md:mb-4 text-sm md:text-lg font-medium text-white">¿Tienes un cupón o código de referido?</label>
                 <div class="button-spacing">
-                    <a class="button" href="https://teechounamano.github.io/activar-referido/" title="Buy Now">Quiero mi código</a>
+                    <a class="button" href="https://teechounamano.github.io/activar-referido/" target="_blank" rel="noopener noreferrer" title="Activar Cupón">Quiero mi código</a>
                 </div>
                 <input type="text" id="main-coupon-code" class="bg-white border-2 border-gray-300 text-gray-900 text-sm md:text-lg rounded-2xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 block w-full p-3 md:p-4 shadow-lg" placeholder="Escribe tu código aquí">
             </div>
 
-            <button id="book-now-btn" class="button-gradient text-white font-bold py-4 md:py-5 px-8 md:px-12 rounded-full hover:bg-pink-600 transition-all duration-300 text-lg md:text-xl shadow-2xl pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="book-now-btn" class="button-gradient text-white font-bold py-4 md:py-5 px-8 md:px-12 rounded-full transition-all duration-300 text-lg md:text-xl shadow-2xl pulsing-button">¡Reservar Mi Limpieza Ahora!</button>
         </footer>
     </main>
 
@@ -794,7 +919,7 @@
                 <span class="text-gray-800">Total:</span>
                 <span id="summary-total" class="text-blue-600 text-2xl md:text-3xl">0,00 €</span>
             </div>
-            <button id="modal-book-now-btn" class="mt-6 md:mt-8 w-full button-gradient text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full hover:bg-pink-600 transition-all duration-300 text-lg md:text-xl shadow-2xl text-center">¡Reservar Mi Limpieza Ahora!</button>
+            <button id="modal-book-now-btn" class="mt-6 md:mt-8 w-full button-gradient text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 text-lg md:text-xl shadow-2xl text-center">¡Reservar Mi Limpieza Ahora!</button>
         </div>
     </div>
 
@@ -944,7 +1069,7 @@
                 if (hasItems) {
                     labels.push('Cuota Fija');
                     data.push(ACTIVATION_FEE);
-                    colors.push('#f093fb');
+                    colors.push('#667eea');
                 }
 
                 const areasCost = Object.values(state.selectedItems)
@@ -954,7 +1079,7 @@
                 if (areasCost > 0) {
                     labels.push('Áreas');
                     data.push(areasCost);
-                    colors.push('#667eea');
+                    colors.push('#764ba2');
                 }
 
                 const addonsCost = Object.values(state.selectedItems)
@@ -964,7 +1089,7 @@
                 if (addonsCost > 0) {
                     labels.push('Complementos');
                     data.push(addonsCost);
-                    colors.push('#4ade80');
+                    colors.push('#f093fb');
                 }
 
                 if (data.length === 0) {
@@ -1160,7 +1285,7 @@
                                 position: 'bottom',
                                 labels: {
                                     font: {
-                                        family: "'Inter', sans-serif",
+                                        family: "'Montserrat', sans-serif",
                                         size: window.innerWidth < 768 ? 12 : 16,
                                         weight: '600'
                                     },
@@ -1238,7 +1363,7 @@
                 }
             });
 
-            document.getElementById('book-now-btn').addEventListener('click', generateWhatsAppMessage);
+            document.getElementById('book-now-btn').addEventListener('click', () => modal.classList.add('open'));
             document.getElementById('modal-book-now-btn').addEventListener('click', generateWhatsAppMessage);
 
             initChart();
@@ -1247,7 +1372,3 @@
     </script>
 </body>
 </html>
-
-
-
-

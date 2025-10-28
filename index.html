@@ -1258,163 +1258,127 @@
             }
         }
         
+        /* Mejoras responsive para móviles - reducir tamaños y espaciados */
         @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+                gap: 0.75rem;
+            }
+
+            .logo {
+                gap: 0.75rem;
+            }
+
             .logo-img {
-                width: 55px;
-                height: 55px;
+                width: 45px;
+                height: 45px;
+                border-radius: 12px;
             }
 
             .logo-text h1 {
-                font-size: 1.25rem;
+                font-size: 0.95rem;
+                line-height: 1.3;
             }
 
             .logo-text p {
-                font-size: 0.8125rem;
+                font-size: 0.7rem;
             }
 
             .header-link {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.875rem;
+                padding: 0.5rem 0.875rem;
+                font-size: 0.75rem;
+                white-space: nowrap;
             }
 
             .main-title {
-                font-size: 2rem;
+                font-size: 1.5rem !important;
+                margin-bottom: 1rem !important;
             }
-            
+
             .section-title {
-                font-size: 1.625rem;
+                font-size: 1.25rem !important;
             }
-            
-            .count-btn {
-                width: 2.5rem;
-                height: 2.5rem;
-                font-size: 1rem;
+
+            /* Reducir tamaño de emojis en enlaces sociales */
+            .text-xl {
+                font-size: 1.25rem !important;
             }
-            
-            .count-display {
-                width: 3rem;
-                font-size: 1.125rem;
+
+            .summary-section-title .edit-icon {
+                opacity: 0.7;
+                font-size: 0.875rem;
             }
-            
-            .count-controls {
-                gap: 0.625rem;
+
+            .summary-section-title:hover .edit-icon {
+                opacity: 1;
             }
-            
-            .checkbox-label {
-                padding: 0.875rem;
+
+            .edit-icon-text {
+                display: none;
             }
-            
-            .addon-container {
+
+            /* Ajustar modales para móvil */
+            .modal-content {
+                max-width: 95%;
+                max-height: 90vh;
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.25rem;
+            }
+
+            .modal-body {
                 padding: 1rem;
             }
-            
-            .modal-content {
-                padding: 1.5rem;
-            }
-            
-            .modal-item-btn {
-                width: 1.75rem;
-                height: 1.75rem;
-                font-size: 0.8125rem;
-            }
-            
-            .modal-remove-btn {
-                width: 1.75rem;
-                height: 1.75rem;
-                font-size: 1rem;
-            }
-            
-            .chart-container {
-                height: 220px;
-            }
-            
-            #floating-cart-button {
-                width: 3.5rem;
-                height: 3.5rem;
-            }
-            
-            #floating-total-cost-display {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.6875rem;
-                top: -6px;
-                right: -6px;
-            }
-
-            .form-card {
-                padding: 1.75rem;
-            }
-
-            .form-card-icon {
-                width: 3.5rem;
-                height: 3.5rem;
-                font-size: 1.75rem;
-            }
-
-            .form-card-title {
-                font-size: 1.375rem;
-            }
-
-            .form-input-group {
-                grid-template-columns: 1fr;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .form-btn {
-                padding: 1.125rem;
-                font-size: 1rem;
-            }
-
-            .security-banner {
-                padding: 1.25rem;
-            }
-
-            .security-banner-icon {
-                font-size: 2rem;
-            }
-
-            .security-banner-content h4 {
-                font-size: 1.0625rem;
-            }
-
-            .security-banner-content p {
-                font-size: 0.875rem;
-            }
-
-            .info-banner {
-                padding: 1.25rem;
-            }
-
-            .info-banner-icon {
-                font-size: 2rem;
-            }
-
-            .info-banner-content h4 {
-                font-size: 1.0625rem;
-            }
-
-            .info-banner-content p {
-                font-size: 0.875rem;
-            }
-
-            .referral-input-wrapper {
-                padding: 1.25rem;
-            }
         }
-        
+
         @media (max-width: 480px) {
+            /* Optimización adicional para pantallas muy pequeñas */
+            header {
+                padding: 0.625rem 0;
+            }
+
+            .header-content {
+                padding: 0 0.75rem;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text h1 {
+                font-size: 0.875rem;
+            }
+
+            .logo-text p {
+                font-size: 0.65rem;
+            }
+
+            .header-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.7rem;
+            }
+
             .main-title {
-                font-size: 1.75rem;
+                font-size: 1.375rem !important;
+                padding: 0 0.5rem;
             }
             
             .section-title {
-                font-size: 1.375rem;
+                font-size: 1.125rem !important;
             }
             
             .checkbox-label {
                 padding: 0.75rem;
+                font-size: 0.875rem;
             }
             
             .count-btn {
@@ -1433,16 +1397,48 @@
             }
             
             .modal-content {
-                padding: 1.25rem;
+                padding: 1rem;
+                max-width: 98%;
+                margin: 0.5rem;
             }
 
             .form-card {
-                padding: 1.5rem;
+                padding: 1.25rem;
             }
 
             #floating-elements-container {
                 bottom: 1rem;
                 right: 1rem;
+            }
+
+            /* Reducir tamaño de textos en formularios */
+            .form-label {
+                font-size: 0.875rem;
+            }
+
+            .form-input {
+                font-size: 0.875rem;
+                padding: 0.625rem;
+            }
+
+            /* Ajustar botones */
+            .button-gradient,
+            .summary-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            /* Ajustar resumen final */
+            .final-summary-content {
+                padding: 1rem;
+            }
+
+            .summary-header h2 {
+                font-size: 1.25rem;
+            }
+
+            .summary-total-value {
+                font-size: 1.75rem;
             }
         }
     </style>

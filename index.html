@@ -1171,94 +1171,7 @@
             75% { transform: translateX(0.625rem); }
         }
         
-        /* Responsive optimizado para móviles */
-        @media (max-width: 640px) {
-            .final-summary-content {
-                padding: 1.25rem;
-                border-radius: 20px;
-            }
-
-            .summary-header h2 {
-                font-size: 1.375rem;
-            }
-
-            .summary-header p {
-                font-size: 0.8125rem;
-            }
-
-            .summary-section {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .summary-section-title {
-                font-size: 0.9375rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .summary-item {
-                padding: 0.5rem 0;
-            }
-
-            .summary-item-label,
-            .summary-item-value {
-                font-size: 0.8125rem;
-            }
-
-            .summary-total {
-                padding: 1.25rem;
-                margin-bottom: 1rem;
-            }
-
-            .summary-total-value {
-                font-size: 2rem;
-            }
-
-            .summary-total-per-person {
-                font-size: 0.875rem;
-            }
-
-            .summary-btn {
-                padding: 0.875rem 1.25rem;
-                font-size: 0.9375rem;
-            }
-
-            .summary-actions {
-                gap: 0.75rem;
-            }
-
-            .activation-fee-highlight {
-                padding: 0.875rem;
-            }
-
-            .activation-fee-highlight .summary-item-label {
-                font-size: 0.9375rem;
-            }
-
-            .activation-fee-highlight .summary-item-value {
-                font-size: 1.125rem;
-            }
-
-            .referral-code-display {
-                padding: 1.125rem;
-            }
-
-            .referral-code-display .code {
-                font-size: 1.375rem;
-            }
-        }
-
-        @media (min-width: 641px) {
-            .summary-actions {
-                flex-direction: row;
-            }
-
-            .summary-btn {
-                flex: 1;
-            }
-        }
-        
-        /* Mejoras responsive para móviles - reducir tamaños y espaciados */
+        /* Mejorando responsive design para móvil - inputs, botones y modales */
         @media (max-width: 768px) {
             header {
                 padding: 0.75rem 0;
@@ -1304,7 +1217,6 @@
                 font-size: 1.25rem !important;
             }
 
-            /* Reducir tamaño de emojis en enlaces sociales */
             .text-xl {
                 font-size: 1.25rem !important;
             }
@@ -1322,12 +1234,13 @@
                 display: none;
             }
 
-            /* Ajustar modales para móvil */
+            /* Ajustar modales para móvil - más compactos */
             .modal-content {
                 max-width: 95%;
                 max-height: 90vh;
-                padding: 1rem;
+                padding: 1.25rem;
                 margin: 1rem;
+                border-radius: 20px;
             }
 
             .modal-header h2 {
@@ -1336,6 +1249,109 @@
 
             .modal-body {
                 padding: 1rem;
+                font-size: 0.875rem;
+            }
+
+            /* Ajustar formularios en móvil */
+            .form-card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                border-radius: 18px;
+            }
+
+            .form-card-header {
+                gap: 0.875rem;
+                margin-bottom: 1.25rem;
+                padding-bottom: 1rem;
+            }
+
+            .form-card-icon {
+                width: 2.75rem;
+                height: 2.75rem;
+                font-size: 1.5rem;
+                border-radius: 14px;
+            }
+
+            .form-card-title {
+                font-size: 1.25rem;
+            }
+
+            /* Ajustar inputs con iconos para evitar sobreposición */
+            .form-input {
+                padding: 0.875rem 0.875rem 0.875rem 2.75rem;
+                font-size: 0.875rem;
+                border-radius: 12px;
+            }
+
+            .form-input-icon {
+                left: 0.875rem;
+                font-size: 1.125rem;
+            }
+
+            .form-input-wrapper {
+                margin-bottom: 1.25rem;
+            }
+
+            /* Cambiar grid de 3 columnas a 1 columna en móvil */
+            .form-input-group {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Ajustar botones del formulario - vertical y más compactos */
+            .form-actions {
+                flex-direction: column;
+                gap: 0.875rem;
+                margin-top: 1.75rem;
+            }
+
+            .form-btn {
+                width: 100%;
+                padding: 0.875rem 1.25rem;
+                font-size: 0.9375rem;
+                border-radius: 14px;
+                gap: 0.625rem;
+            }
+
+            /* Ajustar banners informativos */
+            .security-banner,
+            .info-banner {
+                padding: 1rem;
+                gap: 0.875rem;
+                border-radius: 14px;
+                margin-bottom: 1.5rem;
+            }
+
+            .security-banner-icon,
+            .info-banner-icon {
+                font-size: 1.75rem;
+            }
+
+            .security-banner-content h4,
+            .info-banner-content h4 {
+                font-size: 1rem;
+                margin-bottom: 0.375rem;
+            }
+
+            .security-banner-content p,
+            .info-banner-content p {
+                font-size: 0.8125rem;
+            }
+
+            /* Ajustar selectores de fecha */
+            .date-selector {
+                padding: 1.25rem;
+                border-radius: 14px;
+            }
+
+            .date-selector-label {
+                font-size: 0.875rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .date-selector input[type="date"] {
+                font-size: 0.875rem;
+                padding: 0.75rem;
             }
         }
 
@@ -1396,14 +1412,110 @@
                 padding: 0.875rem;
             }
             
+            /* Modal aún más compacto en pantallas pequeñas */
             .modal-content {
                 padding: 1rem;
                 max-width: 98%;
                 margin: 0.5rem;
+                border-radius: 16px;
             }
 
+            .modal-header h2 {
+                font-size: 1.125rem;
+            }
+
+            .modal-body {
+                padding: 0.875rem;
+                font-size: 0.8125rem;
+            }
+
+            /* Formularios más compactos */
             .form-card {
                 padding: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .form-card-header {
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .form-card-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.25rem;
+                border-radius: 12px;
+            }
+
+            .form-card-title {
+                font-size: 1.125rem;
+            }
+
+            /* Inputs más pequeños y mejor espaciados */
+            .form-input {
+                padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+                font-size: 0.8125rem;
+                border-radius: 10px;
+            }
+
+            .form-input-icon {
+                left: 0.75rem;
+                font-size: 1rem;
+            }
+
+            .form-input-wrapper {
+                margin-bottom: 1rem;
+            }
+
+            /* Botones más compactos */
+            .form-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+                border-radius: 12px;
+            }
+
+            .form-actions {
+                gap: 0.75rem;
+                margin-top: 1.5rem;
+            }
+
+            /* Banners más compactos */
+            .security-banner,
+            .info-banner {
+                padding: 0.875rem;
+                gap: 0.75rem;
+                border-radius: 12px;
+            }
+
+            .security-banner-icon,
+            .info-banner-icon {
+                font-size: 1.5rem;
+            }
+
+            .security-banner-content h4,
+            .info-banner-content h4 {
+                font-size: 0.9375rem;
+            }
+
+            .security-banner-content p,
+            .info-banner-content p {
+                font-size: 0.75rem;
+            }
+
+            /* Selectores de fecha más compactos */
+            .date-selector {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .date-selector-label {
+                font-size: 0.8125rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .date-selector input[type="date"] {
+                font-size: 0.8125rem;
+                padding: 0.625rem;
             }
 
             #floating-elements-container {
@@ -1411,17 +1523,7 @@
                 right: 1rem;
             }
 
-            /* Reducir tamaño de textos en formularios */
-            .form-label {
-                font-size: 0.875rem;
-            }
-
-            .form-input {
-                font-size: 0.875rem;
-                padding: 0.625rem;
-            }
-
-            /* Ajustar botones */
+            /* Ajustar botones generales */
             .button-gradient,
             .summary-btn {
                 padding: 0.75rem 1rem;

@@ -12,1618 +12,1237 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #3ec2f2 0%, #0067b0 100%);
-            min-height: 100vh;
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Cambiando gradientes a paleta profesional azul corporativo */
-        .button-gradient {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .button-gradient::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
-        }
-        
-        .button-gradient:hover::before {
-            left: 100%;
-        }
-        
-        .button-gradient:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(37, 99, 235, 0.5);
-        }
-        
-        .button-gradient:active {
-            transform: translateY(-1px);
-        }
-        
-        /* Botón secundario con gris pizarra profesional */
-        .button-secondary {
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 6px 24px rgba(100, 116, 139, 0.4);
-            border: none;
-        }
-        
-        .button-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(100, 116, 139, 0.5);
-        }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            height: 280px;
-        }
-        
-        /* Mejorando interactividad de checkboxes con transiciones suaves */
-        .checkbox-label {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 12px;
-            cursor: pointer;
-        }
-        
-        .checkbox-label:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-        }
-        
-        input:checked + .checkbox-label {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            border-color: #667eea;
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .is-selected {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            border-color: #667eea;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        /* Controles de contador con azul corporativo en hover */
-        .count-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-        }
-        
-        .count-btn {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #475569;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .count-btn:hover {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            transform: scale(1.15);
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-        }
-        
-        .count-btn:active {
-            transform: scale(1.05);
-        }
-        
-        .count-display {
-            width: 3.5rem;
-            text-align: center;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: #1e293b;
-        }
-        
-        #floating-elements-container {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            z-index: 50;
-        }
-        
-        /* Carrito flotante con azul corporativo */
-        #floating-cart-button {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            border-radius: 50%;
-            width: 4rem;
-            height: 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        #floating-cart-button:hover {
-            transform: translateY(-4px) scale(1.08);
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.6);
-        }
-        
-        /* Badge del carrito con índigo profesional */
-        #floating-total-cost-display {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
-            color: white;
-            border-radius: 50%;
-            padding: 0.3rem 0.6rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            display: none;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
-        }
-        
-        #floating-total-cost-display.visible {
-            display: block;
-            animation: pulse 2s infinite;
-        }
-        
-        /* Modal mejorado con mejor backdrop y animaciones */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-            padding: 1rem;
-        }
-        
-        .modal-overlay.open {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 550px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-overlay.open .modal-content {
-            transform: scale(1) translateY(0);
-        }
-        
-        /* Botón de cierre mejorado con mejor visibilidad */
-        .modal-close-btn {
-            /* Haciendo el botón X más sutil y discreto */
-            background: transparent;
-            color: #94a3b8;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            opacity: 0.5;
-            box-shadow: none;
-        }
-        
-        .modal-close-btn:hover {
-            /* Efecto hover más prominente y profesional */
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            transform: rotate(90deg) scale(1.15);
-            opacity: 1;
-            box-shadow: 0 2px 12px rgba(239, 68, 68, 0.2);
-        }
-        
-        .modal-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-        }
-        
-        /* Botones de modal con azul corporativo */
-        .modal-item-btn {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #475569;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-size: 0.875rem;
-        }
-        
-        .modal-item-btn:hover {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            transform: scale(1.15);
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
-        }
-        
-        .modal-remove-btn {
-            background: transparent;
-            color: #ef4444;
-            border: none;
-            cursor: pointer;
-            font-size: 1.125rem;
-            padding: 0;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-remove-btn:hover {
-            color: #dc2626;
-            background: #fee2e2;
-            transform: scale(1.15);
-        }
-        
-        /* Botón general con gris pizarra profesional */
-        .button {
-            display: inline-block;
-            padding: 0.875rem 1.75rem;
-            font-weight: 700;
-            font-size: 0.9375rem;
-            color: #ffffff;
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4);
-        }
-        
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(100, 116, 139, 0.6);
-        }
-        
-        .pulsing-button {
-            animation: pulse 2s infinite ease-in-out;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Tipografía mejorada con mejor jerarquía visual */
-        .main-title {
-            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
-            font-size: 2.75rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-        
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
-        }
-        
-        .card-spacing {
-            margin-bottom: 1.25rem;
-        }
-        
-        .button-spacing {
-            margin-bottom: 1rem;
-        }
-        
-        /* Contenedores de addons más profesionales */
-        .addon-container {
-            margin-bottom: 1.25rem;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        
-        .addon-container:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        
-        .addon-container h4 {
-            color: #1e293b;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .addon-group {
-            gap: 1rem;
-        }
-
-        /* Header más profesional y responsive */
-        header {
-            background: white;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-            padding: 1.25rem 0;
-            margin-bottom: 2.5rem;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .logo-text h1 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #3ec2f2, #0067b0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .logo-text p {
-            font-size: 0.9375rem;
-            color: #64748b;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        /* Header link con azul corporativo */
-        .header-link {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 0.875rem 1.75rem;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-            font-size: 0.9375rem;
-        }
-
-        .header-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.6);
-        }
-
-        /* Formulario con diseño moderno y profesional */
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3.25rem;
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-family: inherit;
-            color: #0f172a;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #3ec2f2;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(62, 194, 242, 0.15);
-        }
-
-        .form-input.error {
-            border-color: #ef4444;
-            background: #fef2f2;
-        }
-
-        .error-message {
-            display: none;
-            color: #ef4444;
-            font-size: 0.8125rem;
-            margin-top: 0.5rem;
-            font-weight: 600;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: shake 0.4s ease-in-out;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.9375rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.625rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.75rem;
-        }
-
-        /* Modal de resumen final optimizado para móviles */
-        .final-summary-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-        }
-
-        .final-summary-modal.open {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .final-summary-content {
-            background: white;
-            border-radius: 24px;
-            padding: 1.75rem;
-            width: 100%;
-            max-width: 600px;
-            max-height: 92vh;
-            overflow-y: auto;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .final-summary-modal.open .final-summary-content {
-            transform: scale(1);
-        }
-
-        /* Título del resumen con azul corporativo */
-        .summary-header h2 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .summary-header p {
-            color: #64748b;
-            font-size: 0.9375rem;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .summary-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 16px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            border: 2px solid #e2e8f0;
-        }
-
-        /* Estilos para iconos de edición en el resumen final */
-        .summary-section-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #e2e8f0;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0.75rem;
-            border-radius: 12px;
-        }
-
-        .summary-section-title:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-bottom-color: #667eea;
-            transform: translateX(4px);
-        }
-
-        .summary-section-title .edit-icon {
-            margin-left: auto;
-            font-size: 1rem;
-            color: #94a3b8;
-            opacity: 0;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-
-        .summary-section-title:hover .edit-icon {
-            opacity: 1;
-            color: #667eea;
-        }
-
-        .edit-icon-text {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Tooltip para los iconos de edición */
-        .edit-tooltip {
-            position: absolute;
-            top: -2.5rem;
-            right: 0;
-            background: #1e293b;
-            color: white;
-            padding: 0.5rem 0.875rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-        }
-
-        .edit-tooltip::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            right: 1rem;
-            width: 8px;
-            height: 8px;
-            background: #1e293b;
-            transform: rotate(45deg);
-        }
-
-        /* Animación sutil para indicar interactividad */
-        @keyframes pulse-edit {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .summary-section-title:hover .edit-icon svg {
-            animation: pulse-edit 0.6s ease-in-out;
-        }
-
-        /* Responsive para móviles - mostrar iconos siempre */
-        @media (max-width: 768px) {
-            .summary-section-title .edit-icon {
-                opacity: 0.7;
-                font-size: 0.875rem;
-            }
-
-            .summary-section-title:hover .edit-icon {
-                opacity: 1;
-            }
-
-            .edit-icon-text {
-                display: none;
-            }
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 0.625rem 0;
-            border-bottom: 1px solid #e2e8f0;
-            gap: 1rem;
-        }
-
-        .summary-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .summary-item-label {
-            font-size: 0.9375rem;
-            color: #475569;
-            font-weight: 600;
-            line-height: 1.5;
-            flex: 1;
-        }
-
-        .summary-item-value {
-            font-size: 0.9375rem;
-            color: #1e293b;
-            font-weight: 700;
-            text-align: right;
-            line-height: 1.5;
-        }
-
-        /* Destacar cuota de activación con gradiente llamativo */
-        .activation-fee-highlight {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 3px solid #f59e0b;
-            border-radius: 14px;
-            padding: 1rem;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
-        }
-
-        .activation-fee-highlight .summary-item {
-            border-bottom: none;
-            padding: 0;
-        }
-
-        .activation-fee-highlight .summary-item-label {
-            color: #92400e;
-            font-weight: 800;
-            font-size: 1.0625rem;
-        }
-
-        .activation-fee-highlight .summary-item-value {
-            color: #92400e;
-            font-weight: 900;
-            font-size: 1.25rem;
-        }
-
-        /* Restaurando estilos originales de coste por persona en calculadora principal */
-        .cost-per-person {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            padding: 1.5rem;
-            border-radius: 1rem;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .cost-per-person p:first-child {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-
-        .cost-per-person p:last-child {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-
-        .summary-total {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1.25rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
-        }
-
-        .summary-total-label {
-            font-size: 0.8125rem;
-            font-weight: 700;
-            opacity: 0.95;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .summary-total-value {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-
-        /* Estilo profesional y distintivo para coste por persona SOLO en modal final */
-        .summary-total-per-person {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-            border: 2px solid #818cf8;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .summary-total-per-person::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .summary-total-per-person:hover::before {
-            left: 100%;
-        }
-
-        .summary-actions {
-            display: flex;
-            gap: 1rem;
-            flex-direction: column;
-        }
-
-        .summary-btn {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.625rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .summary-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .summary-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Botón de envío con azul corporativo */
-        .summary-btn-send {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
-        }
-
-        .summary-btn-send:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(37, 99, 235, 0.6);
-        }
-
-        /* Botón de cancelación con gris pizarra profesional */
-        .summary-btn-cancel {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #475569;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .summary-btn-cancel:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Formulario de cliente con diseño premium */
-        .form-card {
-            background: white;
-            border-radius: 24px;
-            padding: 2.25rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .form-card:hover {
-            border-color: #3ec2f2;
-            box-shadow: 0 10px 35px rgba(62, 194, 242, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .form-card-header {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.25rem;
-            border-bottom: 3px solid #f1f5f9;
-        }
-
-        .form-card-icon {
-            width: 4rem;
-            height: 4rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
-        }
-
-        .form-card-title {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: #1e293b;
-            margin: 0;
-        }
-
-        .form-input-wrapper {
-            position: relative;
-            margin-bottom: 1.75rem;
-        }
-
-        /* Iconos de formulario con gris pizarra profesional */
-        .form-input-icon {
-            position: absolute;
-            left: 1.125rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.375rem;
-            color: #64748b;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .form-input-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-
-        .date-selector {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border: 2px solid #e2e8f0;
-            border-radius: 18px;
-            padding: 1.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .date-selector:hover {
-            border-color: #3ec2f2;
-            box-shadow: 0 6px 18px rgba(62, 194, 242, 0.15);
-        }
-
-        .date-selector-label {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            font-size: 0.9375rem;
-            font-weight: 700;
-            color: #475569;
-            margin-bottom: 1rem;
-        }
-
-        .date-selector input {
-            width: 100%;
-            padding: 1rem;
-            background: white;
-            border: 2px solid #cbd5e1;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            color: #0f172a;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .date-selector input:focus {
-            outline: none;
-            border-color: #3ec2f2;
-            box-shadow: 0 0 0 4px rgba(62, 194, 242, 0.15);
-        }
-
-        /* Banner de seguridad para tranquilizar al usuario */
-        .security-banner {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            border: 3px solid #10b981;
-            border-radius: 18px;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
-        }
-
-        .security-banner-icon {
-            font-size: 2.5rem;
-            flex-shrink: 0;
-        }
-
-        .security-banner-content h4 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #065f46;
-            margin: 0 0 0.5rem 0;
-        }
-
-        .security-banner-content p {
-            font-size: 0.9375rem;
-            color: #065f46;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .info-banner {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            border: 3px solid #3b82f6;
-            border-radius: 18px;
-            padding: 1.75rem;
-            display: flex;
-            align-items: start;
-            gap: 1.25rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
-        }
-
-        .info-banner-icon {
-            font-size: 2.5rem;
-            flex-shrink: 0;
-        }
-
-        .info-banner-content h4 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #1e40af;
-            margin: 0 0 0.625rem 0;
-        }
-
-        .info-banner-content p {
-            font-size: 1rem;
-            color: #1e40af;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 1.25rem;
-            margin-top: 2.5rem;
-        }
-
-        .form-btn {
-            flex: 1;
-            padding: 1.25rem 2rem;
-            border: none;
-            border-radius: 18px;
-            font-weight: 700;
-            font-size: 1.125rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.875rem;
-        }
-
-        .form-btn-back {
-            background: white;
-            color: #475569;
-            border: 3px solid #e2e8f0;
-        }
-
-        .form-btn-back:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Botón de envío con azul corporativo */
-        .form-btn-submit {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        .form-btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6);
-        }
-        
-        /* Botón continuar modal con azul corporativo */
-        .modal-continue-btn {
-            width: 100%;
-            padding: 1.125rem;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 1.0625rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1.25rem;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-        
-        .modal-continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6);
-        }
-
-        /* Destacar código de referido con gradiente verde esmeralda */
-        .referral-code-display {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            border: 3px solid #10b981;
-            border-radius: 18px;
-            padding: 1.5rem;
-            text-align: center;
-            margin-bottom: 1.75rem;
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
-        }
-
-        .referral-code-display .label {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #065f46;
-            margin-bottom: 0.5rem;
-        }
-
-        .referral-code-display .code {
-            font-size: 1.75rem;
-            font-weight: 900;
-            color: #065f46;
-            letter-spacing: 0.08em;
-        }
-
-        /* Input de código de referido destacado */
-        .referral-input-wrapper {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            border: 3px solid #10b981;
-            border-radius: 18px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .referral-input-wrapper label {
-            display: block;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #065f46;
-            margin-bottom: 0.875rem;
-            text-align: center;
-        }
-
-        .referral-input-wrapper input {
-            width: 100%;
-            padding: 1rem;
-            background: white;
-            border: 2px solid #10b981;
-            border-radius: 12px;
-            font-size: 1.0625rem;
-            font-family: inherit;
-            color: #065f46;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-        }
-
-        .referral-input-wrapper input:focus {
-            outline: none;
-            border-color: #059669;
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
-        }
-
-        .referral-input-wrapper input::placeholder {
-            color: #6ee7b7;
-            font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(1.5rem);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-0.625rem); }
-            75% { transform: translateX(0.625rem); }
-        }
-        
-        /* Mejorando responsive design para móvil - inputs, botones y modales */
-        @media (max-width: 768px) {
-            header {
-                padding: 0.75rem 0;
-                margin-bottom: 1.5rem;
-            }
-
-            .header-content {
-                padding: 0 1rem;
-                gap: 0.75rem;
-            }
-
-            .logo {
-                gap: 0.75rem;
-            }
-
-            .logo-img {
-                width: 45px;
-                height: 45px;
-                border-radius: 12px;
-            }
-
-            .logo-text h1 {
-                font-size: 0.95rem;
-                line-height: 1.3;
-            }
-
-            .logo-text p {
-                font-size: 0.7rem;
-            }
-
-            .header-link {
-                padding: 0.5rem 0.875rem;
-                font-size: 0.75rem;
-                white-space: nowrap;
-            }
-
-            .main-title {
-                font-size: 1.5rem !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .section-title {
-                font-size: 1.25rem !important;
-            }
-
-            .text-xl {
-                font-size: 1.25rem !important;
-            }
-
-            .summary-section-title .edit-icon {
-                opacity: 0.7;
-                font-size: 0.875rem;
-            }
-
-            .summary-section-title:hover .edit-icon {
-                opacity: 1;
-            }
-
-            .edit-icon-text {
-                display: none;
-            }
-
-            /* Ajustar modales para móvil - más compactos */
-            .modal-content {
-                max-width: 95%;
-                max-height: 90vh;
-                padding: 1.25rem;
-                margin: 1rem;
-                border-radius: 20px;
-            }
-
-            .modal-header h2 {
-                font-size: 1.25rem;
-            }
-
-            .modal-body {
-                padding: 1rem;
-                font-size: 0.875rem;
-            }
-
-            /* Ajustar formularios en móvil */
-            .form-card {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
-                border-radius: 18px;
-            }
-
-            .form-card-header {
-                gap: 0.875rem;
-                margin-bottom: 1.25rem;
-                padding-bottom: 1rem;
-            }
-
-            .form-card-icon {
-                width: 2.75rem;
-                height: 2.75rem;
-                font-size: 1.5rem;
-                border-radius: 14px;
-            }
-
-            .form-card-title {
-                font-size: 1.25rem;
-            }
-
-            /* Ajustar inputs con iconos para evitar sobreposición */
-            .form-input {
-                padding: 0.875rem 0.875rem 0.875rem 2.75rem;
-                font-size: 0.875rem;
-                border-radius: 12px;
-            }
-
-            .form-input-icon {
-                left: 0.875rem;
-                font-size: 1.125rem;
-            }
-
-            .form-input-wrapper {
-                margin-bottom: 1.25rem;
-            }
-
-            /* Cambiar grid de 3 columnas a 1 columna en móvil */
-            .form-input-group {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            /* Ajustar botones del formulario - vertical y más compactos */
-            .form-actions {
-                flex-direction: column;
-                gap: 0.875rem;
-                margin-top: 1.75rem;
-            }
-
-            .form-btn {
-                width: 100%;
-                padding: 0.875rem 1.25rem;
-                font-size: 0.9375rem;
-                border-radius: 14px;
-                gap: 0.625rem;
-            }
-
-            /* Ajustar banners informativos */
-            .security-banner,
-            .info-banner {
-                padding: 1rem;
-                gap: 0.875rem;
-                border-radius: 14px;
-                margin-bottom: 1.5rem;
-            }
-
-            .security-banner-icon,
-            .info-banner-icon {
-                font-size: 1.75rem;
-            }
-
-            .security-banner-content h4,
-            .info-banner-content h4 {
-                font-size: 1rem;
-                margin-bottom: 0.375rem;
-            }
-
-            .security-banner-content p,
-            .info-banner-content p {
-                font-size: 0.8125rem;
-            }
-
-            /* Ajustar selectores de fecha */
-            .date-selector {
-                padding: 1.25rem;
-                border-radius: 14px;
-            }
-
-            .date-selector-label {
-                font-size: 0.875rem;
-                margin-bottom: 0.625rem;
-            }
-
-            .date-selector input[type="date"] {
-                font-size: 0.875rem;
-                padding: 0.75rem;
-            }
-
-            /* Ajustes responsive para coste por persona en calculadora */
-            .cost-per-person p:first-child {
-                font-size: 0.625rem;
-            }
-
-            .cost-per-person p:last-child {
-                font-size: 1.75rem;
-            }
-
-            /* Ajustes responsive para coste por persona en modal final */
-            .summary-total-per-person {
-                font-size: 1rem;
-                padding: 0.875rem 1.25rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            /* Optimización adicional para pantallas muy pequeñas */
-            header {
-                padding: 0.625rem 0;
-            }
-
-            .header-content {
-                padding: 0 0.75rem;
-            }
-
-            .logo-img {
-                width: 40px;
-                height: 40px;
-            }
-
-            .logo-text h1 {
-                font-size: 0.875rem;
-            }
-
-            .logo-text p {
-                font-size: 0.65rem;
-            }
-
-            .header-link {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.7rem;
-            }
-
-            .main-title {
-                font-size: 1.375rem !important;
-                padding: 0 0.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.125rem !important;
-            }
-            
-            .checkbox-label {
-                padding: 0.75rem;
-                font-size: 0.875rem;
-            }
-            
-            .count-btn {
-                width: 2.25rem;
-                height: 2.25rem;
-                font-size: 0.875rem;
-            }
-            
-            .count-display {
-                width: 2.5rem;
-                font-size: 1rem;
-            }
-            
-            .addon-container {
-                padding: 0.875rem;
-            }
-            
-            /* Modal aún más compacto en pantallas pequeñas */
-            .modal-content {
-                padding: 1rem;
-                max-width: 98%;
-                margin: 0.5rem;
-                border-radius: 16px;
-            }
-
-            .modal-header h2 {
-                font-size: 1.125rem;
-            }
-
-            .modal-body {
-                padding: 0.875rem;
-                font-size: 0.8125rem;
-            }
-
-            /* Formularios más compactos */
-            .form-card {
-                padding: 1.25rem;
-                border-radius: 16px;
-            }
-
-            .form-card-header {
-                gap: 0.75rem;
-                margin-bottom: 1rem;
-            }
-
-            .form-card-icon {
-                width: 2.5rem;
-                height: 2.5rem;
-                font-size: 1.25rem;
-                border-radius: 12px;
-            }
-
-            .form-card-title {
-                font-size: 1.125rem;
-            }
-
-            /* Inputs más pequeños y mejor espaciados */
-            .form-input {
-                padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-                font-size: 0.8125rem;
-                border-radius: 10px;
-            }
-
-            .form-input-icon {
-                left: 0.75rem;
-                font-size: 1rem;
-            }
-
-            .form-input-wrapper {
-                margin-bottom: 1rem;
-            }
-
-            /* Botones más compactos */
-            .form-btn {
-                padding: 0.75rem 1rem;
-                font-size: 0.875rem;
-                border-radius: 12px;
-            }
-
-            .form-actions {
-                gap: 0.75rem;
-                margin-top: 1.5rem;
-            }
-
-            /* Banners más compactos */
-            .security-banner,
-            .info-banner {
-                padding: 0.875rem;
-                gap: 0.75rem;
-                border-radius: 12px;
-            }
-
-            .security-banner-icon,
-            .info-banner-icon {
-                font-size: 1.5rem;
-            }
-
-            .security-banner-content h4,
-            .info-banner-content h4 {
-                font-size: 0.9375rem;
-            }
-
-            .security-banner-content p,
-            .info-banner-content p {
-                font-size: 0.75rem;
-            }
-
-            /* Selectores de fecha más compactos */
-            .date-selector {
-                padding: 1rem;
-                border-radius: 12px;
-            }
-
-            .date-selector-label {
-                font-size: 0.8125rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .date-selector input[type="date"] {
-                font-size: 0.8125rem;
-                padding: 0.625rem;
-            }
-
-            #floating-elements-container {
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            /* Ajustar botones generales */
-            .button-gradient,
-            .summary-btn,
-            .modal-continue-btn {
-                padding: 0.75rem 1rem !important;
-                font-size: 0.875rem !important;
-            }
-
-            /* Ajustar resumen final */
-            .final-summary-content {
-                padding: 1rem;
-            }
-
-            .summary-header h2 {
-                font-size: 1.25rem;
-            }
-
-            .summary-total-value {
-                font-size: 1.75rem;
-            }
-
-            /* Ajustes responsive adicionales para coste por persona */
-            .cost-per-person p:last-child {
-                font-size: 1.5rem;
-            }
-
-            .summary-total-per-person {
-                font-size: 0.9rem;
-                padding: 0.75rem 1rem;
-            }
-        }
+/* ================================================================
+   DISEÑO COMPLETAMENTE RESPONSIVE Y OPTIMIZADO PARA MÓVILES
+   Calculadora de Limpieza - TeEchoUnaMano TUM
+   ================================================================ */
+
+/* === FUNDAMENTOS === */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #F5F7FA;
+    min-height: 100vh;
+    font-size: clamp(15px, 4vw, 17px);
+    line-height: 1.6;
+    color: #1E293B;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* === EFECTOS BASE === */
+.glass-effect {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+/* === BOTONES PRINCIPALES === */
+.button-gradient {
+    background: #1E3A8A;
+    transition: background 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #FFFFFF;
+    min-height: 48px;
+    font-size: clamp(15px, 3.5vw, 17px);
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button-gradient:hover {
+    background: #1E40AF;
+}
+
+.button-gradient:active {
+    background: #1E3A8A;
+    transform: scale(0.98);
+}
+
+.button-secondary {
+    background: #64748B;
+    transition: background 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #FFFFFF;
+    min-height: 48px;
+    font-size: clamp(15px, 3.5vw, 17px);
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button-secondary:hover {
+    background: #475569;
+}
+
+/* === GRÁFICO === */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    height: clamp(220px, 50vw, 280px);
+}
+
+/* === CHECKBOXES Y LABELS === */
+.checkbox-label {
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid #E2E8F0;
+    background: #FFFFFF;
+    min-height: 48px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.checkbox-label:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+}
+
+input:checked + .checkbox-label {
+    background: #EFF6FF;
+    border-color: #1E3A8A;
+}
+
+.is-selected {
+    background: #EFF6FF !important;
+    border-color: #1E3A8A !important;
+}
+
+/* === CONTROLES DE CONTADOR === */
+.count-controls {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    flex-shrink: 0;
+}
+
+.count-btn {
+    background: #F1F5F9;
+    color: #475569;
+    width: clamp(40px, 10vw, 48px);
+    height: clamp(40px, 10vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: clamp(16px, 4vw, 20px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid #E2E8F0;
+    flex-shrink: 0;
+}
+
+.count-btn:hover {
+    background: #1E3A8A;
+    color: white;
+    border-color: #1E3A8A;
+}
+
+.count-btn:active {
+    transform: scale(0.95);
+}
+
+.count-display {
+    width: clamp(44px, 12vw, 56px);
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(18px, 5vw, 22px);
+    color: #1E293B;
+    flex-shrink: 0;
+}
+
+/* === ELEMENTOS FLOTANTES === */
+#floating-elements-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+}
+
+#floating-cart-button {
+    background: #1E3A8A;
+    color: white;
+    border-radius: 50%;
+    width: clamp(52px, 14vw, 64px);
+    height: clamp(52px, 14vw, 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: clamp(20px, 5vw, 28px);
+}
+
+#floating-cart-button:hover {
+    background: #1E40AF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+#floating-total-cost-display {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #DC2626;
+    color: white;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 800;
+    display: none;
+    border: 2px solid white;
+    white-space: nowrap;
+}
+
+#floating-total-cost-display.visible {
+    display: block;
+}
+
+/* === MODALES === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
+    padding: 16px;
+}
+
+.modal-overlay.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: clamp(16px, 4vw, 24px);
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close-btn {
+    background: #F1F5F9;
+    color: #64748B;
+    width: clamp(36px, 9vw, 40px);
+    height: clamp(36px, 9vw, 40px);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(18px, 4.5vw, 20px);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #E2E8F0;
+    flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+    background: #FEE2E2;
+    color: #DC2626;
+    border-color: #FCA5A5;
+}
+
+.modal-item-controls {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 10px);
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.modal-item-btn {
+    background: #F1F5F9;
+    color: #475569;
+    width: clamp(32px, 8vw, 36px);
+    height: clamp(32px, 8vw, 36px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #E2E8F0;
+    font-size: clamp(12px, 3vw, 14px);
+    flex-shrink: 0;
+}
+
+.modal-item-btn:hover {
+    background: #1E3A8A;
+    color: white;
+    border-color: #1E3A8A;
+}
+
+.modal-remove-btn {
+    background: transparent;
+    color: #EF4444;
+    border: none;
+    cursor: pointer;
+    font-size: clamp(16px, 4vw, 18px);
+    padding: 6px;
+    width: clamp(32px, 8vw, 36px);
+    height: clamp(32px, 8vw, 36px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.modal-remove-btn:hover {
+    color: #DC2626;
+    background: #FEE2E2;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: clamp(15px, 3.5vw, 17px);
+    color: #ffffff;
+    background: #64748B;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-height: 48px;
+    width: 100%;
+}
+
+.button:hover {
+    background: #475569;
+}
+
+/* === TIPOGRAFÍA === */
+.main-title {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #1E293B;
+}
+
+.section-title {
+    font-size: clamp(1.25rem, 5vw, 1.875rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: #1E293B;
+}
+
+.card-spacing {
+    margin-bottom: 16px;
+}
+
+.button-spacing {
+    margin-bottom: 12px;
+}
+
+/* === CONTENEDORES DE ADDONS === */
+.addon-container {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 2px solid #E2E8F0;
+    padding: clamp(12px, 3vw, 16px);
+    transition: all 0.2s ease;
+}
+
+.addon-container:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.addon-container h4 {
+    color: #1E293B;
+    font-weight: 700;
+    font-size: clamp(15px, 4vw, 18px);
+    margin-bottom: 12px;
+}
+
+.addon-group {
+    gap: 12px;
+}
+
+/* === HEADER === */
+header {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    margin-bottom: 24px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    gap: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.logo-img {
+    width: clamp(44px, 12vw, 56px);
+    height: clamp(44px, 12vw, 56px);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.logo-text {
+    min-width: 0;
+}
+
+.logo-text h1 {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: #1E3A8A;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logo-text p {
+    font-size: clamp(11px, 3vw, 15px);
+    color: #64748B;
+    margin: 0;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-link {
+    background: #1E3A8A;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    border: none;
+    font-size: clamp(13px, 3.5vw, 15px);
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.header-link:hover {
+    background: #1E40AF;
+}
+
+/* === FORMULARIOS === */
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 12px 12px clamp(40px, 10vw, 48px);
+    background: #F8FAFC;
+    border: 2px solid #E2E8F0;
+    border-radius: 6px;
+    font-size: clamp(15px, 4vw, 17px);
+    font-family: inherit;
+    color: #0F172A;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    min-height: 48px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1E3A8A;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.form-input.error {
+    border-color: #EF4444;
+    background: #FEF2F2;
+}
+
+.error-message {
+    display: none;
+    color: #EF4444;
+    font-size: clamp(12px, 3vw, 14px);
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.form-label {
+    display: block;
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* === MODAL FINAL === */
+.final-summary-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease;
+    padding: 12px;
+}
+
+.final-summary-modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.final-summary-content {
+    background: white;
+    border-radius: 8px;
+    padding: clamp(14px, 4vw, 24px);
+    width: 100%;
+    max-width: 600px;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.summary-header h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    font-weight: 800;
+    color: #1E3A8A;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.summary-header p {
+    color: #64748B;
+    font-size: clamp(13px, 3.5vw, 16px);
+    margin: 0;
+    font-weight: 500;
+}
+
+.summary-section {
+    background: #F8FAFC;
+    border-radius: 6px;
+    padding: clamp(12px, 3vw, 16px);
+    margin-bottom: 12px;
+    border: 1px solid #E2E8F0;
+    position: relative;
+}
+
+.summary-section-title {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 12px);
+    font-size: clamp(14px, 4vw, 18px);
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #E2E8F0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 10px;
+    border-radius: 6px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.summary-section-title:hover {
+    background: #F1F5F9;
+}
+
+.summary-section-title .edit-icon {
+    margin-left: auto;
+    font-size: clamp(14px, 3.5vw, 16px);
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.summary-section-title:hover .edit-icon {
+    opacity: 1;
+}
+
+.edit-icon-text {
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.edit-tooltip {
+    position: absolute;
+    top: -35px;
+    right: 12px;
+    background: #1E293B;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: clamp(10px, 2.5vw, 12px);
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.summary-section-title:hover .edit-tooltip {
+    opacity: 1;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #E2E8F0;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.summary-item-label {
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #475569;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+}
+
+.summary-item-value {
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #1E293B;
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.5;
+    flex-shrink: 0;
+}
+
+.activation-fee-highlight {
+    background: #FEF3C7;
+    border: 2px solid #F59E0B;
+    border-radius: 6px;
+    padding: clamp(12px, 3vw, 16px);
+    margin-bottom: 12px;
+}
+
+.activation-fee-highlight .summary-item-label,
+.activation-fee-highlight .summary-item-value {
+    color: #92400E;
+    font-weight: 800;
+}
+
+.summary-total {
+    background: #F8FAFC;
+    border: 2px solid #E2E8F0;
+    border-radius: 6px;
+    padding: clamp(14px, 4vw, 20px);
+    margin-top: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.summary-total-label {
+    font-size: clamp(10px, 2.5vw, 13px);
+    font-weight: 700;
+    color: #64748B;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.summary-total-value {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    font-weight: 900;
+    color: #1E3A8A;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.summary-total-per-person {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #1E40AF;
+    margin-top: 12px;
+}
+
+.summary-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.summary-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 20px);
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: clamp(14px, 3.5vw, 17px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 50px;
+}
+
+.summary-btn-cancel {
+    background: #F1F5F9;
+    color: #475569;
+    border: 2px solid #E2E8F0;
+}
+
+.summary-btn-cancel:hover {
+    background: #E2E8F0;
+}
+
+.summary-btn-send {
+    background: #10B981;
+    color: white;
+}
+
+.summary-btn-send:hover {
+    background: #059669;
+}
+
+/* === TARJETAS DE FORMULARIO === */
+.form-card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: clamp(16px, 4vw, 24px);
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-card-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 3vw, 16px);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #F1F5F9;
+}
+
+.form-card-icon {
+    width: clamp(40px, 10vw, 48px);
+    height: clamp(40px, 10vw, 48px);
+    background: #EFF6FF;
+    color: #1E3A8A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 5vw, 24px);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.form-card-title {
+    font-size: clamp(1.125rem, 4.5vw, 1.5rem);
+    font-weight: 700;
+    color: #1E293B;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.form-input-wrapper {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.form-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(16px, 4vw, 20px);
+    color: #64748B;
+    pointer-events: none;
+}
+
+.form-input-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.cost-display {
+    background: #EFF6FF;
+    border: 2px solid #BFDBFE;
+    border-radius: 8px;
+    padding: clamp(16px, 4vw, 24px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cost-display h3 {
+    font-size: clamp(12px, 3vw, 15px);
+    color: #64748B;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cost-per-person {
+    background: white;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    text-align: center;
+}
+
+.cost-per-person p:first-child {
+    font-size: clamp(11px, 3vw, 13px);
+    color: #64748B;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cost-per-person p:last-child {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    font-weight: 900;
+    color: #1E3A8A;
+    line-height: 1;
+}
+
+.date-selector {
+    background: white;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    transition: all 0.2s ease;
+}
+
+.date-selector:hover {
+    border-color: #CBD5E1;
+}
+
+.date-selector-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.date-selector input {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: 2px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: clamp(15px, 4vw, 17px);
+    font-family: inherit;
+    color: #0F172A;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    min-height: 48px;
+}
+
+.date-selector input:focus {
+    outline: none;
+    border-color: #1E3A8A;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+/* === BANNERS === */
+.security-banner {
+    background: #D1FAE5;
+    border: 2px solid #10B981;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    margin-bottom: 20px;
+}
+
+.security-banner-icon {
+    font-size: clamp(24px, 6vw, 32px);
+    flex-shrink: 0;
+}
+
+.security-banner-content h4 {
+    font-size: clamp(15px, 4vw, 18px);
+    font-weight: 800;
+    color: #065F46;
+    margin: 0 0 4px 0;
+}
+
+.security-banner-content p {
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: #065F46;
+    margin: 0;
+    font-weight: 600;
+}
+
+.info-banner {
+    background: #DBEAFE;
+    border: 2px solid #3B82F6;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    display: flex;
+    align-items: start;
+    gap: clamp(10px, 3vw, 16px);
+    margin-bottom: 20px;
+}
+
+.info-banner-icon {
+    font-size: clamp(24px, 6vw, 32px);
+    flex-shrink: 0;
+}
+
+.info-banner-content h4 {
+    font-size: clamp(15px, 4vw, 18px);
+    font-weight: 800;
+    color: #1E40AF;
+    margin: 0 0 6px 0;
+}
+
+.info-banner-content p {
+    font-size: clamp(14px, 3.5vw, 17px);
+    color: #1E40AF;
+    margin: 0;
+    font-weight: 600;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.form-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: clamp(15px, 4vw, 18px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+}
+
+.form-btn-back {
+    background: white;
+    color: #475569;
+    border: 2px solid #E2E8F0;
+}
+
+.form-btn-back:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+}
+
+.form-btn-submit {
+    background: #1E3A8A;
+    color: white;
+}
+
+.form-btn-submit:hover {
+    background: #1E40AF;
+}
+
+.modal-continue-btn {
+    width: 100%;
+    padding: clamp(12px, 3vw, 16px);
+    background: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: clamp(15px, 4vw, 18px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+    min-height: 50px;
+}
+
+.modal-continue-btn:hover {
+    background: #1E40AF;
+}
+
+.referral-code-display {
+    background: #D1FAE5;
+    border: 2px solid #10B981;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.referral-code-display .label {
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 700;
+    color: #065F46;
+    margin-bottom: 6px;
+}
+
+.referral-code-display .code {
+    font-size: clamp(20px, 5vw, 24px);
+    font-weight: 900;
+    color: #065F46;
+    letter-spacing: 0.08em;
+}
+
+.referral-input-wrapper {
+    background: #D1FAE5;
+    border: 2px solid #10B981;
+    border-radius: 8px;
+    padding: clamp(14px, 3.5vw, 20px);
+    margin-bottom: 16px;
+}
+
+.referral-input-wrapper label {
+    display: block;
+    font-size: clamp(14px, 3.5vw, 17px);
+    font-weight: 700;
+    color: #065F46;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.referral-input-wrapper input {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: 2px solid #10B981;
+    border-radius: 6px;
+    font-size: clamp(15px, 4vw, 18px);
+    font-family: inherit;
+    color: #065F46;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    min-height: 48px;
+}
+
+.referral-input-wrapper input:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.referral-input-wrapper input::placeholder {
+    color: #6EE7B7;
+    font-weight: 600;
+}
+
+/* === RESPONSIVE ESPECÍFICO PARA MÓVILES === */
+
+/* Móviles pequeños (<400px) */
+@media (max-width: 400px) {
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .logo {
+        justify-content: center;
+    }
+    
+    .header-link {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .summary-actions {
+        flex-direction: column;
+    }
+    
+    .summary-btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .final-summary-content {
+        padding: 12px;
+    }
+    
+    .edit-icon-text {
+        display: none;
+    }
+    
+    .summary-section-title .edit-icon {
+        opacity: 1;
+    }
+    
+    .edit-tooltip {
+        display: none;
+    }
+}
+
+/* Móviles medianos (400px - 640px) */
+@media (min-width: 401px) and (max-width: 640px) {
+    .header-content {
+        flex-wrap: wrap;
+    }
+    
+    .edit-icon-text {
+        display: none;
+    }
+    
+    .summary-section-title .edit-icon {
+        opacity: 1;
+    }
+}
+
+/* Tablets y pantallas medianas (641px - 768px) */
+@media (min-width: 641px) and (max-width: 768px) {
+    .summary-actions {
+        flex-wrap: nowrap;
+    }
+    
+    .form-actions {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Desktop (>768px) */
+@media (min-width: 769px) {
+    .modal-content {
+        padding: 24px;
+    }
+    
+    .final-summary-content {
+        padding: 24px;
+    }
+}
+
+/* Ajuste adicional para overflow horizontal */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .modal-content,
+    .final-summary-content {
+        max-width: calc(100vw - 24px);
+    }
+    
+    .summary-item {
+        align-items: center;
+    }
+    
+    .modal-item-controls {
+        flex-wrap: nowrap;
+    }
+    
+    .count-controls {
+        flex-wrap: nowrap;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1650,38 +1269,37 @@
         <div class="text-center mb-12 md:mb-16">
             <div class="relative max-w-7xl mx-auto flex flex-col items-center">
                 <div class="flex space-x-4 md:space-x-6 mb-6 md:mb-8 md:absolute md:top-0 md:right-0">
-                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
                         🏠
                     </a>
-                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
                         🎧
                     </a>
-                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-white hover:text-cyan-200 transition-all duration-300 hover:scale-110">
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
                         🤖
                     </a>
                 </div>
-                <h1 class="main-title text-white mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
-                <p class="text-base md:text-2xl text-white max-w-4xl mx-auto leading-relaxed px-4 font-medium">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
+                <h1 class="main-title text-gray-900 mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
+                <p class="text-base md:text-2xl text-gray-800 max-w-4xl mx-auto leading-relaxed px-4 font-medium">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
         </div>
 
         <section id="how-it-works" class="mb-16 md:mb-20">
             <div class="max-w-5xl mx-auto">
-                <h2 class="section-title text-center mb-12 md:mb-16 text-white">¿Cómo Funciona? Sencillo y Transparente</h2>
+                <h2 class="section-title text-center mb-12 md:mb-16 text-gray-900">¿Cómo Funciona? Sencillo y Transparente</h2>
                 <div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-6 md:gap-8">
-                    <!-- Iconos con azul corporativo profesional -->
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">1</div>
+                        <div class="bg-blue-900 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">1</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Una única cuota de <b>10€</b> te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
                     </div>
                     <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">2</div>
+                        <div class="bg-indigo-900 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">2</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Elige las áreas de tu piso que necesitan un repaso por solo <b>10€</b> cada una y añade los complementos que quieras.</p>
                     </div>
                     <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-gradient-to-br from-emerald-600 to-emerald-800 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">✓</div>
+                        <div class="bg-emerald-700 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">✓</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
                     </div>
                 </div>
@@ -1698,27 +1316,27 @@
                     <h3 id="areas-section" class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">1. Elige las áreas a limpiar (10€ c/u)</h3>
                     <div class="space-y-3 md:space-y-4 card-spacing">
                         <input type="checkbox" id="salon" class="hidden peer" data-price="10" data-label="Salón / Comedor" data-type="area">
-                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🛋️</span>
-                                <span class="font-semibold text-sm md:text-lg">Salón / Comedor</span>
+                        <label for="salon" class="checkbox-label">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">🛋️</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Salón / Comedor</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                         </label>
                         
                         <input type="checkbox" id="cocina" class="hidden peer" data-price="10" data-label="Cocina" data-type="area">
-                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🍳</span>
-                                <span class="font-semibold text-sm md:text-lg">Cocina</span>
+                        <label for="cocina" class="checkbox-label">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">🍳</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Cocina</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                         </label>
                         
-                        <div id="bano-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🚿</span>
-                                <span class="font-semibold text-sm md:text-lg">Baños</span>
+                        <div id="bano-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300" style="min-height: 48px; gap: 12px; flex-wrap: wrap;">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">🚿</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Baños</span>
                             </div>
                             <div class="count-controls">
                                 <button id="bano-decrement" class="count-btn">-</button>
@@ -1727,10 +1345,10 @@
                             </div>
                         </div>
                         
-                        <div id="habitacion-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🛏️</span>
-                                <span class="font-semibold text-sm md:text-lg">Habitaciones</span>
+                        <div id="habitacion-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300" style="min-height: 48px; gap: 12px; flex-wrap: wrap;">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">🛏️</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Habitaciones</span>
                             </div>
                             <div class="count-controls">
                                 <button id="habitacion-decrement" class="count-btn">-</button>
@@ -1740,410 +1358,355 @@
                         </div>
 
                         <input type="checkbox" id="lavanderia" class="hidden peer" data-price="10" data-label="Lavandería" data-type="area">
-                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🧺</span>
-                                <span class="font-semibold text-sm md:text-lg">Lavandería</span>
+                        <label for="lavanderia" class="checkbox-label">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">🧺</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Lavandería</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                         </label>
 
                         <input type="checkbox" id="terrazas" class="hidden peer" data-price="10" data-label="Limpieza de Terrazas" data-type="area">
-                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">☀️</span>
-                                <span class="font-semibold text-sm md:text-lg">Limpieza de Terrazas</span>
+                        <label for="terrazas" class="checkbox-label">
+                            <div class="flex items-center gap-2">
+                                <span style="font-size: clamp(20px, 5vw, 28px);">☀️</span>
+                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Limpieza de Terrazas</span>
                             </div>
-                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                         </label>
                     </div>
 
                     <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 mt-8 md:mt-10 text-gray-800">2. Añade complementos</h3>
                     <div class="space-y-4 md:space-y-6">
-                        <div class="addon-container p-5 md:p-6">
+                        <div class="addon-container">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🚪</span>
-                                <span class="text-sm md:text-lg">Pasillo (área común)</span>
+                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🚪</span>
+                                <span>Pasillo (área común)</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="pasillo">
                                 <input type="checkbox" id="pasillo-5" class="hidden peer" data-price="5" data-label="Pasillo: menos de 5m²" data-type="addon">
-                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Menos de 5m²</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
+                                <label for="pasillo-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Menos de 5m²</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
                                 </label>
                                 <input type="checkbox" id="pasillo-10" class="hidden peer" data-price="10" data-label="Pasillo: 5m² o más" data-type="addon">
-                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">5m² o más</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                                <label for="pasillo-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">5m² o más</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container p-5 md:p-6">
+                        <div class="addon-container">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🍽️</span>
-                                <span class="text-sm md:text-lg">Fregar Platos</span>
+                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🍽️</span>
+                                <span>Fregar Platos</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="platos">
                                 <input type="checkbox" id="platos-5" class="hidden peer" data-price="5" data-label="Fregar Platos: 1 carga" data-type="addon">
-                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1 Carga</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
+                                <label for="platos-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1 Carga</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
                                 </label>
                                 <input type="checkbox" id="platos-10" class="hidden peer" data-price="10" data-label="Fregar Platos: Más de 1 carga" data-type="addon">
-                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 1 Carga</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                                <label for="platos-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Más de 1 Carga</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container p-5 md:p-6">
+                        <div class="addon-container">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🪟</span>
-                                <span class="text-sm md:text-lg">Limpieza de Mamparas</span>
+                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🪟</span>
+                                <span>Limpieza de Mamparas</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="mamparas">
-                                <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1-2m" data-type="addon">
-                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1-2m</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
+                                <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1 unidad" data-type="addon">
+                                <label for="mamparas-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1 Unidad</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
                                 </label>
-                                <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: Más de 2m" data-type="addon">
-                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 2m</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                                <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: 2 o más" data-type="addon">
+                                <label for="mamparas-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">2 o Más</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container p-5 md:p-6">
+                        <div class="addon-container">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🗑️</span>
-                                <span class="text-sm md:text-lg">Recogida de Basura</span>
+                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🗑️</span>
+                                <span>Sacar Basura</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="basura">
-                                <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Recogida de Basura: 1-2 bolsas" data-type="addon">
-                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1-2 bolsas</span>
-                                    <span class="text-xs md:text-sm text-gray-500 mb-1 font-medium">(Obligatorio con áreas)</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
+                                <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Sacar Basura: 1-2 bolsas" data-type="addon">
+                                <label for="basura-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1-2 Bolsas</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
                                 </label>
-                                <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Recogida de Basura: Más de 2 bolsas" data-type="addon">
-                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 2 bolsas</span>
-                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                                <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Sacar Basura: 3+ bolsas" data-type="addon">
+                                <label for="basura-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">3+ Bolsas</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <input type="checkbox" id="escalera" class="hidden peer" data-price="10" data-label="Limpieza de Escalera" data-type="addon">
-                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
-                            <div class="flex items-center">
-                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🪜</span>
-                                <span class="font-semibold text-sm md:text-lg">Limpieza de Escalera</span>
+                        <div class="addon-container">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
+                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🔥</span>
+                                <span>Limpieza Profunda</span>
+                            </h4>
+                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="profunda">
+                                <input type="checkbox" id="profunda-20" class="hidden peer" data-price="20" data-label="Limpieza Profunda: Horno" data-type="addon">
+                                <label for="profunda-20" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Horno</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">20€</span>
+                                </label>
+                                <input type="checkbox" id="profunda-15" class="hidden peer" data-price="15" data-label="Limpieza Profunda: Nevera" data-type="addon">
+                                <label for="profunda-15" class="checkbox-label flex-1 flex flex-col items-center justify-center">
+                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Nevera</span>
+                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">15€</span>
+                                </label>
                             </div>
-                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
-                        </label>
+                        </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">3. ¿Cuántos sois en el piso?</h3>
-                    <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6 font-medium">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
-                    <div id="roommates-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300 mb-6 md:mb-8">
-                        <div class="flex items-center">
-                            <span class="text-2xl md:text-3xl mr-3 md:mr-4">👥</span>
-                            <span class="font-semibold text-sm md:text-lg">Compañeros</span>
+                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">Tu presupuesto</h3>
+                    <div class="glass-effect rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
+                        <div class="chart-container mb-4 md:mb-6">
+                            <canvas id="costChart"></canvas>
                         </div>
-                        <div class="count-controls">
-                            <button id="roommates-decrement" class="count-btn">-</button>
-                            <span id="roommates-count" class="count-display">1</span>
-                            <button id="roommates-increment" class="count-btn">+</button>
+                        
+                        <div class="cost-display mb-4 md:mb-6">
+                            <h3>Coste Total</h3>
+                            <p id="total-cost" style="font-size: clamp(2rem, 8vw, 3rem);" class="font-black text-blue-900 mb-0">0 €</p>
+                        </div>
+                        
+                        <div class="mb-6 md:mb-8">
+                            <label class="block text-center font-bold mb-3 md:mb-4 text-gray-700" style="font-size: clamp(14px, 3.5vw, 18px);">¿Cuántos sois en el piso?</label>
+                            <div class="flex items-center justify-center gap-3 md:gap-4">
+                                <button id="roommates-decrement" class="count-btn">-</button>
+                                <span id="roommates-count" class="count-display">1</span>
+                                <button id="roommates-increment" class="count-btn">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="cost-per-person">
+                            <p>Coste por Persona</p>
+                            <p id="cost-per-person">0,00 €</p>
                         </div>
                     </div>
 
-                    <div class="sticky top-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-                            <div class="p-5 md:p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl text-center border-2 border-blue-200">
-                                <p class="text-gray-600 text-xs md:text-sm font-bold mb-2 uppercase tracking-wide">COSTE TOTAL</p>
-                                <p id="total-cost" class="text-3xl md:text-4xl font-extrabold text-blue-600">0 €</p>
-                            </div>
-                            <!-- Restaurando coste por persona original sin icono de edición -->
-                            <div class="cost-per-person">
-                                <p>POR PERSONA</p>
-                                <p id="cost-per-person">0,00 €</p>
-                            </div>
+                    <div class="glass-effect rounded-2xl p-5 md:p-8">
+                        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-gray-800 text-center">Resumen de tu Selección</h3>
+                        <div id="summary-list" class="space-y-3 md:space-y-4">
+                            <p class="text-gray-500 text-center py-6 md:py-8 font-medium" style="font-size: clamp(14px, 3.5vw, 18px);">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
                         </div>
-
-                        <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-800">Desglose del Coste</h3>
-                        <div class="chart-container">
-                            <canvas id="costBreakdownChart"></canvas>
-                        </div>
+                        
+                        <button id="continue-to-form-btn" class="button-gradient mt-6 md:mt-8">
+                            Continuar con la Solicitud →
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
-
-        <footer class="text-center mt-12 md:mt-16 mb-16 md:mb-20">
-            <h3 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-white">¿Todo claro?</h3>
-            <p class="text-white mb-8 md:mb-10 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed px-4 font-medium">Ahora completa tus datos para solicitar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
-            
-            <!-- Campo de código de referido destacado con estilo premium -->
-            <div class="max-w-md mx-auto mb-6 md:mb-8 px-4">
-                <div class="referral-input-wrapper">
-                    <label for="main-coupon-code">🎟️ ¿Tienes un código de referido?</label>
-                    <div class="button-spacing">
-                        <a class="button" href="https://teechounamano.github.io/activar-referido/" target="_blank" rel="noopener noreferrer" title="Activar Cupón">Quiero mi código</a>
-                    </div>
-                    <input type="text" id="main-coupon-code" placeholder="ESCRIBE TU CÓDIGO AQUÍ">
-                </div>
-            </div>
-
-            <button id="proceed-to-form-btn" class="button-gradient text-white font-bold py-5 md:py-6 px-10 md:px-14 rounded-full transition-all duration-300 text-lg md:text-xl shadow-2xl pulsing-button">Rellenar Datos del Cliente para la Solicitud</button>
-        </footer>
     </main>
 
-    <!-- Sección del formulario con banner de seguridad -->
-    <section class="form-section container mx-auto px-4 py-6 md:py-12" id="client-form-section">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-8 md:mb-12">
-                <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-3xl shadow-2xl mb-6 text-4xl md:text-5xl">
-                    📋
-                </div>
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4">Datos del Solicitante</h2>
-                <p class="text-white text-base md:text-xl max-w-2xl mx-auto font-medium">Completa tu información para procesar la solicitud de limpieza</p>
-            </div>
-
-            <!-- Banner de seguridad para tranquilizar al usuario -->
-            <div class="security-banner">
-                <div class="security-banner-icon">🔒</div>
-                <div class="security-banner-content">
-                    <h4>Tus datos están seguros</h4>
-                    <p>Toda tu información está protegida y solo se usa para coordinar tu servicio de limpieza.</p>
-                </div>
-            </div>
-
-            <form id="client-form">
-                <div class="form-card">
-                    <div class="form-card-header">
-                        <div class="form-card-icon">👤</div>
-                        <h3 class="form-card-title">Información Personal</h3>
-                    </div>
-                    
-                    <div class="form-input-wrapper">
-                        <div class="form-input-icon">✍️</div>
-                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" required>
-                        <div class="error-message" id="errorNombre">Por favor, ingresa tu nombre completo</div>
-                    </div>
-                </div>
-
-                <div class="form-card">
-                    <div class="form-card-header">
-                        <div class="form-card-icon">🏠</div>
-                        <h3 class="form-card-title">Dirección del Servicio</h3>
-                    </div>
-                    
-                    <div class="form-input-wrapper">
-                        <div class="form-input-icon">📍</div>
-                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" required>
-                        <div class="error-message" id="errorCalle">Por favor, ingresa la calle y número</div>
-                    </div>
-
-                    <div class="form-input-group">
-                        <div class="form-input-wrapper">
-                            <div class="form-input-icon">🚪</div>
-                            <input type="text" id="portal" class="form-input" placeholder="Portal" required>
-                            <div class="error-message" id="errorPortal">Requerido</div>
-                        </div>
-
-                        <div class="form-input-wrapper">
-                            <div class="form-input-icon">🔢</div>
-                            <input type="text" id="piso" class="form-input" placeholder="Piso" required>
-                            <div class="error-message" id="errorPiso">Requerido</div>
-                        </div>
-
-                        <div class="form-input-wrapper">
-                            <div class="form-input-icon">🚪</div>
-                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" required>
-                            <div class="error-message" id="errorPuerta">Requerido</div>
-                        </div>
-                    </div>
-
-                    <div class="info-banner">
-                        <div class="info-banner-icon">ℹ️</div>
-                        <div class="info-banner-content">
-                            <h4>Valencia capital</h4>
-                            <p>La visita es <strong>gratuita y sin compromiso</strong>. Nos desplazamos a tu domicilio para evaluar el servicio.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-card">
-                    <div class="form-card-header">
-                        <div class="form-card-icon">📅</div>
-                        <h3 class="form-card-title">Fechas Disponibles</h3>
-                    </div>
-                    
-                    <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6 font-medium">Selecciona dos opciones de fecha para coordinar la visita. Nos pondremos en contacto contigo para confirmar.</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="date-selector">
-                            <div class="date-selector-label">
-                                <span>📆</span>
-                                <span>Primera opción</span>
-                            </div>
-                            <input type="date" id="fecha1" required>
-                            <div class="error-message" id="errorFecha1">Selecciona la primera fecha</div>
-                        </div>
-
-                        <div class="date-selector">
-                            <div class="date-selector-label">
-                                <span>📆</span>
-                                <span>Segunda opción</span>
-                            </div>
-                            <input type="date" id="fecha2" required>
-                            <div class="error-message" id="errorFecha2">Selecciona la segunda fecha</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" id="back-to-calculator-btn" class="form-btn form-btn-back">
-                        <span>←</span>
-                        <span>Volver a la Calculadora</span>
-                    </button>
-                    <button type="submit" class="form-btn form-btn-submit">
-                        <span>Ver Resumen Completo</span>
-                        <span>→</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <div id="floating-elements-container">
-        <button id="floating-cart-button" aria-label="Mostrar resumen de costes">
-            <span style="font-size: 1.5rem;">🛒</span>
-            <span id="floating-total-cost-display">0 €</span>
-        </button>
-    </div>
-
-    <!-- Modal de resumen simplificado - solo botón X para cerrar -->
+    <!-- Modal de Resumen -->
     <div id="summary-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="flex justify-between items-center pb-5 md:pb-6 border-b-2 border-gray-200 mb-5 md:mb-6">
-                <h3 class="text-xl md:text-3xl font-bold text-gray-800">Resumen de mi pedido</h3>
-                <button id="close-modal-button" class="modal-close-btn" aria-label="Cerrar">
-                    ✕
-                </button>
+            <div class="flex justify-between items-center mb-6 md:mb-8" style="gap: 12px;">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-800" style="font-size: clamp(1.125rem, 5vw, 1.5rem);">Tu Carrito de Limpieza</h3>
+                <button id="close-modal" class="modal-close-btn">✕</button>
             </div>
             
-            <div>
-                <div id="summary-list" class="space-y-3 md:space-y-4 max-h-60 md:max-h-80 overflow-y-auto pr-2">
-                    <p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg font-medium">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
+            <div id="modal-summary-list" class="space-y-3 md:space-y-4 mb-6 md:mb-8"></div>
+            
+            <div class="border-t-2 border-gray-200 pt-4 md:pt-6 mb-4 md:mb-6">
+                <div class="flex justify-between items-center font-bold mb-4 md:mb-6" style="font-size: clamp(1rem, 4.5vw, 1.25rem);">
+                    <span>Total:</span>
+                    <span id="summary-total">0 €</span>
                 </div>
-            </div>
-
-            <div id="modal-roommates-container" class="mt-5 md:mt-6 p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center">
-                        <span class="text-2xl md:text-3xl mr-2 md:mr-3">👥</span>
-                        <span class="font-semibold text-sm md:text-lg">Compañeros</span>
-                    </div>
-                    <div class="count-controls">
+                
+                <div class="mb-4 md:mb-6">
+                    <label class="block text-center font-bold mb-3 text-gray-700" style="font-size: clamp(14px, 3.5vw, 16px);">¿Cuántos sois en el piso?</label>
+                    <div class="flex items-center justify-center gap-3">
                         <button id="modal-roommates-decrement" class="count-btn">-</button>
                         <span id="modal-roommates-count" class="count-display">1</span>
                         <button id="modal-roommates-increment" class="count-btn">+</button>
                     </div>
                 </div>
-                <div class="text-center font-bold text-lg md:text-xl text-blue-600">
-                    <span id="modal-cost-per-person">0,00 €</span> por persona
+                
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 md:p-5 text-center">
+                    <p class="text-blue-700 font-bold mb-2" style="font-size: clamp(11px, 3vw, 14px);">Coste por Persona</p>
+                    <p id="modal-cost-per-person" class="font-black text-blue-900" style="font-size: clamp(1.5rem, 6vw, 2rem);">0,00 €</p>
                 </div>
             </div>
-
-            <!-- Campo de código de referido destacado en el modal -->
-            <div class="mt-5 md:mt-6">
-                <div class="referral-input-wrapper">
-                    <label for="coupon-code">🎟️ ¿Tienes un código de referido?</label>
-                    <input type="text" id="coupon-code" placeholder="ESCRIBE TU CÓDIGO AQUÍ">
-                </div>
-            </div>
-
-            <div class="mt-5 md:mt-6 flex justify-between items-center font-bold text-lg md:text-xl">
-                <span class="text-gray-800">Total:</span>
-                <span id="summary-total" class="text-blue-600 text-2xl md:text-3xl">0,00 €</span>
-            </div>
-
-            <button id="modal-proceed-to-form-btn" class="modal-continue-btn">
-                Continuar con los Datos del Cliente →
+            
+            <button id="modal-continue-btn" class="modal-continue-btn">
+                Continuar con el Pedido →
             </button>
         </div>
     </div>
 
-    <!-- Modal de resumen final con cuota de activación y código de referido destacados -->
+    <!-- Formulario del Cliente -->
+    <div id="client-form-section" class="form-section container mx-auto px-4 py-6 md:py-12 max-w-4xl">
+        <div class="text-center mb-8 md:mb-12">
+            <h2 class="font-bold text-gray-900 mb-3 md:mb-4" style="font-size: clamp(1.5rem, 6vw, 2.5rem);">Completa tus Datos</h2>
+            <p class="text-gray-600 font-medium" style="font-size: clamp(15px, 4vw, 20px);">Solo un paso más para reservar tu servicio de limpieza</p>
+        </div>
+
+        <div class="security-banner">
+            <div class="security-banner-icon">🔒</div>
+            <div class="security-banner-content">
+                <h4>Tus datos están seguros</h4>
+                <p>Toda tu información se envía de forma segura y solo se usa para gestionar tu solicitud de servicio.</p>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <div class="form-card-icon">👤</div>
+                <h3 class="form-card-title">Información Personal</h3>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <span class="form-input-icon">📝</span>
+                <input type="text" id="nombre" class="form-input" placeholder="Nombre completo" autocomplete="name">
+                <div id="errorNombre" class="error-message"></div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <div class="form-card-icon">📍</div>
+                <h3 class="form-card-title">Dirección del Servicio</h3>
+            </div>
+
+            <div class="info-banner">
+                <div class="info-banner-icon">ℹ️</div>
+                <div class="info-banner-content">
+                    <h4>Actualmente solo operamos en Valencia Capital</h4>
+                    <p>Si estás fuera de esta zona, puedes contactarnos para consultar disponibilidad.</p>
+                </div>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <span class="form-input-icon">🏠</span>
+                <input type="text" id="calle" class="form-input" placeholder="Calle y número" autocomplete="street-address">
+                <div id="errorCalle" class="error-message"></div>
+            </div>
+            
+            <div class="form-input-group">
+                <div class="form-input-wrapper">
+                    <span class="form-input-icon">🚪</span>
+                    <input type="text" id="portal" class="form-input" placeholder="Portal">
+                    <div id="errorPortal" class="error-message"></div>
+                </div>
+                <div class="form-input-wrapper">
+                    <span class="form-input-icon">🏢</span>
+                    <input type="text" id="piso" class="form-input" placeholder="Piso">
+                    <div id="errorPiso" class="error-message"></div>
+                </div>
+                <div class="form-input-wrapper">
+                    <span class="form-input-icon">🚪</span>
+                    <input type="text" id="puerta" class="form-input" placeholder="Puerta">
+                    <div id="errorPuerta" class="error-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <div class="form-card-icon">📅</div>
+                <h3 class="form-card-title">Fechas Preferidas</h3>
+            </div>
+
+            <div class="info-banner">
+                <div class="info-banner-icon">💡</div>
+                <div class="info-banner-content">
+                    <h4>Flexibilidad es tu mejor aliada</h4>
+                    <p>Proporciona dos opciones de fecha para aumentar las probabilidades de conseguir tu cita. Te confirmaremos la disponibilidad por WhatsApp.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 md:space-y-6">
+                <div class="date-selector">
+                    <div class="date-selector-label">
+                        <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
+                        <span>Primera opción</span>
+                    </div>
+                    <input type="date" id="fecha1" autocomplete="off">
+                    <div id="errorFecha1" class="error-message"></div>
+                </div>
+
+                <div class="date-selector">
+                    <div class="date-selector-label">
+                        <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
+                        <span>Segunda opción</span>
+                    </div>
+                    <input type="date" id="fecha2" autocomplete="off">
+                    <div id="errorFecha2" class="error-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <div class="form-card-icon">🎁</div>
+                <h3 class="form-card-title">Código de Referido (Opcional)</h3>
+            </div>
+
+            <div class="referral-code-display" style="display:none;" id="user-referral-code-display">
+                <div class="label">Tu código de referido para compartir:</div>
+                <div class="code" id="user-referral-code-value">TUMXXXXXX</div>
+            </div>
+
+            <div class="referral-input-wrapper">
+                <label for="referral-code-input">
+                    ¿Te recomendó alguien? Introduce su código aquí
+                </label>
+                <input type="text" id="referral-code-input" placeholder="TUM123456" maxlength="10">
+            </div>
+
+            <div class="text-center text-gray-600 mt-4 font-medium" style="font-size: clamp(12px, 3vw, 14px);">
+                Comparte tu propio código con amigos después de completar tu primera limpieza y obtén descuentos en futuros servicios.
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" id="back-to-calculator-btn" class="form-btn form-btn-back">
+                <span>←</span>
+                <span>Volver a la Calculadora</span>
+            </button>
+            <button type="button" id="submit-form-btn" class="form-btn form-btn-submit">
+                <span>Revisar Solicitud</span>
+                <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Final de Resumen -->
     <div id="final-summary-modal" class="final-summary-modal">
         <div class="final-summary-content">
-            <!-- Añadiendo botón X sutil para cerrar el modal de resumen final -->
-            <div class="flex justify-between items-start mb-4">
-                <div class="summary-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none; text-align: left; flex: 1;">
-                    <h2>✨ Resumen de tu Solicitud</h2>
-                    <p>Revisa todos los detalles antes de enviar</p>
-                </div>
-                <button onclick="document.getElementById('final-summary-modal').classList.remove('open')" class="modal-close-btn" aria-label="Cerrar" style="flex-shrink: 0; margin-left: 1rem;">
-                    ✕
-                </button>
+            <div class="summary-header mb-6 md:mb-8">
+                <h2>✅ Resumen de tu Solicitud</h2>
+                <p>Revisa todos los detalles antes de enviar</p>
             </div>
 
-            <!-- Banner de seguridad en el resumen final -->
-            <div class="security-banner" style="margin-bottom: 1.5rem;">
-                <div class="security-banner-icon">🔒</div>
-                <div class="security-banner-content">
-                    <h4>Información protegida</h4>
-                    <p>Tus datos están seguros con nosotros</p>
-                </div>
-            </div>
-
-            <!-- Código de referido destacado con gradiente verde esmeralda -->
-            <div id="referral-code-section" class="referral-code-display" style="display: none;">
-                <div class="label">🎟️ Código de Referido</div>
-                <div class="code" id="final-referral-code">-</div>
-            </div>
-
-            <!-- Sección de servicios con icono de edición interactivo -->
             <div class="summary-section">
-                <div class="summary-section-title" onclick="editSection('services')" role="button" tabindex="0">
-                    <span>🧹</span>
-                    <span>Servicios Seleccionados</span>
-                    <div class="edit-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        <span class="edit-icon-text">Editar</span>
-                    </div>
-                    <div class="edit-tooltip">Click para editar servicios</div>
-                </div>
-                <div id="final-services-list"></div>
-            </div>
-
-            <!-- Cuota de activación destacada con gradiente dorado -->
-            <div class="activation-fee-highlight">
-                <div class="summary-item">
-                    <span class="summary-item-label">💳 Cuota de Activación</span>
-                    <span class="summary-item-value" id="final-activation-fee">10 €</span>
-                </div>
-            </div>
-
-            <!-- Sección de datos del cliente con icono de edición interactivo -->
-            <div class="summary-section">
-                <div class="summary-section-title" onclick="editSection('client-data')" role="button" tabindex="0">
-                    <span>👤</span>
+                <div class="summary-section-title" onclick="showSection('form')">
+                    <span style="font-size: clamp(18px, 4.5vw, 24px);">👤</span>
                     <span>Datos del Cliente</span>
                     <div class="edit-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
                         <span class="edit-icon-text">Editar</span>
                     </div>
-                    <div class="edit-tooltip">Click para editar datos</div>
+                    <div class="edit-tooltip">Click para editar datos personales</div>
                 </div>
                 <div class="summary-item">
                     <span class="summary-item-label">Nombre</span>
@@ -2155,13 +1718,54 @@
                 </div>
             </div>
 
-            <!-- Sección de fechas con icono de edición interactivo -->
             <div class="summary-section">
-                <div class="summary-section-title" onclick="editSection('dates')" role="button" tabindex="0">
-                    <span>📅</span>
+                <div class="summary-section-title" onclick="showCalculatorSection()">
+                    <span style="font-size: clamp(18px, 4.5vw, 24px);">🧹</span>
+                    <span>Servicios Seleccionados</span>
+                    <div class="edit-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
+                    <div class="edit-tooltip">Click para editar servicios</div>
+                </div>
+                <div id="final-services-list"></div>
+            </div>
+
+            <div class="activation-fee-highlight">
+                <div class="summary-item">
+                    <span class="summary-item-label">💳 Cuota de activación</span>
+                    <span class="summary-item-value">10 €</span>
+                </div>
+            </div>
+
+            <div id="referral-code-section" class="summary-section" style="display: none;">
+                <div class="summary-section-title" onclick="showSection('form')">
+                    <span style="font-size: clamp(18px, 4.5vw, 24px);">🎁</span>
+                    <span>Código de Referido</span>
+                    <div class="edit-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
+                    <div class="edit-tooltip">Click para editar código</div>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-item-label">Código</span>
+                    <span class="summary-item-value" id="final-referral-code">-</span>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-section-title" onclick="showSection('form')">
+                    <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
                     <span>Fechas Disponibles</span>
                     <div class="edit-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
@@ -2182,7 +1786,6 @@
             <div class="summary-total">
                 <div class="summary-total-label">Coste Total del Servicio</div>
                 <div class="summary-total-value" id="final-total-cost">0 €</div>
-                <!-- Coste por persona destacado profesionalmente SOLO en modal final -->
                 <div class="summary-total-per-person">
                     💰 <span id="final-cost-per-person">0,00 €</span> por persona (<span id="final-roommates-count">1</span> compañero<span id="final-roommates-plural">s</span>)
                 </div>
@@ -2195,10 +1798,18 @@
                 </button>
                 <button type="button" id="send-whatsapp-btn" class="summary-btn summary-btn-send">
                     <span>📱</span>
-                    <span>Enviar Solicitud por WhatsApp</span>
+                    <span>Enviar por WhatsApp</span>
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- Elemento Flotante del Carrito -->
+    <div id="floating-elements-container">
+        <button id="floating-cart-button" title="Ver resumen">
+            🛒
+        </button>
+        <div id="floating-total-cost-display"></div>
     </div>
 
     <script>
@@ -2271,7 +1882,7 @@
             summaryList.innerHTML = '';
 
             if (state.totalCost === 0) {
-                summaryList.innerHTML = '<p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg font-medium">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
+                summaryList.innerHTML = '<p class="text-gray-500 text-center py-6 md:py-8 font-medium" style="font-size: clamp(14px, 3.5vw, 18px);">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
                 return;
             }
 
@@ -2281,13 +1892,15 @@
             const createItemNode = (item) => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'flex justify-between items-center py-3 md:py-3 px-4 md:px-4 bg-gray-50 rounded-lg';
+                itemElement.style.gap = '12px';
+                itemElement.style.flexWrap = 'wrap';
                 
                 let controls = '';
                 if (item.id === 'bano' || item.id === 'habitacion') {
                     controls = `
                         <div class="modal-item-controls">
                             <button class="modal-item-btn" data-action="decrement" data-id="${item.id}">-</button>
-                            <span class="font-bold w-7 md:w-8 text-center text-sm md:text-base">${item.quantity}</span>
+                            <span class="font-bold text-center" style="width: clamp(28px, 7vw, 32px); font-size: clamp(13px, 3.5vw, 16px);">${item.quantity}</span>
                             <button class="modal-item-btn" data-action="increment" data-id="${item.id}">+</button>
                         </div>
                     `;
@@ -2298,12 +1911,12 @@
                 const totalItemPrice = item.price * (item.quantity || 1);
 
                 itemElement.innerHTML = `
-                    <div class="flex-grow pr-3 md:pr-4">
-                        <p class="font-semibold text-sm md:text-lg">${item.label}</p>
-                        ${item.quantity > 1 ? `<p class="text-xs md:text-sm text-gray-500 font-medium">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
+                    <div class="flex-grow pr-3 md:pr-4" style="min-width: 0;">
+                        <p class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px); word-break: break-word;">${item.label}</p>
+                        ${item.quantity > 1 ? `<p class="text-gray-500 font-medium" style="font-size: clamp(12px, 3vw, 14px);">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
                     </div>
-                    <div class="flex items-center gap-3 md:gap-4">
-                        <span class="font-bold text-gray-700 w-16 md:w-20 text-right text-sm md:text-lg">${formatCurrency(totalItemPrice)}</span>
+                    <div class="flex items-center" style="gap: clamp(8px, 2vw, 12px); flex-shrink: 0;">
+                        <span class="font-bold text-gray-700 text-right" style="font-size: clamp(14px, 3.5vw, 18px); min-width: clamp(60px, 15vw, 80px);">${formatCurrency(totalItemPrice)}</span>
                         ${controls}
                     </div>
                 `;
@@ -2314,7 +1927,8 @@
                 const container = document.createElement('div');
                 container.className = 'p-4 md:p-4 border-2 border-gray-200 rounded-xl mb-4 md:mb-4';
                 const title = document.createElement('h4');
-                title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
+                title.className = 'font-bold text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
+                title.style.fontSize = 'clamp(14px, 3.5vw, 18px)';
                 title.textContent = 'Áreas';
                 container.appendChild(title);
                 areas.forEach(item => container.appendChild(createItemNode(item)));
@@ -2325,7 +1939,8 @@
                 const container = document.createElement('div');
                 container.className = 'p-4 md:p-4 border-2 border-gray-200 rounded-xl mb-4 md:mb-4';
                 const title = document.createElement('h4');
-                title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
+                title.className = 'font-bold text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
+                title.style.fontSize = 'clamp(14px, 3.5vw, 18px)';
                 title.textContent = 'Complementos';
                 container.appendChild(title);
                 addons.forEach(item => container.appendChild(createItemNode(item)));
@@ -2335,9 +1950,9 @@
             const feeContainer = document.createElement('div');
             feeContainer.className = 'p-4 md:p-4 border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl';
             feeContainer.innerHTML = `
-                <div class="flex justify-between items-center">
-                    <p class="font-bold text-sm md:text-lg text-amber-900">💳 Cuota de activación</p>
-                    <span class="font-extrabold text-amber-900 text-base md:text-xl">${formatCurrency(ACTIVATION_FEE)}</span>
+                <div class="flex justify-between items-center" style="gap: 12px; flex-wrap: wrap;">
+                    <p class="font-bold text-amber-900" style="font-size: clamp(14px, 3.5vw, 18px);">💳 Cuota de activación</p>
+                    <span class="font-extrabold text-amber-900" style="font-size: clamp(15px, 4vw, 20px);">${formatCurrency(ACTIVATION_FEE)}</span>
                 </div>
             `;
             summaryList.appendChild(feeContainer);
@@ -2564,11 +2179,11 @@
             return isValid;
         };
         
-        // Helper function to show/hide sections
         const showSection = (sectionId) => {
             document.getElementById('calculator-section').style.display = sectionId === 'calculator' ? 'block' : 'none';
             document.getElementById('client-form-section').classList.toggle('active', sectionId === 'form');
             state.currentSection = sectionId;
+            document.getElementById('final-summary-modal').classList.remove('open');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
@@ -2666,232 +2281,154 @@
                 message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
                 message += `Código: *${referralCode}*\n\n`;
             }
-
-            message += "*DESGLOSE DE SERVICIOS*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += `💳 Cuota de activación: *${formatCurrency(ACTIVATION_FEE)}*\n\n`;
             
-            const areas = Object.values(state.selectedItems).filter(i => i.type === 'area');
-            if(areas.length > 0) {
-                message += "*Áreas seleccionadas:*\n";
+            message += "*SERVICIOS SOLICITADOS*\n";
+            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+            
+            const areas = Object.values(state.selectedItems).filter(item => item.type === 'area');
+            const addons = Object.values(state.selectedItems).filter(item => item.type === 'addon');
+            
+            if (areas.length > 0) {
+                message += "\n🏠 *ÁREAS*\n";
                 areas.forEach(item => {
-                    const quantityText = item.quantity > 1 ? ` (×${item.quantity})` : '';
-                    const totalItemPrice = item.price * (item.quantity || 1);
-                    message += `  • ${item.label}${quantityText}: *${formatCurrency(totalItemPrice)}*\n`;
+                    const qty = item.quantity > 1 ? ` (x${item.quantity})` : '';
+                    const totalPrice = item.price * (item.quantity || 1);
+                    message += `• ${item.label}${qty}: *${formatCurrency(totalPrice)}*\n`;
                 });
-                message += "\n";
             }
-
-            const addons = Object.values(state.selectedItems).filter(i => i.type === 'addon');
-            if(addons.length > 0) {
-                message += "*Complementos:*\n";
+            
+            if (addons.length > 0) {
+                message += "\n✨ *COMPLEMENTOS*\n";
                 addons.forEach(item => {
-                    message += `  • ${item.label}: *${formatCurrency(item.price)}*\n`;
+                    message += `• ${item.label}: *${formatCurrency(item.price)}*\n`;
                 });
-                message += "\n";
             }
             
+            message += "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+            message += `💳 Cuota de activación: *${formatCurrency(ACTIVATION_FEE)}*\n`;
+            message += `💰 *TOTAL: ${formatCurrency(state.totalCost)}*\n`;
+            message += `👥 Compañeros de piso: *${state.roommatesCount}*\n`;
+            message += `💵 Coste por persona: *${formatCurrency(state.costPerPerson, true)}*\n`;
             message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += "*RESUMEN FINANCIERO*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += `Coste total: *${formatCurrency(state.totalCost)}*\n`;
-            message += `Número de personas: *${state.roommatesCount}*\n`;
-            message += `Coste por persona: *${formatCurrency(state.costPerPerson, true)}*\n`;
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
             
-            message += "✓ Visita gratuita y sin compromiso\n\n";
-            message += "Por favor, confirme la disponibilidad para coordinar la visita.\n\n";
-            message += "Gracias por confiar en nuestros servicios.";
-
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         };
 
-        const initChart = () => {
-            const ctx = document.getElementById('costBreakdownChart').getContext('2d');
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('costChart').getContext('2d');
             costChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Vacío'],
                     datasets: [{
-                        label: 'Coste',
                         data: [1],
                         backgroundColor: ['#e5e7eb'],
-                        borderColor: '#ffffff',
-                        borderWidth: 4,
-                        hoverOffset: 10
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
+                    maintainAspectRatio: true,
                     plugins: {
                         legend: {
                             position: 'bottom',
                             labels: {
+                                padding: 15,
                                 font: {
-                                    family: "'Montserrat', sans-serif",
-                                    size: window.innerWidth < 768 ? 12 : 16,
-                                    weight: '700'
+                                    size: window.innerWidth < 768 ? 12 : 14,
+                                    weight: '600'
                                 },
-                                padding: window.innerWidth < 768 ? 15 : 25,
-                                boxWidth: window.innerWidth < 768 ? 15 : 20,
                                 usePointStyle: true,
+                                pointStyle: 'circle'
                             }
                         },
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        label += formatCurrency(context.parsed, true); 
-                                    }
-                                    return label;
+                                label: (context) => {
+                                    const label = context.label || '';
+                                    const value = formatCurrency(context.parsed);
+                                    return `${label}: ${value}`;
                                 }
-                            }
+                            },
+                            backgroundColor: '#1E293B',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            cornerRadius: 6
                         }
                     }
                 }
             });
-        };
-        
-        const editSection = (section) => {
-            // Cerrar el modal de resumen final
-            document.getElementById('final-summary-modal').classList.remove('open');
-            
-            // Navegar a la sección correspondiente
-            switch(section) {
-                case 'services':
-                    // Volver a la sección de calculadora
-                    showCalculatorSection();
-                    // Scroll suave a la sección de áreas
-                    setTimeout(() => {
-                        const areasSection = document.getElementById('areas-section');
-                        if (areasSection) {
-                            areasSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }, 300);
-                    break;
-                    
-                case 'client-data':
-                    // Volver al formulario de datos del cliente
-                    showClientFormSection();
-                    // Scroll suave al formulario
-                    setTimeout(() => {
-                        const formSection = document.getElementById('client-form-section'); // Correct ID
-                        if (formSection) {
-                            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                        // Enfocar el primer campo del formulario
-                        const nombreInput = document.getElementById('nombre');
-                        if (nombreInput) {
-                            nombreInput.focus();
-                        }
-                    }, 300);
-                    break;
-                    
-                case 'dates':
-                    // Volver al formulario de fechas
-                    showClientFormSection();
-                    // Scroll suave a la sección de fechas
-                    setTimeout(() => {
-                        const fecha1Input = document.getElementById('fecha1');
-                        if (fecha1Input) {
-                            fecha1Input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            fecha1Input.focus();
-                        }
-                    }, 300);
-                    break;
-            }
-        };
-
-        const handleKeyPress = (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                e.currentTarget.click(); // Trigger the onclick event
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setupCounter('bano', 'banoCount', 0, 10, 'Baños', 10, 'area');
-            setupCounter('habitacion', 'habitacionCount', 0, 10, 'Habitaciones', 10, 'area');
-            setupRoommatesCounter();
 
             allCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', handleCheckboxChange);
             });
-            
-            const openModalBtn = document.getElementById('floating-cart-button');
-            const closeModalBtn = document.getElementById('close-modal-button');
-            
-            openModalBtn.addEventListener('click', () => modal.classList.add('open'));
-            closeModalBtn.addEventListener('click', () => modal.classList.remove('open'));
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('open');
-                }
-            });
-            
-            summaryList.addEventListener('click', (e) => {
-                const button = e.target.closest('button');
-                if (!button) return;
 
-                const action = button.dataset.action;
-                const id = button.dataset.id;
+            setupCounter('bano', 'banoCount', 0, 5, 'Baños', 10, 'area');
+            setupCounter('habitacion', 'habitacionCount', 0, 10, 'Habitaciones', 10, 'area');
+            setupRoommatesCounter();
 
-                if (action === 'remove') {
-                    document.getElementById(id).checked = false;
-                    delete state.selectedItems[id];
-                    calculateTotal();
-                } else if (action === 'increment' || action === 'decrement') {
-                    const isIncrement = action === 'increment';
-                    const key = id === 'bano' ? 'banoCount' : 'habitacionCount';
-                    
-                    let newValue = state[key] + (isIncrement ? 1 : -1);
-                    newValue = Math.max(0, Math.min(newValue, 10));
-
-                    state[key] = newValue;
-
-                    if (newValue > 0) {
-                        state.selectedItems[id].quantity = newValue;
-                    } else {
-                        delete state.selectedItems[id];
-                    }
-                    
-                    calculateTotal();
-                }
-            });
-
-            const mainCouponInput = document.getElementById('main-coupon-code');
-            const modalCouponInput = document.getElementById('coupon-code');
-
-            mainCouponInput.addEventListener('input', (e) => {
-                state.referralCode = e.target.value.trim().toUpperCase();
-                modalCouponInput.value = state.referralCode;
+            document.getElementById('floating-cart-button').addEventListener('click', () => {
+                modal.classList.add('open');
+                const modalSummaryList = document.getElementById('modal-summary-list');
+                modalSummaryList.innerHTML = summaryList.innerHTML;
+                
+                modalSummaryList.querySelectorAll('[data-action]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const action = e.currentTarget.dataset.action;
+                        const id = e.currentTarget.dataset.id;
+                        
+                        if (action === 'remove') {
+                            const checkbox = document.getElementById(id);
+                            if (checkbox) checkbox.checked = false;
+                            delete state.selectedItems[id];
+                            calculateTotal();
+                            modal.classList.remove('open');
+                        } else if (action === 'increment') {
+                            const stateKey = id + 'Count';
+                            state[stateKey] = Math.min(state[stateKey] + 1, id === 'bano' ? 5 : 10);
+                            if (state[stateKey] > 0) {
+                                state.selectedItems[id].quantity = state[stateKey];
+                            }
+                            calculateTotal();
+                            modal.classList.remove('open');
+                        } else if (action === 'decrement') {
+                            const stateKey = id + 'Count';
+                            state[stateKey] = Math.max(state[stateKey] - 1, 0);
+                            if (state[stateKey] > 0) {
+                                state.selectedItems[id].quantity = state[stateKey];
+                            } else {
+                                delete state.selectedItems[id];
+                            }
+                            calculateTotal();
+                            modal.classList.remove('open');
+                        }
+                    });
+                });
             });
 
-            modalCouponInput.addEventListener('input', (e) => {
-                state.referralCode = e.target.value.trim().toUpperCase();
-                mainCouponInput.value = state.referralCode;
+            document.getElementById('close-modal').addEventListener('click', () => {
+                modal.classList.remove('open');
             });
 
-            document.getElementById('proceed-to-form-btn').addEventListener('click', showClientFormSection);
-            document.getElementById('modal-proceed-to-form-btn').addEventListener('click', () => {
+            document.getElementById('modal-continue-btn').addEventListener('click', () => {
                 modal.classList.remove('open');
                 showClientFormSection();
             });
+
+            document.getElementById('continue-to-form-btn').addEventListener('click', showClientFormSection);
             document.getElementById('back-to-calculator-btn').addEventListener('click', showCalculatorSection);
 
-            document.getElementById('client-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (validateClientForm()) {
-                    showFinalSummary();
+            document.getElementById('submit-form-btn').addEventListener('click', () => {
+                if (!validateClientForm()) {
+                    return;
                 }
+
+                const referralInput = document.getElementById('referral-code-input');
+                state.referralCode = referralInput.value.trim().toUpperCase();
+
+                showFinalSummary();
             });
 
             document.getElementById('cancel-final-summary-btn').addEventListener('click', () => {
@@ -2900,26 +2437,19 @@
 
             document.getElementById('send-whatsapp-btn').addEventListener('click', sendWhatsAppMessage);
 
-            document.querySelectorAll('.form-input').forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.value.trim()) {
-                        hideError(this.id);
-                    }
-                });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                }
             });
 
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('fecha1').setAttribute('min', today);
-            document.getElementById('fecha2').setAttribute('min', today);
-
-            initChart();
-            calculateTotal();
-
-            // Añadir event listeners para la navegación con teclado
-            const editableTitles = document.querySelectorAll('.summary-section-title[role="button"]');
-            editableTitles.forEach(title => {
-                title.addEventListener('keypress', handleKeyPress);
+            document.getElementById('final-summary-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'final-summary-modal') {
+                    e.target.classList.remove('open');
+                }
             });
+
+            updateUI();
         });
     </script>
 </body>

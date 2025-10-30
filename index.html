@@ -40,7 +40,7 @@ body {
     border-radius: 8px;
 }
 
-/* === BOTONES PRINCIPALES === */
+/* === BOTONES PRINCIPALES - CORREGIDOS === */
 .button-gradient {
     background: #1E3A8A;
     transition: background 0.2s ease;
@@ -54,6 +54,7 @@ body {
     padding: 12px 20px;
     cursor: pointer;
     width: 100%;
+    margin-bottom: 12px;
 }
 
 .button-gradient:hover {
@@ -78,6 +79,7 @@ body {
     padding: 12px 20px;
     cursor: pointer;
     width: 100%;
+    margin-bottom: 12px;
 }
 
 .button-secondary:hover {
@@ -107,6 +109,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 8px;
+    margin-bottom: 8px;
 }
 
 .checkbox-label:hover {
@@ -347,6 +350,7 @@ input:checked + .checkbox-label {
     transition: all 0.2s ease;
     min-height: 48px;
     width: 100%;
+    margin-bottom: 12px;
 }
 
 .button:hover {
@@ -378,7 +382,7 @@ input:checked + .checkbox-label {
     margin-bottom: 12px;
 }
 
-/* === CONTENEDORES DE ADDONS === */
+/* === CONTENEDORES DE ADDONS - CORREGIDOS === */
 .addon-container {
     margin-bottom: 16px;
     border-radius: 8px;
@@ -402,6 +406,8 @@ input:checked + .checkbox-label {
 
 .addon-group {
     gap: 12px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* === HEADER === */
@@ -1124,7 +1130,7 @@ header {
     animation: pulse 2s infinite ease-in-out;
 }
 
-/* === RESPONSIVE === */
+/* === RESPONSIVE - CORREGIDO === */
 @media (max-width: 768px) {
     .addon-group {
         display: flex;
@@ -1133,6 +1139,27 @@ header {
     
     .form-input-group {
         grid-template-columns: 1fr;
+    }
+    
+    /* Mejorar espaciado de botones en móvil */
+    .button, .button-gradient, .button-secondary {
+        margin-bottom: 10px;
+    }
+    
+    .checkbox-label {
+        margin-bottom: 8px;
+    }
+}
+
+/* Estilos adicionales para mejorar la disposición de botones */
+@media (min-width: 769px) {
+    .addon-group {
+        flex-direction: row;
+    }
+    
+    .addon-group .checkbox-label {
+        flex: 1;
+        min-width: 0;
     }
 }
     </style>

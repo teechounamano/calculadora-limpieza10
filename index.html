@@ -2022,6 +2022,23 @@ header {
             }
         });
 
+        const mainCouponInput = document.getElementById('main-coupon-code');
+        const modalCouponInput = document.getElementById('coupon-code');
+
+        // Sincronizar cuando se escribe en el campo principal
+        mainCouponInput.addEventListener('input', (e) => {
+            const value = e.target.value.toUpperCase();
+            modalCouponInput.value = value;
+            state.referralCode = value.trim();
+        });
+
+        // Sincronizar cuando se escribe en el campo del modal
+        modalCouponInput.addEventListener('input', (e) => {
+            const value = e.target.value.toUpperCase();
+            mainCouponInput.value = value;
+            state.referralCode = value.trim();
+        });
+
         document.getElementById('proceed-to-form-btn').addEventListener('click', () => {
             if (state.totalCost === 0) {
                 alert('Por favor, selecciona al menos un servicio antes de continuar.');

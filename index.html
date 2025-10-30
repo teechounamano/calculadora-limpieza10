@@ -180,44 +180,44 @@ input:checked + .checkbox-label {
     background: #1E3A8A;
     color: white;
     border-radius: 50%;
-    width: clamp(52px, 14vw, 64px);
-    height: clamp(52px, 14vw, 64px);
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+    transition: all 0.3s ease;
     cursor: pointer;
-    border: none;
-    font-size: clamp(20px, 5vw, 28px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 #floating-cart-button:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.5);
     background: #1E40AF;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 #floating-total-cost-display {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #DC2626;
+    background: #10B981;
     color: white;
-    border-radius: 12px;
-    padding: 4px 8px;
-    font-size: clamp(11px, 3vw, 13px);
+    border-radius: 50%;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
     font-weight: 800;
     display: none;
-    border: 2px solid white;
-    white-space: nowrap;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
 }
 
 #floating-total-cost-display.visible {
     display: block;
+    animation: pulse 2s infinite;
 }
 
-/* === MODALES === */
+/* === MODAL === */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -232,7 +232,8 @@ input:checked + .checkbox-label {
     visibility: hidden;
     opacity: 0;
     transition: all 0.2s ease;
-    padding: 16px;
+    backdrop-filter: blur(8px);
+    padding: 12px;
 }
 
 .modal-overlay.open {
@@ -245,86 +246,91 @@ input:checked + .checkbox-label {
     border-radius: 8px;
     padding: clamp(16px, 4vw, 24px);
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
     max-height: 90vh;
     overflow-y: auto;
 }
 
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
 .modal-close-btn {
-    background: #F1F5F9;
-    color: #64748B;
-    width: clamp(36px, 9vw, 40px);
-    height: clamp(36px, 9vw, 40px);
-    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(18px, 4.5vw, 20px);
+    font-size: 1.25rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid #E2E8F0;
-    flex-shrink: 0;
+    transition: all 0.3s ease;
+    border: none;
+    opacity: 0.5;
 }
 
 .modal-close-btn:hover {
-    background: #FEE2E2;
-    color: #DC2626;
-    border-color: #FCA5A5;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    transform: rotate(90deg) scale(1.15);
+    opacity: 1;
 }
 
 .modal-item-controls {
     display: flex;
     align-items: center;
-    gap: clamp(8px, 2vw, 10px);
-    flex-shrink: 0;
-    flex-wrap: nowrap;
+    gap: 0.625rem;
 }
 
 .modal-item-btn {
     background: #F1F5F9;
     color: #475569;
-    width: clamp(32px, 8vw, 36px);
-    height: clamp(32px, 8vw, 36px);
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 50%;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 1px solid #E2E8F0;
-    font-size: clamp(12px, 3vw, 14px);
-    flex-shrink: 0;
+    border: 2px solid #E2E8F0;
+    font-size: 0.875rem;
 }
 
 .modal-item-btn:hover {
     background: #1E3A8A;
     color: white;
     border-color: #1E3A8A;
+    transform: scale(1.15);
 }
 
 .modal-remove-btn {
     background: transparent;
-    color: #EF4444;
+    color: #ef4444;
     border: none;
     cursor: pointer;
-    font-size: clamp(16px, 4vw, 18px);
-    padding: 6px;
-    width: clamp(32px, 8vw, 36px);
-    height: clamp(32px, 8vw, 36px);
+    font-size: 1.125rem;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
 .modal-remove-btn:hover {
-    color: #DC2626;
-    background: #FEE2E2;
+    color: #dc2626;
+    background: #fee2e2;
+    transform: scale(1.15);
 }
 
 .button {
@@ -592,7 +598,6 @@ header {
     padding: clamp(12px, 3vw, 16px);
     margin-bottom: 12px;
     border: 1px solid #E2E8F0;
-    position: relative;
 }
 
 .summary-section-title {
@@ -609,7 +614,6 @@ header {
     transition: all 0.2s ease;
     padding: 10px;
     border-radius: 6px;
-    position: relative;
     flex-wrap: wrap;
 }
 
@@ -639,59 +643,28 @@ header {
     text-transform: uppercase;
 }
 
-.edit-tooltip {
-    position: absolute;
-    top: -35px;
-    right: 12px;
-    background: #1E293B;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: clamp(10px, 2.5vw, 12px);
-    font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-}
-
-.summary-section-title:hover .edit-tooltip {
-    opacity: 1;
-}
-
 .summary-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 8px 0;
     border-bottom: 1px solid #E2E8F0;
-    gap: 12px;
-    flex-wrap: wrap;
 }
 
 .summary-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
 }
 
 .summary-item-label {
     font-size: clamp(13px, 3.5vw, 16px);
-    color: #475569;
+    color: #64748B;
     font-weight: 600;
-    line-height: 1.5;
-    flex: 1;
-    min-width: 0;
-    word-break: break-word;
 }
 
 .summary-item-value {
-    font-size: clamp(13px, 3.5vw, 16px);
+    font-size: clamp(14px, 4vw, 17px);
     color: #1E293B;
     font-weight: 700;
-    text-align: right;
-    line-height: 1.5;
-    flex-shrink: 0;
 }
 
 .activation-fee-highlight {
@@ -898,12 +871,7 @@ header {
     background: white;
     border: 2px solid #E2E8F0;
     border-radius: 8px;
-    padding: clamp(14px, 3.5vw, 20px);
-    transition: all 0.2s ease;
-}
-
-.date-selector:hover {
-    border-color: #CBD5E1;
+    padding: clamp(12px, 3vw, 16px);
 }
 
 .date-selector-label {
@@ -912,89 +880,27 @@ header {
     gap: 8px;
     font-size: clamp(14px, 3.5vw, 16px);
     font-weight: 700;
-    color: #475569;
+    color: #1E293B;
     margin-bottom: 10px;
 }
 
-.date-selector input {
+.date-selector input[type="date"] {
     width: 100%;
-    padding: 12px;
-    background: white;
-    border: 2px solid #CBD5E1;
+    padding: 10px;
+    border: 2px solid #E2E8F0;
     border-radius: 6px;
-    font-size: clamp(15px, 4vw, 17px);
+    font-size: clamp(14px, 3.5vw, 16px);
     font-family: inherit;
-    color: #0F172A;
+    color: #1E293B;
+    background: #F8FAFC;
     transition: all 0.2s ease;
-    font-weight: 500;
-    min-height: 48px;
 }
 
-.date-selector input:focus {
+.date-selector input[type="date"]:focus {
     outline: none;
     border-color: #1E3A8A;
+    background: white;
     box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-}
-
-/* === BANNERS === */
-.security-banner {
-    background: #D1FAE5;
-    border: 2px solid #10B981;
-    border-radius: 8px;
-    padding: clamp(14px, 3.5vw, 20px);
-    display: flex;
-    align-items: center;
-    gap: clamp(10px, 3vw, 16px);
-    margin-bottom: 20px;
-}
-
-.security-banner-icon {
-    font-size: clamp(24px, 6vw, 32px);
-    flex-shrink: 0;
-}
-
-.security-banner-content h4 {
-    font-size: clamp(15px, 4vw, 18px);
-    font-weight: 800;
-    color: #065F46;
-    margin: 0 0 4px 0;
-}
-
-.security-banner-content p {
-    font-size: clamp(13px, 3.5vw, 16px);
-    color: #065F46;
-    margin: 0;
-    font-weight: 600;
-}
-
-.info-banner {
-    background: #DBEAFE;
-    border: 2px solid #3B82F6;
-    border-radius: 8px;
-    padding: clamp(14px, 3.5vw, 20px);
-    display: flex;
-    align-items: start;
-    gap: clamp(10px, 3vw, 16px);
-    margin-bottom: 20px;
-}
-
-.info-banner-icon {
-    font-size: clamp(24px, 6vw, 32px);
-    flex-shrink: 0;
-}
-
-.info-banner-content h4 {
-    font-size: clamp(15px, 4vw, 18px);
-    font-weight: 800;
-    color: #1E40AF;
-    margin: 0 0 6px 0;
-}
-
-.info-banner-content p {
-    font-size: clamp(14px, 3.5vw, 17px);
-    color: #1E40AF;
-    margin: 0;
-    font-weight: 600;
 }
 
 .form-actions {
@@ -1103,17 +1009,16 @@ header {
 .referral-input-wrapper input {
     width: 100%;
     padding: 12px;
-    background: white;
     border: 2px solid #10B981;
     border-radius: 6px;
-    font-size: clamp(15px, 4vw, 18px);
+    font-size: clamp(15px, 4vw, 17px);
     font-family: inherit;
-    color: #065F46;
     font-weight: 700;
     text-align: center;
-    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: white;
+    color: #065F46;
     transition: all 0.2s ease;
-    min-height: 48px;
 }
 
 .referral-input-wrapper input:focus {
@@ -1122,127 +1027,92 @@ header {
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
-.referral-input-wrapper input::placeholder {
-    color: #6EE7B7;
-    font-weight: 600;
+.security-banner {
+    background: #EFF6FF;
+    border: 2px solid #BFDBFE;
+    border-radius: 8px;
+    padding: clamp(12px, 3vw, 16px);
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    margin-bottom: 20px;
 }
 
-/* === RESPONSIVE ESPECÍFICO PARA MÓVILES === */
-
-/* Móviles pequeños (<400px) */
-@media (max-width: 400px) {
-    .header-content {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-    
-    .logo {
-        justify-content: center;
-    }
-    
-    .header-link {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
-    
-    .summary-actions {
-        flex-direction: column;
-    }
-    
-    .summary-btn {
-        width: 100%;
-        min-width: unset;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .form-btn {
-        width: 100%;
-        min-width: unset;
-    }
-    
-    .final-summary-content {
-        padding: 12px;
-    }
-    
-    .edit-icon-text {
-        display: none;
-    }
-    
-    .summary-section-title .edit-icon {
-        opacity: 1;
-    }
-    
-    .edit-tooltip {
-        display: none;
-    }
+.security-banner-icon {
+    font-size: clamp(24px, 6vw, 32px);
+    flex-shrink: 0;
 }
 
-/* Móviles medianos (400px - 640px) */
-@media (min-width: 401px) and (max-width: 640px) {
-    .header-content {
-        flex-wrap: wrap;
-    }
-    
-    .edit-icon-text {
-        display: none;
-    }
-    
-    .summary-section-title .edit-icon {
-        opacity: 1;
-    }
+.security-banner-content h4 {
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 700;
+    color: #1E3A8A;
+    margin: 0 0 4px 0;
 }
 
-/* Tablets y pantallas medianas (641px - 768px) */
-@media (min-width: 641px) and (max-width: 768px) {
-    .summary-actions {
-        flex-wrap: nowrap;
-    }
-    
-    .form-actions {
-        flex-wrap: nowrap;
-    }
+.security-banner-content p {
+    font-size: clamp(12px, 3vw, 14px);
+    color: #64748B;
+    margin: 0;
+    font-weight: 500;
 }
 
-/* Desktop (>768px) */
-@media (min-width: 769px) {
-    .modal-content {
-        padding: 24px;
-    }
-    
-    .final-summary-content {
-        padding: 24px;
-    }
+.info-banner {
+    background: #FEF3C7;
+    border: 2px solid #FCD34D;
+    border-radius: 8px;
+    padding: clamp(12px, 3vw, 16px);
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    margin-top: 16px;
 }
 
-/* Ajuste adicional para overflow horizontal */
+.info-banner-icon {
+    font-size: clamp(24px, 6vw, 32px);
+    flex-shrink: 0;
+}
+
+.info-banner-content h4 {
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 700;
+    color: #92400E;
+    margin: 0 0 4px 0;
+}
+
+.info-banner-content p {
+    font-size: clamp(12px, 3vw, 14px);
+    color: #78350F;
+    margin: 0;
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.pulsing-button {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
-    body {
-        overflow-x: hidden;
+    .addon-group {
+        display: flex;
+        flex-direction: column;
     }
     
-    .modal-content,
-    .final-summary-content {
-        max-width: calc(100vw - 24px);
-    }
-    
-    .summary-item {
-        align-items: center;
-    }
-    
-    .modal-item-controls {
-        flex-wrap: nowrap;
-    }
-    
-    .count-controls {
-        flex-wrap: nowrap;
+    .form-input-group {
+        grid-template-columns: 1fr;
     }
 }
-
     </style>
 </head>
 <body>
@@ -1269,37 +1139,37 @@ header {
         <div class="text-center mb-12 md:mb-16">
             <div class="relative max-w-7xl mx-auto flex flex-col items-center">
                 <div class="flex space-x-4 md:space-x-6 mb-6 md:mb-8 md:absolute md:top-0 md:right-0">
-                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
+                    <a href="https://te-echounamano.blogspot.com/" target="_blank" title="TUM TeEchoUnaMano Web" class="text-xl md:text-3xl text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110">
                         🏠
                     </a>
-                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
+                    <a href="https://apm-tum.blogspot.com/" target="_blank" title="Soporte A-TUM" class="text-xl md:text-3xl text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110">
                         🎧
                     </a>
-                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-gray-700 hover:text-gray-900 transition-all duration-300 hover:scale-110">
+                    <a href="https://t.me/TumAgenda_bot" target="_blank" title="Bot de Telegram" class="text-xl md:text-3xl text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110">
                         🤖
                     </a>
                 </div>
-                <h1 class="main-title text-gray-900 mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
-                <p class="text-base md:text-2xl text-gray-800 max-w-4xl mx-auto leading-relaxed px-4 font-medium">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
+                <h1 class="main-title mb-4 md:mb-6">🧹 Calculadora-Limpieza10</h1>
+                <p class="text-base md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4 font-medium">La limpieza de tu <b>piso de estudiante</b>, solucionada. Es la forma más fácil y económica de mantener vuestro piso limpio. Personaliza tu plan, comparte los gastos y olvídate de discutir por turnos.</p>
             </div>
         </div>
 
         <section id="how-it-works" class="mb-16 md:mb-20">
             <div class="max-w-5xl mx-auto">
-                <h2 class="section-title text-center mb-12 md:mb-16 text-gray-900">¿Cómo Funciona? Sencillo y Transparente</h2>
+                <h2 class="section-title text-center mb-12 md:mb-16">¿Cómo Funciona? Sencillo y Transparente</h2>
                 <div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-6 md:gap-8">
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-blue-900 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">1</div>
+                        <div class="bg-blue-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">1</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Una única cuota de <b>10€</b> te da acceso a un servicio de limpieza completo y a medida. Es tu pase directo a un espacio limpio.</p>
                     </div>
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-gray-300 md:h-16 md:w-0.5"></div></div>
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-indigo-900 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">2</div>
+                        <div class="bg-blue-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">2</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Elige las áreas de tu piso que necesitan un repaso por solo <b>10€</b> cada una y añade los complementos que quieras.</p>
                     </div>
-                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-white md:h-16 md:w-0.5"></div></div>
+                    <div class="flex justify-center items-center"><div class="h-0.5 w-12 md:w-16 bg-gray-300 md:h-16 md:w-0.5"></div></div>
                     <div class="flex-1 p-5 md:p-6 flex flex-col items-center glass-effect rounded-2xl">
-                        <div class="bg-emerald-700 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">✓</div>
+                        <div class="bg-green-600 text-white rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl md:text-3xl font-bold mb-4 md:mb-6 shadow-xl">✓</div>
                         <p class="text-gray-700 text-sm md:text-lg leading-relaxed font-medium">Disfruta de tu casa impecable y divide el coste total entre tus compañeros de piso. Sin estrés, sin peleas.</p>
                     </div>
                 </div>
@@ -1316,27 +1186,27 @@ header {
                     <h3 id="areas-section" class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">1. Elige las áreas a limpiar (10€ c/u)</h3>
                     <div class="space-y-3 md:space-y-4 card-spacing">
                         <input type="checkbox" id="salon" class="hidden peer" data-price="10" data-label="Salón / Comedor" data-type="area">
-                        <label for="salon" class="checkbox-label">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">🛋️</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Salón / Comedor</span>
+                        <label for="salon" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🛋️</span>
+                                <span class="font-semibold text-sm md:text-lg">Salón / Comedor</span>
                             </div>
-                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                         
                         <input type="checkbox" id="cocina" class="hidden peer" data-price="10" data-label="Cocina" data-type="area">
-                        <label for="cocina" class="checkbox-label">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">🍳</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Cocina</span>
+                        <label for="cocina" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🍳</span>
+                                <span class="font-semibold text-sm md:text-lg">Cocina</span>
                             </div>
-                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                         
-                        <div id="bano-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300" style="min-height: 48px; gap: 12px; flex-wrap: wrap;">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">🚿</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Baños</span>
+                        <div id="bano-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🚿</span>
+                                <span class="font-semibold text-sm md:text-lg">Baños</span>
                             </div>
                             <div class="count-controls">
                                 <button id="bano-decrement" class="count-btn">-</button>
@@ -1345,10 +1215,10 @@ header {
                             </div>
                         </div>
                         
-                        <div id="habitacion-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300" style="min-height: 48px; gap: 12px; flex-wrap: wrap;">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">🛏️</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Habitaciones</span>
+                        <div id="habitacion-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🛏️</span>
+                                <span class="font-semibold text-sm md:text-lg">Habitaciones</span>
                             </div>
                             <div class="count-controls">
                                 <button id="habitacion-decrement" class="count-btn">-</button>
@@ -1358,355 +1228,407 @@ header {
                         </div>
 
                         <input type="checkbox" id="lavanderia" class="hidden peer" data-price="10" data-label="Lavandería" data-type="area">
-                        <label for="lavanderia" class="checkbox-label">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">🧺</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Lavandería</span>
+                        <label for="lavanderia" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🧺</span>
+                                <span class="font-semibold text-sm md:text-lg">Lavandería</span>
                             </div>
-                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
 
                         <input type="checkbox" id="terrazas" class="hidden peer" data-price="10" data-label="Limpieza de Terrazas" data-type="area">
-                        <label for="terrazas" class="checkbox-label">
-                            <div class="flex items-center gap-2">
-                                <span style="font-size: clamp(20px, 5vw, 28px);">☀️</span>
-                                <span class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px);">Limpieza de Terrazas</span>
+                        <label for="terrazas" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">☀️</span>
+                                <span class="font-semibold text-sm md:text-lg">Limpieza de Terrazas</span>
                             </div>
-                            <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                         </label>
                     </div>
 
                     <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 mt-8 md:mt-10 text-gray-800">2. Añade complementos</h3>
                     <div class="space-y-4 md:space-y-6">
-                        <div class="addon-container">
+                        <div class="addon-container p-5 md:p-6">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🚪</span>
-                                <span>Pasillo (área común)</span>
+                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🚪</span>
+                                <span class="text-sm md:text-lg">Pasillo (área común)</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="pasillo">
                                 <input type="checkbox" id="pasillo-5" class="hidden peer" data-price="5" data-label="Pasillo: menos de 5m²" data-type="addon">
-                                <label for="pasillo-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Menos de 5m²</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
+                                <label for="pasillo-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Menos de 5m²</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="pasillo-10" class="hidden peer" data-price="10" data-label="Pasillo: 5m² o más" data-type="addon">
-                                <label for="pasillo-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">5m² o más</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                                <label for="pasillo-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">5m² o más</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container">
+                        <div class="addon-container p-5 md:p-6">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🍽️</span>
-                                <span>Fregar Platos</span>
+                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🍽️</span>
+                                <span class="text-sm md:text-lg">Fregar Platos</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="platos">
                                 <input type="checkbox" id="platos-5" class="hidden peer" data-price="5" data-label="Fregar Platos: 1 carga" data-type="addon">
-                                <label for="platos-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1 Carga</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
+                                <label for="platos-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
                                 <input type="checkbox" id="platos-10" class="hidden peer" data-price="10" data-label="Fregar Platos: Más de 1 carga" data-type="addon">
-                                <label for="platos-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Más de 1 Carga</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                                <label for="platos-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 1 Carga</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container">
+                        <div class="addon-container p-5 md:p-6">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🪟</span>
-                                <span>Limpieza de Mamparas</span>
+                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🪟</span>
+                                <span class="text-sm md:text-lg">Limpieza de Mamparas</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="mamparas">
-                                <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1 unidad" data-type="addon">
-                                <label for="mamparas-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1 Unidad</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
+                                <input type="checkbox" id="mamparas-5" class="hidden peer" data-price="5" data-label="Mamparas: 1-2m" data-type="addon">
+                                <label for="mamparas-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1-2m</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
-                                <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: 2 o más" data-type="addon">
-                                <label for="mamparas-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">2 o Más</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
+                                <input type="checkbox" id="mamparas-10" class="hidden peer" data-price="10" data-label="Mamparas: Más de 2m" data-type="addon">
+                                <label for="mamparas-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 2m</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="addon-container">
+                        <div class="addon-container p-5 md:p-6">
                             <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🗑️</span>
-                                <span>Sacar Basura</span>
+                                <span class="text-2xl md:text-3xl mr-2 md:mr-3">🗑️</span>
+                                <span class="text-sm md:text-lg">Recogida de Basura</span>
                             </h4>
                             <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="basura">
-                                <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Sacar Basura: 1-2 bolsas" data-type="addon">
-                                <label for="basura-5" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">1-2 Bolsas</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">5€</span>
+                                <input type="checkbox" id="basura-5" class="hidden peer" data-price="5" data-label="Recogida de Basura: 1-2 bolsas" data-type="addon">
+                                <label for="basura-5" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">1-2 bolsas</span>
+                                    <span class="text-xs md:text-sm text-gray-500 mb-1 font-medium">(Obligatorio con áreas)</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">5€</span>
                                 </label>
-                                <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Sacar Basura: 3+ bolsas" data-type="addon">
-                                <label for="basura-10" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">3+ Bolsas</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">10€</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="addon-container">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-3 md:mb-4">
-                                <span style="font-size: clamp(20px, 5vw, 28px); margin-right: 8px;">🔥</span>
-                                <span>Limpieza Profunda</span>
-                            </h4>
-                            <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0 addon-group" data-group-name="profunda">
-                                <input type="checkbox" id="profunda-20" class="hidden peer" data-price="20" data-label="Limpieza Profunda: Horno" data-type="addon">
-                                <label for="profunda-20" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Horno</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">20€</span>
-                                </label>
-                                <input type="checkbox" id="profunda-15" class="hidden peer" data-price="15" data-label="Limpieza Profunda: Nevera" data-type="addon">
-                                <label for="profunda-15" class="checkbox-label flex-1 flex flex-col items-center justify-center">
-                                    <span class="font-semibold text-center mb-2" style="font-size: clamp(14px, 3.5vw, 18px);">Nevera</span>
-                                    <span class="text-gray-600 font-bold" style="font-size: clamp(14px, 3.5vw, 18px);">15€</span>
+                                <input type="checkbox" id="basura-10" class="hidden peer" data-price="10" data-label="Recogida de Basura: Más de 2 bolsas" data-type="addon">
+                                <label for="basura-10" class="checkbox-label cursor-pointer flex-1 flex flex-col items-center justify-center p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                                    <span class="font-semibold text-center mb-2 text-sm md:text-lg">Más de 2 bolsas</span>
+                                    <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
                                 </label>
                             </div>
                         </div>
+                        <input type="checkbox" id="escalera" class="hidden peer" data-price="10" data-label="Limpieza de Escalera" data-type="addon">
+                        <label for="escalera" class="checkbox-label cursor-pointer flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl">
+                            <div class="flex items-center">
+                                <span class="text-2xl md:text-3xl mr-3 md:mr-4">🪜</span>
+                                <span class="font-semibold text-sm md:text-lg">Limpieza de Escalera</span>
+                            </div>
+                            <span class="text-gray-600 font-bold text-sm md:text-lg">10€</span>
+                        </label>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">Tu presupuesto</h3>
-                    <div class="glass-effect rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
-                        <div class="chart-container mb-4 md:mb-6">
-                            <canvas id="costChart"></canvas>
+                    <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-gray-800">3. ¿Cuántos sois en el piso?</h3>
+                    <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6 font-medium">Si pagas el servicio para ti, selecciona 1 persona. Si sois más, selecciona el número de compañeros para dividir los gastos.</p>
+                    <div id="roommates-container" class="flex items-center justify-between p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300 mb-6 md:mb-8">
+                        <div class="flex items-center">
+                            <span class="text-2xl md:text-3xl mr-3 md:mr-4">👥</span>
+                            <span class="font-semibold text-sm md:text-lg">Compañeros</span>
                         </div>
-                        
-                        <div class="cost-display mb-4 md:mb-6">
-                            <h3>Coste Total</h3>
-                            <p id="total-cost" style="font-size: clamp(2rem, 8vw, 3rem);" class="font-black text-blue-900 mb-0">0 €</p>
-                        </div>
-                        
-                        <div class="mb-6 md:mb-8">
-                            <label class="block text-center font-bold mb-3 md:mb-4 text-gray-700" style="font-size: clamp(14px, 3.5vw, 18px);">¿Cuántos sois en el piso?</label>
-                            <div class="flex items-center justify-center gap-3 md:gap-4">
-                                <button id="roommates-decrement" class="count-btn">-</button>
-                                <span id="roommates-count" class="count-display">1</span>
-                                <button id="roommates-increment" class="count-btn">+</button>
-                            </div>
-                        </div>
-                        
-                        <div class="cost-per-person">
-                            <p>Coste por Persona</p>
-                            <p id="cost-per-person">0,00 €</p>
+                        <div class="count-controls">
+                            <button id="roommates-decrement" class="count-btn">-</button>
+                            <span id="roommates-count" class="count-display">1</span>
+                            <button id="roommates-increment" class="count-btn">+</button>
                         </div>
                     </div>
 
-                    <div class="glass-effect rounded-2xl p-5 md:p-8">
-                        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-gray-800 text-center">Resumen de tu Selección</h3>
-                        <div id="summary-list" class="space-y-3 md:space-y-4">
-                            <p class="text-gray-500 text-center py-6 md:py-8 font-medium" style="font-size: clamp(14px, 3.5vw, 18px);">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
+                    <div class="sticky top-6">
+                        <div class="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                            <div class="p-5 md:p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl text-center border-2 border-blue-200">
+                                <p class="text-gray-600 text-xs md:text-sm font-bold mb-2 uppercase tracking-wide">COSTE TOTAL</p>
+                                <p id="total-cost" class="text-3xl md:text-4xl font-extrabold text-blue-600">0 €</p>
+                            </div>
+                            <div class="p-5 md:p-6 bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl text-center border-2 border-green-200">
+                                <p class="text-gray-600 text-xs md:text-sm font-bold mb-2 uppercase tracking-wide">POR PERSONA</p>
+                                <p id="cost-per-person" class="text-3xl md:text-4xl font-extrabold text-green-600">0,00 €</p>
+                            </div>
                         </div>
-                        
-                        <button id="continue-to-form-btn" class="button-gradient mt-6 md:mt-8">
-                            Continuar con la Solicitud →
-                        </button>
+
+                        <h3 class="text-lg md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-800">Desglose del Coste</h3>
+                        <div class="chart-container">
+                            <canvas id="costBreakdownChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <footer class="text-center mt-12 md:mt-16 mb-16 md:mb-20">
+            <h3 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">¿Todo claro?</h3>
+            <p class="text-gray-700 mb-8 md:mb-10 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed px-4 font-medium">Ahora completa tus datos para solicitar tu primera limpieza y descubre lo fácil que es tener un piso impecable.</p>
+            
+            <!-- Campo de código de referido destacado con estilo premium -->
+            <div class="max-w-md mx-auto mb-6 md:mb-8 px-4">
+                <div class="referral-input-wrapper">
+                    <label for="main-coupon-code">🎟️ ¿Tienes un código de referido?</label>
+                    <div class="button-spacing">
+                        <a class="button" href="https://teechounamano.github.io/activar-referido/" target="_blank" rel="noopener noreferrer" title="Activar Cupón">Quiero mi código</a>
+                    </div>
+                    <input type="text" id="main-coupon-code" placeholder="ESCRIBE TU CÓDIGO AQUÍ">
+                </div>
+            </div>
+
+            <button id="proceed-to-form-btn" class="button-gradient text-white font-bold py-5 md:py-6 px-10 md:px-14 rounded-full transition-all duration-300 text-lg md:text-xl shadow-2xl pulsing-button">Rellenar Datos del Cliente para la Solicitud</button>
+        </footer>
     </main>
 
-    <!-- Modal de Resumen -->
+    <!-- Sección del formulario con banner de seguridad -->
+    <section class="form-section container mx-auto px-4 py-6 md:py-12" id="client-form-section">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8 md:mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-3xl shadow-2xl mb-6 text-4xl md:text-5xl">
+                    📋
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-3 md:mb-4">Datos del Solicitante</h2>
+                <p class="text-gray-700 text-base md:text-xl max-w-2xl mx-auto font-medium">Completa tu información para procesar la solicitud de limpieza</p>
+            </div>
+
+            <!-- Banner de seguridad para tranquilizar al usuario -->
+            <div class="security-banner">
+                <div class="security-banner-icon">🔒</div>
+                <div class="security-banner-content">
+                    <h4>Tus datos están seguros</h4>
+                    <p>Toda tu información está protegida y solo se usa para coordinar tu servicio de limpieza.</p>
+                </div>
+            </div>
+
+            <form id="client-form">
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">👤</div>
+                        <h3 class="form-card-title">Información Personal</h3>
+                    </div>
+                    
+                    <div class="form-input-wrapper">
+                        <div class="form-input-icon">✍️</div>
+                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" required>
+                        <div class="error-message" id="errorNombre">Por favor, ingresa tu nombre completo</div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">🏠</div>
+                        <h3 class="form-card-title">Dirección del Servicio</h3>
+                    </div>
+                    
+                    <div class="form-input-wrapper">
+                        <div class="form-input-icon">📍</div>
+                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" required>
+                        <div class="error-message" id="errorCalle">Por favor, ingresa la calle y número</div>
+                    </div>
+
+                    <div class="form-input-group">
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🚪</div>
+                            <input type="text" id="portal" class="form-input" placeholder="Portal" required>
+                            <div class="error-message" id="errorPortal">Requerido</div>
+                        </div>
+
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🔢</div>
+                            <input type="text" id="piso" class="form-input" placeholder="Piso" required>
+                            <div class="error-message" id="errorPiso">Requerido</div>
+                        </div>
+
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🚪</div>
+                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" required>
+                            <div class="error-message" id="errorPuerta">Requerido</div>
+                        </div>
+                    </div>
+
+                    <div class="info-banner">
+                        <div class="info-banner-icon">ℹ️</div>
+                        <div class="info-banner-content">
+                            <h4>Valencia capital</h4>
+                            <p>La visita es <strong>gratuita y sin compromiso</strong>. Nos desplazamos a tu domicilio para evaluar el servicio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">📅</div>
+                        <h3 class="form-card-title">Fechas Disponibles</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm md:text-base mb-4 md:mb-6 font-medium">Selecciona dos opciones de fecha para coordinar la visita. Nos pondremos en contacto contigo para confirmar.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="date-selector">
+                            <div class="date-selector-label">
+                                <span>📆</span>
+                                <span>Primera opción</span>
+                            </div>
+                            <input type="date" id="fecha1" required>
+                            <div class="error-message" id="errorFecha1">Selecciona la primera fecha</div>
+                        </div>
+
+                        <div class="date-selector">
+                            <div class="date-selector-label">
+                                <span>📆</span>
+                                <span>Segunda opción</span>
+                            </div>
+                            <input type="date" id="fecha2" required>
+                            <div class="error-message" id="errorFecha2">Selecciona la segunda fecha</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="back-to-calculator-btn" class="form-btn form-btn-back">
+                        <span>←</span>
+                        <span>Volver a la Calculadora</span>
+                    </button>
+                    <button type="submit" class="form-btn form-btn-submit">
+                        <span>Ver Resumen Completo</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div id="floating-elements-container">
+        <button id="floating-cart-button" aria-label="Mostrar resumen de costes">
+            <span style="font-size: 1.5rem;">🛒</span>
+            <span id="floating-total-cost-display">0 €</span>
+        </button>
+    </div>
+
+    <!-- Modal de resumen simplificado - solo botón X para cerrar -->
     <div id="summary-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="flex justify-between items-center mb-6 md:mb-8" style="gap: 12px;">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-800" style="font-size: clamp(1.125rem, 5vw, 1.5rem);">Tu Carrito de Limpieza</h3>
-                <button id="close-modal" class="modal-close-btn">✕</button>
+            <div class="flex justify-between items-center pb-5 md:pb-6 border-b-2 border-gray-200 mb-5 md:mb-6">
+                <h3 class="text-xl md:text-3xl font-bold text-gray-800">Resumen de mi pedido</h3>
+                <button id="close-modal-button" class="modal-close-btn" aria-label="Cerrar">
+                    ✕
+                </button>
             </div>
             
-            <div id="modal-summary-list" class="space-y-3 md:space-y-4 mb-6 md:mb-8"></div>
-            
-            <div class="border-t-2 border-gray-200 pt-4 md:pt-6 mb-4 md:mb-6">
-                <div class="flex justify-between items-center font-bold mb-4 md:mb-6" style="font-size: clamp(1rem, 4.5vw, 1.25rem);">
-                    <span>Total:</span>
-                    <span id="summary-total">0 €</span>
+            <div>
+                <div id="summary-list" class="space-y-3 md:space-y-4 max-h-60 md:max-h-80 overflow-y-auto pr-2">
+                    <p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg font-medium">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>
                 </div>
-                
-                <div class="mb-4 md:mb-6">
-                    <label class="block text-center font-bold mb-3 text-gray-700" style="font-size: clamp(14px, 3.5vw, 16px);">¿Cuántos sois en el piso?</label>
-                    <div class="flex items-center justify-center gap-3">
+            </div>
+
+            <div id="modal-roommates-container" class="mt-5 md:mt-6 p-4 md:p-5 border-2 border-gray-200 rounded-xl transition-all duration-300">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center">
+                        <span class="text-2xl md:text-3xl mr-2 md:mr-3">👥</span>
+                        <span class="font-semibold text-sm md:text-lg">Compañeros</span>
+                    </div>
+                    <div class="count-controls">
                         <button id="modal-roommates-decrement" class="count-btn">-</button>
                         <span id="modal-roommates-count" class="count-display">1</span>
                         <button id="modal-roommates-increment" class="count-btn">+</button>
                     </div>
                 </div>
-                
-                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 md:p-5 text-center">
-                    <p class="text-blue-700 font-bold mb-2" style="font-size: clamp(11px, 3vw, 14px);">Coste por Persona</p>
-                    <p id="modal-cost-per-person" class="font-black text-blue-900" style="font-size: clamp(1.5rem, 6vw, 2rem);">0,00 €</p>
+                <div class="text-center font-bold text-lg md:text-xl text-green-600">
+                    <span id="modal-cost-per-person">0,00 €</span> por persona
                 </div>
             </div>
-            
-            <button id="modal-continue-btn" class="modal-continue-btn">
-                Continuar con el Pedido →
+
+            <!-- Campo de código de referido destacado en el modal -->
+            <div class="mt-5 md:mt-6">
+                <div class="referral-input-wrapper">
+                    <label for="coupon-code">🎟️ ¿Tienes un código de referido?</label>
+                    <input type="text" id="coupon-code" placeholder="ESCRIBE TU CÓDIGO AQUÍ">
+                </div>
+            </div>
+
+            <div class="mt-5 md:mt-6 flex justify-between items-center font-bold text-lg md:text-xl">
+                <span class="text-gray-800">Total:</span>
+                <span id="summary-total" class="text-blue-600 text-2xl md:text-3xl">0,00 €</span>
+            </div>
+
+            <button id="modal-proceed-to-form-btn" class="modal-continue-btn">
+                Continuar con los Datos del Cliente →
             </button>
         </div>
     </div>
 
-    <!-- Formulario del Cliente -->
-    <div id="client-form-section" class="form-section container mx-auto px-4 py-6 md:py-12 max-w-4xl">
-        <div class="text-center mb-8 md:mb-12">
-            <h2 class="font-bold text-gray-900 mb-3 md:mb-4" style="font-size: clamp(1.5rem, 6vw, 2.5rem);">Completa tus Datos</h2>
-            <p class="text-gray-600 font-medium" style="font-size: clamp(15px, 4vw, 20px);">Solo un paso más para reservar tu servicio de limpieza</p>
-        </div>
-
-        <div class="security-banner">
-            <div class="security-banner-icon">🔒</div>
-            <div class="security-banner-content">
-                <h4>Tus datos están seguros</h4>
-                <p>Toda tu información se envía de forma segura y solo se usa para gestionar tu solicitud de servicio.</p>
-            </div>
-        </div>
-
-        <div class="form-card">
-            <div class="form-card-header">
-                <div class="form-card-icon">👤</div>
-                <h3 class="form-card-title">Información Personal</h3>
-            </div>
-            
-            <div class="form-input-wrapper">
-                <span class="form-input-icon">📝</span>
-                <input type="text" id="nombre" class="form-input" placeholder="Nombre completo" autocomplete="name">
-                <div id="errorNombre" class="error-message"></div>
-            </div>
-        </div>
-
-        <div class="form-card">
-            <div class="form-card-header">
-                <div class="form-card-icon">📍</div>
-                <h3 class="form-card-title">Dirección del Servicio</h3>
-            </div>
-
-            <div class="info-banner">
-                <div class="info-banner-icon">ℹ️</div>
-                <div class="info-banner-content">
-                    <h4>Actualmente solo operamos en Valencia Capital</h4>
-                    <p>Si estás fuera de esta zona, puedes contactarnos para consultar disponibilidad.</p>
-                </div>
-            </div>
-            
-            <div class="form-input-wrapper">
-                <span class="form-input-icon">🏠</span>
-                <input type="text" id="calle" class="form-input" placeholder="Calle y número" autocomplete="street-address">
-                <div id="errorCalle" class="error-message"></div>
-            </div>
-            
-            <div class="form-input-group">
-                <div class="form-input-wrapper">
-                    <span class="form-input-icon">🚪</span>
-                    <input type="text" id="portal" class="form-input" placeholder="Portal">
-                    <div id="errorPortal" class="error-message"></div>
-                </div>
-                <div class="form-input-wrapper">
-                    <span class="form-input-icon">🏢</span>
-                    <input type="text" id="piso" class="form-input" placeholder="Piso">
-                    <div id="errorPiso" class="error-message"></div>
-                </div>
-                <div class="form-input-wrapper">
-                    <span class="form-input-icon">🚪</span>
-                    <input type="text" id="puerta" class="form-input" placeholder="Puerta">
-                    <div id="errorPuerta" class="error-message"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-card">
-            <div class="form-card-header">
-                <div class="form-card-icon">📅</div>
-                <h3 class="form-card-title">Fechas Preferidas</h3>
-            </div>
-
-            <div class="info-banner">
-                <div class="info-banner-icon">💡</div>
-                <div class="info-banner-content">
-                    <h4>Flexibilidad es tu mejor aliada</h4>
-                    <p>Proporciona dos opciones de fecha para aumentar las probabilidades de conseguir tu cita. Te confirmaremos la disponibilidad por WhatsApp.</p>
-                </div>
-            </div>
-
-            <div class="space-y-4 md:space-y-6">
-                <div class="date-selector">
-                    <div class="date-selector-label">
-                        <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
-                        <span>Primera opción</span>
-                    </div>
-                    <input type="date" id="fecha1" autocomplete="off">
-                    <div id="errorFecha1" class="error-message"></div>
-                </div>
-
-                <div class="date-selector">
-                    <div class="date-selector-label">
-                        <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
-                        <span>Segunda opción</span>
-                    </div>
-                    <input type="date" id="fecha2" autocomplete="off">
-                    <div id="errorFecha2" class="error-message"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-card">
-            <div class="form-card-header">
-                <div class="form-card-icon">🎁</div>
-                <h3 class="form-card-title">Código de Referido (Opcional)</h3>
-            </div>
-
-            <div class="referral-code-display" style="display:none;" id="user-referral-code-display">
-                <div class="label">Tu código de referido para compartir:</div>
-                <div class="code" id="user-referral-code-value">TUMXXXXXX</div>
-            </div>
-
-            <div class="referral-input-wrapper">
-                <label for="referral-code-input">
-                    ¿Te recomendó alguien? Introduce su código aquí
-                </label>
-                <input type="text" id="referral-code-input" placeholder="TUM123456" maxlength="10">
-            </div>
-
-            <div class="text-center text-gray-600 mt-4 font-medium" style="font-size: clamp(12px, 3vw, 14px);">
-                Comparte tu propio código con amigos después de completar tu primera limpieza y obtén descuentos en futuros servicios.
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button type="button" id="back-to-calculator-btn" class="form-btn form-btn-back">
-                <span>←</span>
-                <span>Volver a la Calculadora</span>
-            </button>
-            <button type="button" id="submit-form-btn" class="form-btn form-btn-submit">
-                <span>Revisar Solicitud</span>
-                <span>→</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal Final de Resumen -->
+    <!-- Modal de resumen final con cuota de activación y código de referido destacados -->
     <div id="final-summary-modal" class="final-summary-modal">
         <div class="final-summary-content">
-            <div class="summary-header mb-6 md:mb-8">
-                <h2>✅ Resumen de tu Solicitud</h2>
-                <p>Revisa todos los detalles antes de enviar</p>
+            <!-- Añadiendo botón X sutil para cerrar el modal de resumen final -->
+            <div class="flex justify-between items-start mb-4">
+                <div class="summary-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none; text-align: left; flex: 1;">
+                    <h2>✨ Resumen de tu Solicitud</h2>
+                    <p>Revisa todos los detalles antes de enviar</p>
+                </div>
+                <button onclick="document.getElementById('final-summary-modal').classList.remove('open')" class="modal-close-btn" aria-label="Cerrar" style="flex-shrink: 0; margin-left: 1rem;">
+                    ✕
+                </button>
             </div>
 
+            <!-- Banner de seguridad en el resumen final -->
+            <div class="security-banner" style="margin-bottom: 1.5rem;">
+                <div class="security-banner-icon">🔒</div>
+                <div class="security-banner-content">
+                    <h4>Información protegida</h4>
+                    <p>Tus datos están seguros con nosotros</p>
+                </div>
+            </div>
+
+            <!-- Código de referido destacado con gradiente verde esmeralda -->
+            <div id="referral-code-section" class="referral-code-display" style="display: none;">
+                <div class="label">🎟️ Código de Referido</div>
+                <div class="code" id="final-referral-code">-</div>
+            </div>
+
+            <!-- Sección de servicios con icono de edición interactivo -->
             <div class="summary-section">
-                <div class="summary-section-title" onclick="showSection('form')">
-                    <span style="font-size: clamp(18px, 4.5vw, 24px);">👤</span>
-                    <span>Datos del Cliente</span>
+                <div class="summary-section-title" onclick="editSection('services')" role="button" tabindex="0">
+                    <span>🧹</span>
+                    <span>Servicios Seleccionados</span>
                     <div class="edit-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
                         <span class="edit-icon-text">Editar</span>
                     </div>
-                    <div class="edit-tooltip">Click para editar datos personales</div>
+                </div>
+                <div id="final-services-list"></div>
+            </div>
+
+            <!-- Cuota de activación destacada con gradiente dorado -->
+            <div class="activation-fee-highlight">
+                <div class="summary-item">
+                    <span class="summary-item-label">💳 Cuota de Activación</span>
+                    <span class="summary-item-value" id="final-activation-fee">10 €</span>
+                </div>
+            </div>
+
+            <!-- Sección de datos del cliente con icono de edición interactivo -->
+            <div class="summary-section">
+                <div class="summary-section-title" onclick="editSection('client-data')" role="button" tabindex="0">
+                    <span>👤</span>
+                    <span>Datos del Cliente</span>
+                    <div class="edit-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
                 </div>
                 <div class="summary-item">
                     <span class="summary-item-label">Nombre</span>
@@ -1718,60 +1640,18 @@ header {
                 </div>
             </div>
 
+            <!-- Sección de fechas con icono de edición interactivo -->
             <div class="summary-section">
-                <div class="summary-section-title" onclick="showCalculatorSection()">
-                    <span style="font-size: clamp(18px, 4.5vw, 24px);">🧹</span>
-                    <span>Servicios Seleccionados</span>
-                    <div class="edit-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        <span class="edit-icon-text">Editar</span>
-                    </div>
-                    <div class="edit-tooltip">Click para editar servicios</div>
-                </div>
-                <div id="final-services-list"></div>
-            </div>
-
-            <div class="activation-fee-highlight">
-                <div class="summary-item">
-                    <span class="summary-item-label">💳 Cuota de activación</span>
-                    <span class="summary-item-value">10 €</span>
-                </div>
-            </div>
-
-            <div id="referral-code-section" class="summary-section" style="display: none;">
-                <div class="summary-section-title" onclick="showSection('form')">
-                    <span style="font-size: clamp(18px, 4.5vw, 24px);">🎁</span>
-                    <span>Código de Referido</span>
-                    <div class="edit-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        <span class="edit-icon-text">Editar</span>
-                    </div>
-                    <div class="edit-tooltip">Click para editar código</div>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-item-label">Código</span>
-                    <span class="summary-item-value" id="final-referral-code">-</span>
-                </div>
-            </div>
-
-            <div class="summary-section">
-                <div class="summary-section-title" onclick="showSection('form')">
-                    <span style="font-size: clamp(18px, 4.5vw, 24px);">📅</span>
+                <div class="summary-section-title" onclick="editSection('dates')" role="button" tabindex="0">
+                    <span>📅</span>
                     <span>Fechas Disponibles</span>
                     <div class="edit-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
                         <span class="edit-icon-text">Editar</span>
                     </div>
-                    <div class="edit-tooltip">Click para editar fechas</div>
                 </div>
                 <div class="summary-item">
                     <span class="summary-item-label">Primera opción</span>
@@ -1787,7 +1667,7 @@ header {
                 <div class="summary-total-label">Coste Total del Servicio</div>
                 <div class="summary-total-value" id="final-total-cost">0 €</div>
                 <div class="summary-total-per-person">
-                    💰 <span id="final-cost-per-person">0,00 €</span> por persona (<span id="final-roommates-count">1</span> compañero<span id="final-roommates-plural">s</span>)
+                    <span id="final-cost-per-person">0,00 €</span> por persona (<span id="final-roommates-count">1</span> compañero<span id="final-roommates-plural">s</span>)
                 </div>
             </div>
 
@@ -1798,18 +1678,10 @@ header {
                 </button>
                 <button type="button" id="send-whatsapp-btn" class="summary-btn summary-btn-send">
                     <span>📱</span>
-                    <span>Enviar por WhatsApp</span>
+                    <span>Enviar Solicitud por WhatsApp</span>
                 </button>
             </div>
         </div>
-    </div>
-
-    <!-- Elemento Flotante del Carrito -->
-    <div id="floating-elements-container">
-        <button id="floating-cart-button" title="Ver resumen">
-            🛒
-        </button>
-        <div id="floating-total-cost-display"></div>
     </div>
 
     <script>
@@ -1882,7 +1754,7 @@ header {
             summaryList.innerHTML = '';
 
             if (state.totalCost === 0) {
-                summaryList.innerHTML = '<p class="text-gray-500 text-center py-6 md:py-8 font-medium" style="font-size: clamp(14px, 3.5vw, 18px);">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
+                summaryList.innerHTML = '<p class="text-gray-500 text-center py-6 md:py-8 text-sm md:text-lg font-medium">Aún no has añadido nada. ¡Empieza a configurar tu limpieza!</p>';
                 return;
             }
 
@@ -1892,15 +1764,13 @@ header {
             const createItemNode = (item) => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'flex justify-between items-center py-3 md:py-3 px-4 md:px-4 bg-gray-50 rounded-lg';
-                itemElement.style.gap = '12px';
-                itemElement.style.flexWrap = 'wrap';
                 
                 let controls = '';
                 if (item.id === 'bano' || item.id === 'habitacion') {
                     controls = `
                         <div class="modal-item-controls">
                             <button class="modal-item-btn" data-action="decrement" data-id="${item.id}">-</button>
-                            <span class="font-bold text-center" style="width: clamp(28px, 7vw, 32px); font-size: clamp(13px, 3.5vw, 16px);">${item.quantity}</span>
+                            <span class="font-bold w-7 md:w-8 text-center text-sm md:text-base">${item.quantity}</span>
                             <button class="modal-item-btn" data-action="increment" data-id="${item.id}">+</button>
                         </div>
                     `;
@@ -1911,12 +1781,12 @@ header {
                 const totalItemPrice = item.price * (item.quantity || 1);
 
                 itemElement.innerHTML = `
-                    <div class="flex-grow pr-3 md:pr-4" style="min-width: 0;">
-                        <p class="font-semibold" style="font-size: clamp(14px, 3.5vw, 18px); word-break: break-word;">${item.label}</p>
-                        ${item.quantity > 1 ? `<p class="text-gray-500 font-medium" style="font-size: clamp(12px, 3vw, 14px);">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
+                    <div class="flex-grow pr-3 md:pr-4">
+                        <p class="font-semibold text-sm md:text-lg">${item.label}</p>
+                        ${item.quantity > 1 ? `<p class="text-xs md:text-sm text-gray-500 font-medium">${item.quantity} x ${formatCurrency(item.price)}</p>` : ''}
                     </div>
-                    <div class="flex items-center" style="gap: clamp(8px, 2vw, 12px); flex-shrink: 0;">
-                        <span class="font-bold text-gray-700 text-right" style="font-size: clamp(14px, 3.5vw, 18px); min-width: clamp(60px, 15vw, 80px);">${formatCurrency(totalItemPrice)}</span>
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <span class="font-bold text-gray-700 w-16 md:w-20 text-right text-sm md:text-lg">${formatCurrency(totalItemPrice)}</span>
                         ${controls}
                     </div>
                 `;
@@ -1927,8 +1797,7 @@ header {
                 const container = document.createElement('div');
                 container.className = 'p-4 md:p-4 border-2 border-gray-200 rounded-xl mb-4 md:mb-4';
                 const title = document.createElement('h4');
-                title.className = 'font-bold text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
-                title.style.fontSize = 'clamp(14px, 3.5vw, 18px)';
+                title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
                 title.textContent = 'Áreas';
                 container.appendChild(title);
                 areas.forEach(item => container.appendChild(createItemNode(item)));
@@ -1939,8 +1808,7 @@ header {
                 const container = document.createElement('div');
                 container.className = 'p-4 md:p-4 border-2 border-gray-200 rounded-xl mb-4 md:mb-4';
                 const title = document.createElement('h4');
-                title.className = 'font-bold text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
-                title.style.fontSize = 'clamp(14px, 3.5vw, 18px)';
+                title.className = 'font-bold text-sm md:text-lg text-gray-700 mb-3 md:mb-3 pb-2 md:pb-2 border-b-2';
                 title.textContent = 'Complementos';
                 container.appendChild(title);
                 addons.forEach(item => container.appendChild(createItemNode(item)));
@@ -1950,9 +1818,9 @@ header {
             const feeContainer = document.createElement('div');
             feeContainer.className = 'p-4 md:p-4 border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl';
             feeContainer.innerHTML = `
-                <div class="flex justify-between items-center" style="gap: 12px; flex-wrap: wrap;">
-                    <p class="font-bold text-amber-900" style="font-size: clamp(14px, 3.5vw, 18px);">💳 Cuota de activación</p>
-                    <span class="font-extrabold text-amber-900" style="font-size: clamp(15px, 4vw, 20px);">${formatCurrency(ACTIVATION_FEE)}</span>
+                <div class="flex justify-between items-center">
+                    <p class="font-bold text-sm md:text-lg text-amber-900">💳 Cuota de activación</p>
+                    <span class="font-extrabold text-amber-900 text-base md:text-xl">${formatCurrency(ACTIVATION_FEE)}</span>
                 </div>
             `;
             summaryList.appendChild(feeContainer);
@@ -1979,7 +1847,7 @@ header {
             if (areasCost > 0) {
                 labels.push('Áreas');
                 data.push(areasCost);
-                colors.push('#667eea');
+                colors.push('#1E3A8A');
             }
 
             const addonsCost = Object.values(state.selectedItems)
@@ -1989,7 +1857,7 @@ header {
             if (addonsCost > 0) {
                 labels.push('Complementos');
                 data.push(addonsCost);
-                colors.push('#764ba2');
+                colors.push('#64748B');
             }
 
             if (data.length === 0) {
@@ -2100,120 +1968,144 @@ header {
             decrementBtn.addEventListener('click', () => update(state[stateKey] - 1));
             incrementBtn.addEventListener('click', () => update(state[stateKey] + 1));
         };
-        
-        const setupRoommatesCounter = () => {
-            const decrementBtns = [document.getElementById('roommates-decrement'), document.getElementById('modal-roommates-decrement')];
-            const incrementBtns = [document.getElementById('roommates-increment'), document.getElementById('modal-roommates-increment')];
-            
-            const update = (newValue) => {
-                newValue = Math.max(1, Math.min(newValue, 10));
-                state.roommatesCount = newValue;
-                calculateTotal();
-            };
 
-            decrementBtns.forEach(btn => btn.addEventListener('click', () => update(state.roommatesCount - 1)));
-            incrementBtns.forEach(btn => btn.addEventListener('click', () => update(state.roommatesCount + 1)));
-        };
+        setupCounter('bano', 'banoCount', 0, 10, 'Baños', 10, 'area');
+        setupCounter('habitacion', 'habitacionCount', 0, 10, 'Habitaciones', 10, 'area');
+        setupCounter('roommates', 'roommatesCount', 1, 20);
+        setupCounter('modal-roommates', 'roommatesCount', 1, 20);
 
-        const showError = (fieldId, message) => {
-            const input = document.getElementById(fieldId);
-            const error = document.getElementById(`error${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}`);
-            input.classList.add('error');
-            error.textContent = message;
-            error.classList.add('show');
-        };
+        allCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
 
-        const hideError = (fieldId) => {
-            const input = document.getElementById(fieldId);
-            const error = document.getElementById(`error${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}`);
-            input.classList.remove('error');
-            error.classList.remove('show');
-        };
+        document.getElementById('floating-cart-button').addEventListener('click', () => {
+            modal.classList.add('open');
+        });
 
-        const validateClientForm = () => {
-            let isValid = true;
-            const today = new Date().toISOString().split('T')[0];
+        document.getElementById('close-modal-button').addEventListener('click', () => {
+            modal.classList.remove('open');
+        });
 
-            const nombre = document.getElementById('nombre');
-            if (!nombre.value.trim()) {
-                showError('nombre', 'Por favor, ingresa tu nombre completo');
-                isValid = false;
-            } else {
-                hideError('nombre');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
             }
+        });
 
-            const fields = ['calle', 'portal', 'piso', 'puerta'];
-            fields.forEach(field => {
-                const input = document.getElementById(field);
-                if (!input.value.trim()) {
-                    showError(field, field === 'calle' ? 'Por favor, ingresa la calle y número' : 'Campo requerido');
-                    isValid = false;
-                } else {
-                    hideError(field);
+        summaryList.addEventListener('click', (e) => {
+            const button = e.target.closest('button[data-action]');
+            if (!button) return;
+
+            const action = button.dataset.action;
+            const id = button.dataset.id;
+
+            if (action === 'remove') {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.checked = false;
+                    delete state.selectedItems[id];
+                    calculateTotal();
                 }
-            });
-
-            const fecha1 = document.getElementById('fecha1');
-            const fecha2 = document.getElementById('fecha2');
-
-            if (!fecha1.value) {
-                showError('fecha1', 'Selecciona la primera fecha');
-                isValid = false;
-            } else if (fecha1.value < today) {
-                showError('fecha1', 'La fecha no puede ser anterior a hoy');
-                isValid = false;
-            } else {
-                hideError('fecha1');
+            } else if (action === 'increment' || action === 'decrement') {
+                const stateKey = id === 'bano' ? 'banoCount' : 'habitacionCount';
+                const delta = action === 'increment' ? 1 : -1;
+                const newValue = Math.max(0, Math.min(10, state[stateKey] + delta));
+                
+                if (newValue === 0) {
+                    delete state.selectedItems[id];
+                } else {
+                    state.selectedItems[id].quantity = newValue;
+                }
+                
+                state[stateKey] = newValue;
+                calculateTotal();
             }
+        });
 
-            if (!fecha2.value) {
-                showError('fecha2', 'Selecciona la segunda fecha');
-                isValid = false;
-            } else if (fecha2.value < today) {
-                showError('fecha2', 'La fecha no puede ser anterior a hoy');
-                isValid = false;
-            } else {
-                hideError('fecha2');
-            }
-
-            return isValid;
-        };
-        
-        const showSection = (sectionId) => {
-            document.getElementById('calculator-section').style.display = sectionId === 'calculator' ? 'block' : 'none';
-            document.getElementById('client-form-section').classList.toggle('active', sectionId === 'form');
-            state.currentSection = sectionId;
-            document.getElementById('final-summary-modal').classList.remove('open');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        const showCalculatorSection = () => {
-            showSection('calculator');
-        };
-
-        const showClientFormSection = () => {
+        document.getElementById('proceed-to-form-btn').addEventListener('click', () => {
             if (state.totalCost === 0) {
                 alert('Por favor, selecciona al menos un servicio antes de continuar.');
                 document.getElementById('areas-section').scrollIntoView({ behavior: 'smooth' });
                 return;
             }
 
-            showSection('form');
-        };
+            const mainCouponCode = document.getElementById('main-coupon-code').value.trim().toUpperCase();
+            if (mainCouponCode) {
+                state.referralCode = mainCouponCode;
+            }
 
-        const showFinalSummary = () => {
-            const nombre = document.getElementById('nombre').value;
-            const calle = document.getElementById('calle').value;
-            const portal = document.getElementById('portal').value;
-            const piso = document.getElementById('piso').value;
-            const puerta = document.getElementById('puerta').value;
+            document.getElementById('calculator-section').style.display = 'none';
+            document.getElementById('client-form-section').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('modal-proceed-to-form-btn').addEventListener('click', () => {
+            if (state.totalCost === 0) {
+                alert('Por favor, selecciona al menos un servicio antes de continuar.');
+                modal.classList.remove('open');
+                document.getElementById('areas-section').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const couponCode = document.getElementById('coupon-code').value.trim().toUpperCase();
+            if (couponCode) {
+                state.referralCode = couponCode;
+            }
+
+            modal.classList.remove('open');
+            document.getElementById('calculator-section').style.display = 'none';
+            document.getElementById('client-form-section').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('back-to-calculator-btn').addEventListener('click', () => {
+            document.getElementById('client-form-section').classList.remove('active');
+            document.getElementById('calculator-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('client-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const calle = document.getElementById('calle').value.trim();
+            const portal = document.getElementById('portal').value.trim();
+            const piso = document.getElementById('piso').value.trim();
+            const puerta = document.getElementById('puerta').value.trim();
             const fecha1 = document.getElementById('fecha1').value;
             const fecha2 = document.getElementById('fecha2').value;
 
-            const referralCode = state.referralCode;
+            let hasError = false;
+
+            const validateField = (fieldId, errorId, value) => {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(errorId);
+                if (!value) {
+                    field.classList.add('error');
+                    error.classList.add('show');
+                    hasError = true;
+                } else {
+                    field.classList.remove('error');
+                    error.classList.remove('show');
+                }
+            };
+
+            validateField('nombre', 'errorNombre', nombre);
+            validateField('calle', 'errorCalle', calle);
+            validateField('portal', 'errorPortal', portal);
+            validateField('piso', 'errorPiso', piso);
+            validateField('puerta', 'errorPuerta', puerta);
+            validateField('fecha1', 'errorFecha1', fecha1);
+            validateField('fecha2', 'errorFecha2', fecha2);
+
+            if (hasError) {
+                return;
+            }
+
+            const direccion = `${calle}, Portal ${portal}, Piso ${piso}, Puerta ${puerta}`;
 
             document.getElementById('final-nombre').textContent = nombre;
-            document.getElementById('final-direccion').textContent = `${calle}, Portal ${portal}, ${piso}, Puerta ${puerta}`;
+            document.getElementById('final-direccion').textContent = direccion;
             document.getElementById('final-fecha1').textContent = formatDate(fecha1);
             document.getElementById('final-fecha2').textContent = formatDate(fecha2);
             document.getElementById('final-total-cost').textContent = formatCurrency(state.totalCost);
@@ -2221,236 +2113,153 @@ header {
             document.getElementById('final-roommates-count').textContent = state.roommatesCount;
             document.getElementById('final-roommates-plural').textContent = state.roommatesCount === 1 ? '' : 's';
 
-            if (referralCode) {
-                document.getElementById('final-referral-code').textContent = referralCode;
-                document.getElementById('referral-code-section').style.display = 'block';
-            } else {
-                document.getElementById('referral-code-section').style.display = 'none';
-            }
-
             const servicesList = document.getElementById('final-services-list');
             servicesList.innerHTML = '';
 
             const areas = Object.values(state.selectedItems).filter(item => item.type === 'area');
             const addons = Object.values(state.selectedItems).filter(item => item.type === 'addon');
 
-            [...areas, ...addons].forEach(item => {
+            areas.forEach(item => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'summary-item';
-                const quantityText = item.quantity > 1 ? ` (x${item.quantity})` : '';
-                const totalItemPrice = item.price * (item.quantity || 1);
+                const quantity = item.quantity || 1;
+                const totalPrice = item.price * quantity;
                 itemDiv.innerHTML = `
-                    <span class="summary-item-label">${item.label}${quantityText}</span>
-                    <span class="summary-item-value">${formatCurrency(totalItemPrice)}</span>
+                    <span class="summary-item-label">${item.label}${quantity > 1 ? ` (x${quantity})` : ''}</span>
+                    <span class="summary-item-value">${formatCurrency(totalPrice)}</span>
                 `;
                 servicesList.appendChild(itemDiv);
             });
 
-            document.getElementById('final-summary-modal').classList.add('open');
-        };
+            addons.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">${item.label}</span>
+                    <span class="summary-item-value">${formatCurrency(item.price)}</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            });
 
-        const sendWhatsAppMessage = () => {
-            const nombre = document.getElementById('nombre').value;
-            const calle = document.getElementById('calle').value;
-            const portal = document.getElementById('portal').value;
-            const piso = document.getElementById('piso').value;
-            const puerta = document.getElementById('puerta').value;
+            if (state.referralCode) {
+                document.getElementById('referral-code-section').style.display = 'block';
+                document.getElementById('final-referral-code').textContent = state.referralCode;
+            } else {
+                document.getElementById('referral-code-section').style.display = 'none';
+            }
+
+            document.getElementById('final-summary-modal').classList.add('open');
+        });
+
+        document.getElementById('cancel-final-summary-btn').addEventListener('click', () => {
+            document.getElementById('final-summary-modal').classList.remove('open');
+        });
+
+        document.getElementById('send-whatsapp-btn').addEventListener('click', () => {
+            const nombre = document.getElementById('nombre').value.trim();
+            const direccion = document.getElementById('final-direccion').textContent;
             const fecha1 = document.getElementById('fecha1').value;
             const fecha2 = document.getElementById('fecha2').value;
-            const referralCode = state.referralCode;
-            
-            let message = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += "*SOLICITUD DE SERVICIO*\n";
-            message += "*PLAN LIMPIEZA10*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-            
-            message += "*DATOS DEL CLIENTE*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += `Nombre: *${nombre}*\n`;
-            message += `Dirección: *${calle}*\n`;
-            message += `Portal: *${portal}* | Piso: *${piso}* | Puerta: *${puerta}*\n`;
-            message += `Ciudad: *Valencia capital*\n\n`;
 
-            message += "*FECHAS DISPONIBLES*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += `Primera opción: *${formatDate(fecha1)}*\n`;
-            message += `Segunda opción: *${formatDate(fecha2)}*\n\n`;
+            let message = `🧹 *SOLICITUD DE LIMPIEZA - Calculadora-Limpieza10*\n\n`;
+            message += `👤 *Cliente:* ${nombre}\n`;
+            message += `🏠 *Dirección:* ${direccion}\n\n`;
             
-            if (referralCode) {
-                message += "*CÓDIGO DE REFERIDO*\n";
-                message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-                message += `Código: *${referralCode}*\n\n`;
-            }
-            
-            message += "*SERVICIOS SOLICITADOS*\n";
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            
+            message += `📅 *Fechas Disponibles:*\n`;
+            message += `• Opción 1: ${formatDate(fecha1)}\n`;
+            message += `• Opción 2: ${formatDate(fecha2)}\n\n`;
+
+            message += `🧹 *SERVICIOS SELECCIONADOS:*\n\n`;
+
             const areas = Object.values(state.selectedItems).filter(item => item.type === 'area');
             const addons = Object.values(state.selectedItems).filter(item => item.type === 'addon');
-            
-            if (areas.length > 0) {
-                message += "\n🏠 *ÁREAS*\n";
-                areas.forEach(item => {
-                    const qty = item.quantity > 1 ? ` (x${item.quantity})` : '';
-                    const totalPrice = item.price * (item.quantity || 1);
-                    message += `• ${item.label}${qty}: *${formatCurrency(totalPrice)}*\n`;
-                });
-            }
-            
-            if (addons.length > 0) {
-                message += "\n✨ *COMPLEMENTOS*\n";
-                addons.forEach(item => {
-                    message += `• ${item.label}: *${formatCurrency(item.price)}*\n`;
-                });
-            }
-            
-            message += "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            message += `💳 Cuota de activación: *${formatCurrency(ACTIVATION_FEE)}*\n`;
-            message += `💰 *TOTAL: ${formatCurrency(state.totalCost)}*\n`;
-            message += `👥 Compañeros de piso: *${state.roommatesCount}*\n`;
-            message += `💵 Coste por persona: *${formatCurrency(state.costPerPerson, true)}*\n`;
-            message += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const ctx = document.getElementById('costChart').getContext('2d');
-            costChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Vacío'],
-                    datasets: [{
-                        data: [1],
-                        backgroundColor: ['#e5e7eb'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 15,
-                                font: {
-                                    size: window.innerWidth < 768 ? 12 : 14,
-                                    weight: '600'
-                                },
-                                usePointStyle: true,
-                                pointStyle: 'circle'
+            if (areas.length > 0) {
+                message += `*Áreas:*\n`;
+                areas.forEach(item => {
+                    const quantity = item.quantity || 1;
+                    const totalPrice = item.price * quantity;
+                    message += `• ${item.label}${quantity > 1 ? ` (x${quantity})` : ''}: ${formatCurrency(totalPrice)}\n`;
+                });
+                message += `\n`;
+            }
+
+            if (addons.length > 0) {
+                message += `*Complementos:*\n`;
+                addons.forEach(item => {
+                    message += `• ${item.label}: ${formatCurrency(item.price)}\n`;
+                });
+                message += `\n`;
+            }
+
+            message += `💳 *Cuota de Activación:* ${formatCurrency(ACTIVATION_FEE)}\n\n`;
+
+            if (state.referralCode) {
+                message += `🎟️ *Código de Referido:* ${state.referralCode}\n\n`;
+            }
+
+            message += `👥 *Compañeros:* ${state.roommatesCount}\n`;
+            message += `💰 *TOTAL:* ${formatCurrency(state.totalCost)}\n`;
+            message += `💵 *Por persona:* ${formatCurrency(state.costPerPerson, true)}\n\n`;
+
+            message += `_Solicitud generada desde Calculadora-Limpieza10_`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        function editSection(section) {
+            document.getElementById('final-summary-modal').classList.remove('open');
+            
+            if (section === 'services') {
+                document.getElementById('client-form-section').classList.remove('active');
+                document.getElementById('calculator-section').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (section === 'client-data' || section === 'dates') {
+                document.getElementById('calculator-section').style.display = 'none';
+                document.getElementById('client-form-section').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        const ctx = document.getElementById('costBreakdownChart').getContext('2d');
+        costChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Vacío'],
+                datasets: [{
+                    data: [1],
+                    backgroundColor: ['#e5e7eb'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 13,
+                                weight: '600'
                             }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: (context) => {
-                                    const label = context.label || '';
-                                    const value = formatCurrency(context.parsed);
-                                    return `${label}: ${value}`;
-                                }
-                            },
-                            backgroundColor: '#1E293B',
-                            titleFont: { size: 14, weight: 'bold' },
-                            bodyFont: { size: 13 },
-                            padding: 12,
-                            cornerRadius: 6
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + formatCurrency(context.parsed);
+                            }
                         }
                     }
                 }
-            });
-
-            allCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', handleCheckboxChange);
-            });
-
-            setupCounter('bano', 'banoCount', 0, 5, 'Baños', 10, 'area');
-            setupCounter('habitacion', 'habitacionCount', 0, 10, 'Habitaciones', 10, 'area');
-            setupRoommatesCounter();
-
-            document.getElementById('floating-cart-button').addEventListener('click', () => {
-                modal.classList.add('open');
-                const modalSummaryList = document.getElementById('modal-summary-list');
-                modalSummaryList.innerHTML = summaryList.innerHTML;
-                
-                modalSummaryList.querySelectorAll('[data-action]').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const action = e.currentTarget.dataset.action;
-                        const id = e.currentTarget.dataset.id;
-                        
-                        if (action === 'remove') {
-                            const checkbox = document.getElementById(id);
-                            if (checkbox) checkbox.checked = false;
-                            delete state.selectedItems[id];
-                            calculateTotal();
-                            modal.classList.remove('open');
-                        } else if (action === 'increment') {
-                            const stateKey = id + 'Count';
-                            state[stateKey] = Math.min(state[stateKey] + 1, id === 'bano' ? 5 : 10);
-                            if (state[stateKey] > 0) {
-                                state.selectedItems[id].quantity = state[stateKey];
-                            }
-                            calculateTotal();
-                            modal.classList.remove('open');
-                        } else if (action === 'decrement') {
-                            const stateKey = id + 'Count';
-                            state[stateKey] = Math.max(state[stateKey] - 1, 0);
-                            if (state[stateKey] > 0) {
-                                state.selectedItems[id].quantity = state[stateKey];
-                            } else {
-                                delete state.selectedItems[id];
-                            }
-                            calculateTotal();
-                            modal.classList.remove('open');
-                        }
-                    });
-                });
-            });
-
-            document.getElementById('close-modal').addEventListener('click', () => {
-                modal.classList.remove('open');
-            });
-
-            document.getElementById('modal-continue-btn').addEventListener('click', () => {
-                modal.classList.remove('open');
-                showClientFormSection();
-            });
-
-            document.getElementById('continue-to-form-btn').addEventListener('click', showClientFormSection);
-            document.getElementById('back-to-calculator-btn').addEventListener('click', showCalculatorSection);
-
-            document.getElementById('submit-form-btn').addEventListener('click', () => {
-                if (!validateClientForm()) {
-                    return;
-                }
-
-                const referralInput = document.getElementById('referral-code-input');
-                state.referralCode = referralInput.value.trim().toUpperCase();
-
-                showFinalSummary();
-            });
-
-            document.getElementById('cancel-final-summary-btn').addEventListener('click', () => {
-                document.getElementById('final-summary-modal').classList.remove('open');
-            });
-
-            document.getElementById('send-whatsapp-btn').addEventListener('click', sendWhatsAppMessage);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('open');
-                }
-            });
-
-            document.getElementById('final-summary-modal').addEventListener('click', (e) => {
-                if (e.target.id === 'final-summary-modal') {
-                    e.target.classList.remove('open');
-                }
-            });
-
-            updateUI();
+            }
         });
+
+        updateUI();
     </script>
 </body>
 </html>

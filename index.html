@@ -177,12 +177,6 @@ input:checked + .checkbox-label {
     bottom: 20px;
     right: 20px;
     z-index: 50;
-    transition: all 0.3s ease;
-}
-
-/* Cuando estamos en la sección del formulario, ajustamos la posición del carrito */
-#client-form-section.active ~ #floating-elements-container {
-    bottom: 100px; /* Más espacio para no superponerse con el botón */
 }
 
 #floating-cart-button {
@@ -518,13 +512,15 @@ header {
     }
 }
 
-/* === FORMULARIOS === */
+/* === FORMULARIOS - CON ESPACIO ADICIONAL PARA EL CARRITO === */
 .form-section {
     display: none;
 }
 
 .form-section.active {
     display: block;
+    /* Añadir espacio adicional en la parte inferior para el carrito */
+    padding-bottom: 100px !important;
 }
 
 .form-input {
@@ -1169,9 +1165,9 @@ header {
         font-size: clamp(1.3rem, 5.5vw, 1.8rem);
     }
     
-    /* Ajustar aún más el carrito en móviles cuando está en el formulario */
-    #client-form-section.active ~ #floating-elements-container {
-        bottom: 120px; /* Más espacio en móviles */
+    /* Añadir más espacio en móviles para el carrito */
+    .form-section.active {
+        padding-bottom: 120px !important;
     }
 }
 

@@ -2384,48 +2384,54 @@ header {
             const fecha1 = document.getElementById('fecha1').value;
             const fecha2 = document.getElementById('fecha2').value;
 
-            let message = `🧹 *SOLICITUD DE LIMPIEZA - Calculadora-Limpieza10*\n\n`;
-            message += `👤 *Cliente:* ${nombre}\n`;
-            message += `🏠 *Dirección:* ${direccion}\n\n`;
+            // Mensaje profesional y minimalista para WhatsApp
+            let message = `SOLICITUD DE SERVICIO DE LIMPIEZA\n\n`;
             
-            message += `📅 *Fechas Disponibles:*\n`;
-            message += `• Opción 1: ${formatDate(fecha1)}\n`;
-            message += `• Opción 2: ${formatDate(fecha2)}\n\n`;
-
-            message += `🧹 *SERVICIOS SELECCIONADOS:*\n\n`;
-
+            message += `INFORMACIÓN DEL CLIENTE\n`;
+            message += `• Nombre: ${nombre}\n`;
+            message += `• Dirección: ${direccion}\n\n`;
+            
+            message += `FECHAS DISPONIBLES PARA VISITA\n`;
+            message += `• Primera opción: ${formatDate(fecha1)}\n`;
+            message += `• Segunda opción: ${formatDate(fecha2)}\n\n`;
+            
+            message += `SERVICIOS SOLICITADOS\n`;
+            
             const areas = Object.values(state.selectedItems).filter(item => item.type === 'area');
             const addons = Object.values(state.selectedItems).filter(item => item.type === 'addon');
 
             if (areas.length > 0) {
-                message += `*Áreas:*\n`;
+                message += `ÁREAS A LIMPIAR:\n`;
                 areas.forEach(item => {
                     const quantity = item.quantity || 1;
                     const totalPrice = item.price * quantity;
-                    message += `• ${item.label}${quantity > 1 ? ` (x${quantity})` : ''}: ${formatCurrency(totalPrice)}\n`;
+                    message += `• ${item.label}${quantity > 1 ? ` (${quantity} unidades)` : ''}: ${formatCurrency(totalPrice)}\n`;
                 });
                 message += `\n`;
             }
 
             if (addons.length > 0) {
-                message += `*Complementos:*\n`;
+                message += `COMPLEMENTOS ADICIONALES:\n`;
                 addons.forEach(item => {
                     message += `• ${item.label}: ${formatCurrency(item.price)}\n`;
                 });
                 message += `\n`;
             }
 
-            message += `💳 *Cuota de Activación:* ${formatCurrency(ACTIVATION_FEE)}\n\n`;
+            message += `DETALLE DE COSTES\n`;
+            message += `• Cuota de activación: ${formatCurrency(ACTIVATION_FEE)}\n`;
+            message += `• Número de compañeros: ${state.roommatesCount}\n`;
+            message += `• Coste total del servicio: ${formatCurrency(state.totalCost)}\n`;
+            message += `• Coste por persona: ${formatCurrency(state.costPerPerson, true)}\n\n`;
 
             if (state.referralCode) {
-                message += `🎟️ *Código de Referido:* ${state.referralCode}\n\n`;
+                message += `CÓDIGO DE REFERIDO: ${state.referralCode}\n\n`;
             }
 
-            message += `👥 *Compañeros:* ${state.roommatesCount}\n`;
-            message += `💰 *TOTAL:* ${formatCurrency(state.totalCost)}\n`;
-            message += `💵 *Por persona:* ${formatCurrency(state.costPerPerson, true)}\n\n`;
-
-            message += `_Solicitud generada desde Calculadora-Limpieza10_`;
+            message += `INFORMACIÓN ADICIONAL\n`;
+            message += `Esta solicitud ha sido generada a través de la Calculadora-Limpieza10 de TeEchoUnaMano TUM. Nos pondremos en contacto para confirmar la fecha de visita y coordinar el servicio.\n\n`;
+            
+            message += `AGRADECEMOS SU CONFIANZA`;
 
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
